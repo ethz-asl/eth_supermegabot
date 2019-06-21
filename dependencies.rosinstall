@@ -1,0 +1,63 @@
+- git:
+   local-name: eigen_catkin
+   uri: https://github.com/ethz-asl/eigen_catkin.git
+- git:
+   local-name: glog_catkin
+   uri: https://github.com/ethz-asl/glog_catkin.git
+- git:
+   local-name: gflags_catkin
+   uri: https://github.com/ethz-asl/gflags_catkin.git
+- git:
+   local-name: eigen_checks
+   uri: https://github.com/ethz-asl/eigen_checks.git
+- git:
+   local-name: doxygen_catkin
+   uri: https://github.com/ethz-asl/doxygen_catkin.git
+- git:
+   local-name: metis_catkin
+   uri: https://github.com/ethz-asl/metis_catkin.git
+- git:
+   local-name: mincurves
+   uri: https://github.com/ethz-asl/mincurves.git
+- git:
+   local-name: gtsam_catkin
+   uri: https://github.com/ethz-asl/gtsam_catkin.git
+   version: ecf6a04b7ad25d3d5b8303277ba10c88fa27bd7e
+- git:
+   local-name: libnabo
+   uri: https://github.com/ethz-asl/libnabo.git
+- git:
+   local-name: libpointmatcher
+   uri: https://github.com/ethz-asl/libpointmatcher.git
+- git:
+   local-name: minkindr
+   uri: https://github.com/ethz-asl/minkindr.git
+- git:
+   local-name: minkindr_gtsam
+   uri: https://github.com/ethz-asl/minkindr_gtsam.git
+- git:
+   local-name: minkindr_ros
+   uri: https://github.com/ethz-asl/minkindr_ros.git
+- git:
+   local-name: ethzasl_icp_mapping
+   uri: https://github.com/gawela/ethzasl_icp_mapping.git
+   version: 02bd084e3c7ebbeed0a69433573b92924a04e41a
+- git:
+   local-name: catkin_simple
+   uri: https://github.com/catkin/catkin_simple.git
+- git: 
+   local-name: volumetric_mapping
+   uri: https://github.com/ethz-asl/volumetric_mapping.git
+- git:
+   local-name: pcl_catkin
+   uri: https://github.com/ethz-asl/pcl_catkin.git
+   version: 9e4365abe44da48ef01b42e86602ce17be808eb5
+- git:
+   local-name: catkin_boost_python_buildtool
+   uri: https://github.com/ethz-asl/catkin_boost_python_buildtool.git
+- git:
+   local-name: numpy_eigen
+   uri: https://github.com/ethz-asl/numpy_eigen.git
+- git:
+   local-name: doxygen_catkin
+   uri: https://github.com/ethz-asl/doxygen_catkin.git
