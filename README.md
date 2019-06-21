@@ -38,8 +38,9 @@ Setup your catkin workspace in which your packages will be built as follows.
 Source the environment
 ```
 source /opt/ros/melodic/setup.bash
+echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 ```
-Create and setup workspace.
+## Create and setup your catkin workspace.
 ```
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/src
