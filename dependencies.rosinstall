@@ -64,4 +64,4 @@
 - git:
    local-name: laser_slam
    uri: https://github.com/gawela/laser_slam.git
-   version: feature/summer_school
+   version: feature/application
