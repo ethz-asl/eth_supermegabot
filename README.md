@@ -49,6 +49,7 @@ catkin config --extend /opt/ros/melodic
 catkin config --merge-devel
 catkin config -DCMAKE_BUILD_TYPE=Release
 ```
+## Presently, we do not use the ws tool setup, an update will follow for the installation sequence.
 We use wstool to manage packages in the workspace, at least for your initial setup, do:
 ```
 cd ~/catkin_ws/src/
