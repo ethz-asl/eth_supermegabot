@@ -65,3 +65,6 @@
    local-name: laser_slam
    uri: https://github.com/gawela/laser_slam.git
    version: feature/application
+- git:
+   local-name: rosserial
+   uri: https://github.com/ros-drivers/rosserial.git
