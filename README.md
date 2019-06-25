@@ -1,4 +1,4 @@
-## ETh Center for robotics summer school 2019
+## ETH Center for robotics summer school 2019
 
 This is a basic set-up guide for the workspace packages and tutorial to use the super mega bots.
 
@@ -31,8 +31,7 @@ Install [git](https://www.atlassian.com/git/tutorials/what-is-git).
 ```
 ## Install ROS Melodic
 
-Install ROS Melodic (recommended: “Desktop-Full Install”) following the [instructions](http://wiki.ros.org/melodic/Installation/Ubuntu). We work with Catkin Command Line Tools (catkin build instead of catkin_make) to build
-packages in your workspace. They can be installed with [apt-get](http://catkin-tools.readthedocs.io/en/latest/installing.html#installing-on-ubuntu-with-apt-get).
+Install ROS Melodic (recommended: “Desktop-Full Install”) following the [instructions](http://wiki.ros.org/melodic/Installation/Ubuntu) from 1.1 to 1.7 (included). We work with Catkin Command Line Tools (catkin build instead of catkin_make) to build packages in your workspace. They can be installed with [apt-get](http://catkin-tools.readthedocs.io/en/latest/installing.html#installing-on-ubuntu-with-apt-get).
 
 Setup your catkin workspace in which your packages will be built as follows.
 Source the environment
@@ -40,11 +39,17 @@ Source the environment
 source /opt/ros/melodic/setup.bash
 echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 ```
+
+## Preliminary dependencies:
+``` 
+sudo apt-get install python-catkin-tools ros-melodic-octomap ros-melodic-octomap-msgs ros-melodic-octomap-ros doxygen
+```
+
 ## Create and setup your catkin workspace.
 ```
 mkdir -p ~/catkin_ws/src
-cd ~/catkin_ws/src
-catkin_init_workspace
+cd ~/catkin_ws
+catkin init
 catkin config --extend /opt/ros/kinetic
 catkin config --merge-devel
 catkin config -DCMAKE_BUILD_TYPE=Release
@@ -75,6 +80,29 @@ echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 You can use the [editor on GitHub](https://github.com/ethz-asl/eth_robotics_summer_school_2019/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+
+# Troubleshooting  
+* laser_slam:  
+Error: Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE)  
+Solution:
+```
+sudo apt-get install doxygen  
+```
+
+* Header file not found:  
+Solution: resource your catkin workspace, then build again.  
+```
+source ~/catkin_ws/devel/setup.bash  
+catkin build  
+```
+
+* DCMAKE_BUILD_TYPE not specified, etc:  
+Solution: Double check the catkin config  
+```
+catkin config  
+```
+Then you should find CMake args as below:  
+Additional CMake Args: -DCMAKE_BUILD_TYPE=Release  
 
 ### Markdown
 
