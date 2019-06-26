@@ -1,0 +1,4 @@
+subscribers:
+  joy_twist:
+    topic: /joy_manager/twist
+    queue_size: 1

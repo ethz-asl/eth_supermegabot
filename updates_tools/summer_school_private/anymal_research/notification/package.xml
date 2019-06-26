@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<package format="2">
+
+  <name>notification</name>
+  <version>0.6.0</version>
+  <description>The notification package</description>
+  
+  <license>BSD</license>
+
+  <author email="gehrinch@ethz.ch">Christian Gehring</author>
+  <maintainer email="gehrinch@ethz.ch">Christian Gehring</maintainer>
+  
+  <url type="website">https://bitbucket.org/leggedrobotics/any_common</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>notification_msgs</depend>
+  <depend>roscpp</depend>
+
+</package>

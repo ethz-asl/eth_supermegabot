@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+
+  <name>rocoma_plugin</name>
+  <version>0.4.0</version>
+  <description>Contains implementations of rocoma controllers with common plugin base classes.</description>
+  <maintainer email="gabriel.hottiger@mavt.ethz.ch">Gabriel Hottiger</maintainer>
+  <author email="gabriel.hottiger@mavt.ethz.ch">Gabriel Hottiger</author>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roco</depend>
+  <depend>roco_ros</depend>
+  <depend>rocoma</depend>
+  <depend>pluginlib</depend>
+
+</package>

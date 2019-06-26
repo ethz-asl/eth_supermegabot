@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>message_logger</name>
+  <version>0.2.0</version>
+  <description>The message logger package</description>
+  <maintainer email="gehrinch@ethz.ch">Christian Gehring</maintainer>
+  <license>BSD</license>
+  <url type="website">http://bitbucket.org/leggedrobotics/message_logger</url>
+  <author email="gehrinch@ethz.ch">Christian Gehring</author>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+</package>

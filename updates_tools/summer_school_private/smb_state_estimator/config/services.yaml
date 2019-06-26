@@ -1,0 +1,4 @@
+servers:
+  reset:
+    service: /state_estimator/reset
+    persistent: false

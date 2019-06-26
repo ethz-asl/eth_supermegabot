@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+
+  <name>cosmo</name>
+  <version>0.5.0</version>
+  <description>The cosmo package</description>
+  <maintainer email="pleemann@ethz.ch">Philipp Leemann</maintainer>
+  <author>Christian Gehring</author>
+  <license>Proprietary</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_export_depend>boost</build_export_depend>
+  <depend>message_logger</depend>
+  <depend>any_measurements</depend>
+  <depend>any_worker</depend>
+  <export>
+  </export>
+
+</package>

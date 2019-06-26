@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>smb_gazebo</name>
+  <version>0.1.0</version>
+  <description>smb Gazebo plugins</description>
+  <maintainer email="koen.kraemer@mavt.ethz.ch">Koen Kraemer</maintainer>
+  <license>Proprietary</license>
+  <url type="website">https://bitbucket.org/leggedrobotics/smb_common</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>anybot_gazebo_plugin</depend>
+  <depend>param_io</depend>
+  <depend>smb_common</depend>
+  <depend>smb_description</depend>
+  <depend>smb_description_ros</depend>
+  <depend>smb_model</depend>
+  <depend>smb_model_ros</depend>
+  <depend>smb_msgs</depend>
+  <depend>romo_std</depend>
+  <depend>velodyne_gazebo_plugin</depend>
+
+  <export>
+    <gazebo plugin_path="${prefix}/lib" gazebo_media_path="${prefix}"/>
+  </export>
+</package>

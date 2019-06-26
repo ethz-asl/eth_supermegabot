@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+    <!-- Debug with gbd or valgrind -->
+    <arg name="debug" default="" />
+
+    <node pkg="signal_logger_example" type="signal_logger_example_node" name="signal_logger_example"
+        output="screen" launch-prefix="$(arg debug)">
+    </node>
+
+</launch>

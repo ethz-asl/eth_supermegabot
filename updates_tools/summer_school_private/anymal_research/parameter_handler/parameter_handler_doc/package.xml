@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>parameter_handler_doc</name>
+  <version>0.3.0</version>
+  <description>The parameter handler documentation package</description>
+  <maintainer email="gehrinch@ethz.ch">Christian Gehring</maintainer>
+  <license>BSD</license>
+  <author email="gabriel.hottigerh@mavt.ethz.ch">Gabriel Hottiger</author>
+  <url type="website">https://bitbucket.org/leggedrobotics/parameter_handler</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>parameter_handler</depend>
+  <depend>parameter_handler_ros</depend>
+  <depend>parameter_handler_std</depend>
+  <depend>parameter_handler_msgs</depend>
+  <depend>rqt_parameters</depend>
+  <build_depend>doxygen</build_depend>
+
+</package>

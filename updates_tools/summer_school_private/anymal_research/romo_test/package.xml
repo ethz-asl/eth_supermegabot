@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>romo_test</name>
+  <version>0.6.0</version>
+  <description>The robot model test package</description>
+  <maintainer email="bellicoso@mavt.ethz.ch">Dario Bellicoso</maintainer>
+  <license>Proprietary</license>
+  <url type="website">https://bitbucket.org/leggedrobotics/romo</url>
+  <author email="bellicoso@mavt.ethz.ch">Dario Bellicoso</author>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>romo</depend>
+  <depend>romo_std</depend>
+  <depend>message_logger</depend>
+  <depend>kindr</depend>
+  <build_export_depend>eigen</build_export_depend>
+</package>

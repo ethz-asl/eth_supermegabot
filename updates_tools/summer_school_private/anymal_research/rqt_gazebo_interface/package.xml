@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<package format="2">
+
+  <name>rqt_gazebo_interface</name>
+  <version>0.6.0</version>
+  <description>A rqt user interface plugin to control a running Gazebo simulation featuring pause/play/reset and simulation speed settings.</description>
+
+  <license>Proprietary</license>
+
+  <author email="bellicoso@mavt.ethz.ch">Dario Bellicoso</author>
+  <maintainer email="bellicoso@mavt.ethz.ch">Dario Bellicoso</maintainer>
+  
+  <url type="website">https://bitbucket.org/leggedrobotics/any_gazebo</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>gazebo_msgs</depend>
+  <depend>qtbase5-dev</depend>
+  <depend>roscpp</depend>
+  <depend>rqt_gui</depend>
+  <depend>rqt_gui_cpp</depend>
+  <depend>std_srvs</depend>
+
+  <export>
+    <architecture_independent/>
+    <rqt_gui plugin="${prefix}/plugin.xml"/>
+  </export>
+
+</package>

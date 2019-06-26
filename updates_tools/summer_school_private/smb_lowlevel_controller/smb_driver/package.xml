@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+  <name>smb_driver</name>
+  <version>0.0.1</version>
+  <description>Super mega bot driver</description>
+
+  <maintainer email="tsandy@ethz.ch">Tim Sandy</maintainer>
+  <license>BSD</license>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>roscpp</buildtool_depend>
+
+  <build_depend>std_msgs</build_depend>
+
+  <export>
+  </export>
+</package>

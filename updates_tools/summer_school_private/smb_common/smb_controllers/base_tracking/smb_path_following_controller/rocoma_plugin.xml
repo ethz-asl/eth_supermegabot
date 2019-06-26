@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library path="lib/libsmb_path_following_controller_plugin">
+  <class type="SmbPathFollowingControllerPlugin" base_class_type="rocoma_plugin::ControllerRosPluginInterface<smb_roco::RocoState, smb_roco::RocoCommand>">
+  </class>
+</library>

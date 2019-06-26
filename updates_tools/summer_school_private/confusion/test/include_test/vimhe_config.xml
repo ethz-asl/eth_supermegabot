@@ -1,0 +1,160 @@
+vimhe
+{
+	getCalFromTxt			true
+	dropEverySecondState	true
+	
+; MHE params
+	batchSize 				8
+	margMethod				0	; 0-Schur, 1-EKF, 2-Constant
+	numThreads				8
+	maxNumIterations		20
+	iterationMaxDuration	5.0	; 0.085	; [sec]
+	logData					true
+	runBatch				true
+	
+	optimizeTci				false
+	optimizeBaseArmOffset	false
+	optimizeEEArmOffset		false
+	optimizeBq				false
+
+; IEKF params
+	iterate				1
+	ikfMaxIterations	50
+	ikfDxThld			1e-6
+
+; Sensor noise params
+	wi_stddev			0.0035
+	ai_stddev			0.0157
+	bg_stddev			0.0005
+	ba_stddev			0.0005
+	tag_corner_stddev	2.0
+	pose_trans_stddev	0.01
+	pose_rot_stddev		0.005
+	odometry_stddev		0.1 ; rad
+	
+	bmm_cov_stationary_actuated			0.03 ;
+	bmm_cov_stationary_unactuated		0.03 ;
+	bmm_cov_moving_actuated				0.5 ;
+	bmm_cov_moving_unactuated			0.05 ;
+	
+	tagUseLossFunction					false
+	tagLossCoefficient					2.0 ; 
+	imuUseLossFunction					true
+	imuLossCoefficient					40.0 ; 
+	
+; Initial state uncertainty
+	twi_init_stddev		0.1
+	qwi_init_stddev		0.1
+	vwi_init_stddev		0.5
+	ba_init_stddev		0.001
+	bg_init_stddev		0.001
+	ftr_init_stddev		0.2
+	t_c_i_init_stddev	0.001
+	q_c_i_init_stddev	0.05
+	b_q_init_stddev		0.001 ; rad
+	tci_init_stddev     0.01
+	qci_init_stddev     0.01
+	
+	ftr_init_stddev		0.0001 ; These are used when a txt calibration file is used at startup
+	twt_init_stddev		0.0001
+	qwt_init_stddev		0.0001
+
+; Low-level params
+	mutexTimeout		10	; microsec
+
+	gravity {
+		x				0.0
+		y				0.0
+		z				-9.80665
+	}
+	gravityMagnitude	-9.80665
+	tagSize				0.231 ; m
+
+; Calibration parameters
+	T_c_i {	; 150218 vi cal from STA
+		px		0.035
+		py		0.005
+		pz		-0.031
+		qw		0.503636 ; new custom VI rig (cam serial # 02)
+		qx		0.501854
+		qy		-0.495045
+		qz		0.499423
+	}
+	T_c_i_2 {	; 150218 vi cal from STA
+		px		0.035
+		py		0.005
+		pz		-0.031
+		qw		0.501841 ; new custom VI rig (cam serial # 20)
+		qx		0.499705
+		qy		-0.495632
+		qz		0.502791
+	}
+;	T_c_i {	; From 10/2/17 hya_cal
+;		px		0.043286
+;		py		0.031581
+;		pz		-0.013665
+;		qw		0.500290
+;		qx		0.506860
+;		qy		-0.493883
+;		qz		0.498881
+;	}
+;	T_c_i {
+;		px		0.035000
+;		py		0.0
+;		pz		-0.03
+;		qw		0.512599
+;		qx		0.507376
+;		qy		-0.485941
+;		qz		0.493633
+;	}
+	
+	cam_proj_mat { ; Variable numbers indicate the position in the projection matrix
+		M_0_0		531.9315795898438 ; Serial number 14256320 after 130218 calibration
+		M_0_2		400.4334893109663
+		M_1_1		585.1722412109375
+		M_1_2		266.0803427868632
+	}
+;	cam_proj_mat { ; Variable numbers indicate the position in the projection matrix
+;		M_0_0		1217.451538085938	; Values from 1/2 calibration with new 6mm lens
+;		M_0_2		630.4259809763607
+;		M_1_1		1232.158325195312
+;		M_1_2		387.7826707453314
+;	}
+;	cam_proj_mat { ; Variable numbers indicate the position in the projection matrix
+;		M_0_0		1309.143188476562	; Values from 17/1 calibration with new 6mm lens
+;		M_0_2		658.5011581080253	; Use this one for igps data
+;		M_1_1		1416.740844726562
+;		M_1_2		384.6087316749836
+;	}
+;	cam_proj_mat { ; Variable numbers indicate the position in the projection matrix
+;		M_0_0		752.3378295898438	; Values from previous lens
+;		M_0_2		637.7345359565879
+;		M_1_1		900.3850708007812
+;		M_1_2		372.4513472172221
+;	}
+
+	T_ie_e { ; Taken from sl_hya/user_sensor_proc from dynamic decoupling experiments
+		px		-0.081
+		py		0.0
+		pz		-0.03
+		qw		0.653560
+		qx		-0.753998
+		qy		-0.057942
+		qz		0.031469
+	}
+	T_b_ib {
+		px		0.2
+		py		0.3
+		pz		0.3
+		qw		0.558474
+		qx		-0.470952
+		qy		0.454606
+		qz		-0.509553
+	}
+	b_q { ; Values hard-coded from pre-runs on the pamm_7 dataset
+		b0		0.0
+		b1		0.0
+		b2		0.0
+		b3		0.0
+	}
+}
