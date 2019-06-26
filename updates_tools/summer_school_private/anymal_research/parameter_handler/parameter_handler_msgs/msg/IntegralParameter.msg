@@ -1,5 +1,0 @@
-string name
-std_msgs/Int64MultiArray value_current
-std_msgs/Int64MultiArray value_min
-std_msgs/Int64MultiArray value_max
-std_msgs/Int64MultiArray value_default

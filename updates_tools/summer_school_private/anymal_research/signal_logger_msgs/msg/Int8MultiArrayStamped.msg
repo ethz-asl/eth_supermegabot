@@ -1,3 +1,0 @@
-# Int8MultiArrayStamped
-std_msgs/Header header
-signal_logger_msgs/Int8MultiArray matrix

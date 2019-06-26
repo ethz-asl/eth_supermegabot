@@ -1,8 +1,0 @@
-<?xml version="1.0" ?>
-<!-- Author: Gabriel Hottiger / Date: Jan 2018 -->
-<!-- Example xml for unit tests! Do not edit -> might break unit tests. -->
-<NewParam>
-    <File>
-        <TMP gain="1e-3"/>
-    </File>
-</NewParam>

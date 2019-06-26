@@ -1,5 +1,0 @@
-CmakeLists
-msg - re-add battery msg? - state: keep jointState + frame_transforms?
-srv - what would setBasePose.srv be used for? Do we need it?
-
-Clean up command and reading msgs: lots of unnecessary ANYdrive stuff in there now

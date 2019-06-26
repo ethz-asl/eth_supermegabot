@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<launch>
-    <include file="$(find signal_logger_example)/launch/silo_example.launch">
-        <arg name="debug" value="gdb -ex run --args" />
-    </include>
-</launch>

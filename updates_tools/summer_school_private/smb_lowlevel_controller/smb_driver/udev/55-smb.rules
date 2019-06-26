@@ -1,2 +1,0 @@
-SUBSYSTEM=="tty", ATTRS{idVendor}=="0557", GROUP="dialout", SYMLINK+="ttySMB"
-

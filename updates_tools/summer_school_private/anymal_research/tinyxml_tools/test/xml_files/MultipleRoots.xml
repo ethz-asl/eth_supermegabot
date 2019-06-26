@@ -1,9 +1,0 @@
-<?xml version="1.0" ?>
-<!-- Author: Gabriel Hottiger / Date: Jan 2018 -->
-<!-- Example xml for unit tests! Do not edit -> might break unit tests. -->
-<Root1>
-    <Data root="1"/>
-</Root1>
-<Root2>
-    <Data root="2"/>
-</Root2>

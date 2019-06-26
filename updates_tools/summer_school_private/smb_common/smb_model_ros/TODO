@@ -1,3 +1,0 @@
-Okay to not setJointTorques at all in the model? (SmbModelRosConverter)
-
-SmbStateRosConverter.cpp -> Put frameTransforms back in?

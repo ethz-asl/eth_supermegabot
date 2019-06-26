@@ -1,6 +1,0 @@
-Name: visensor
-Description: Interface library for the VI-Sensor
-Requires:
-Version: 
-Libs: -lvisensor
-Cflags: -I/usr/include/visensor

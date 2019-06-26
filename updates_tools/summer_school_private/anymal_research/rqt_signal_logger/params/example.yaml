@@ -1,3 +1,0 @@
-user_interface:
-  rqt_signal_logger:
-    logger_namespace: "example_namespace"

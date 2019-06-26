@@ -1,4 +1,0 @@
-string name
-std_msgs/Int64MultiArray value
----
-bool success

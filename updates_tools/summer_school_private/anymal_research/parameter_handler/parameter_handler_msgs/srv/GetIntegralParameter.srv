@@ -1,4 +1,0 @@
-string name
----
-parameter_handler_msgs/IntegralParameter param
-bool success

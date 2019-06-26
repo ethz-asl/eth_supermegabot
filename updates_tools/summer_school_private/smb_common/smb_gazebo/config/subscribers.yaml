@@ -1,5 +1,0 @@
-subscribers:
-  actuator_commands:
-    topic: /smb_highlevel_controller/actuator_commands
-    queue_size: 10
-    latch: false

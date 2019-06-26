@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<launch>
-
-  <!-- Launch the ROS test -->
-  <test pkg="param_io" type="test_param_io" test-name="test_param_io" time-limit="100.0"/>
-
-</launch>

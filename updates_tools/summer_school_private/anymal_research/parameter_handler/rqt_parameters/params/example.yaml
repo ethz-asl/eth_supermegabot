@@ -1,3 +1,0 @@
-user_interface:
-  rqt_parameters:
-    handler_namespace: "example_namespace"

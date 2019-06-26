@@ -1,3 +1,0 @@
-servers:
-  set_robot_pose:
-    service: set_robot_pose

@@ -1,7 +1,0 @@
-# Request
-string query                          # Query displayed to the user.
-UserInteractionOption default_option  # Default option.
-UserInteractionOption[] options       # Further options to chose from.
----
-# Response
-UserInteractionOption selected_option # Selected option.

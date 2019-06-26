@@ -1,8 +1,0 @@
-# X-Box 360 pad remote controller
-# This file should be installed to /etc/udev/rules.d so that you can access the Logic hardware without being root
-#
-# type this at the command prompt: sudo cp 46-xbox-usb.rules /etc/udev/rules.d
-
-KERNEL=="js*", SUBSYSTEM=="input", ATTRS{idVendor}=="045e", ATTRS{idProduct}=="028e", SYMLINK+="input/jsXbox"
-
-KERNEL=="event*", SUBSYSTEM=="input", ATTRS{idVendor}=="045e", ATTRS{idProduct}=="028e", SYMLINK+="input/eventXbox"
