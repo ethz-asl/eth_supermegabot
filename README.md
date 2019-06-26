@@ -18,16 +18,19 @@ Update your installation to the newest version:
 sudo apt update
 sudo apt upgrade
 ```
+## Preliminary dependencies:
 We recommend you to use terminator, that allows you to have multiple terminals in one window.
 It can be installed with.
 ```
 sudo apt update
 sudo apt install terminator
 ```
-Install [git](https://www.atlassian.com/git/tutorials/what-is-git).
+Install [git](https://www.atlassian.com/git/tutorials/what-is-git) and other dependencies:
 ```
-> sudo apt update
-> sudo apt install git
+sudo apt update
+sudo apt-get install git python-catkin-tools doxygen
+sudo apt-get install ros-melodic-octomap ros-melodic-octomap-msgs ros-melodic-octomap-ros ros-melodic-rosserial
+sudo apt-get install libpcap0.8-dev libeigen3-dev libopencv-dev libboost-dev ros-melodic-cmake-modules libssh2-1-dev
 ```
 ## Install ROS Melodic
 
@@ -39,21 +42,17 @@ Source the environment
 source /opt/ros/melodic/setup.bash
 echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 ```
-
-## Preliminary dependencies:
-``` 
-sudo apt-get install python-catkin-tools ros-melodic-octomap ros-melodic-octomap-msgs ros-melodic-octomap-ros doxygen
-```
-
 ## Create and setup your catkin workspace.
 ```
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws
 catkin init
-catkin config --extend /opt/ros/kinetic
+catkin config --extend /opt/ros/melodic
 catkin config --merge-devel
 catkin config -DCMAKE_BUILD_TYPE=Release
 ```
+
+## Presently, we do not use the ws tool setup, an update will follow for the installation sequence.
 We use wstool to manage packages in the workspace, at least for your initial setup, do:
 ```
 cd ~/catkin_ws/src/
@@ -77,18 +76,7 @@ shell (terminal).
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 ```
 
-You can use the [editor on GitHub](https://github.com/ethz-asl/eth_robotics_summer_school_2019/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
 # Troubleshooting  
-* laser_slam:  
-Error: Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE)  
-Solution:
-```
-sudo apt-get install doxygen  
-```
-
 * Header file not found:  
 Solution: resource your catkin workspace, then build again.  
 ```
@@ -103,35 +91,3 @@ catkin config
 ```
 Then you should find CMake args as below:  
 Additional CMake Args: -DCMAKE_BUILD_TYPE=Release  
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ethz-asl/eth_robotics_summer_school_2019/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.

@@ -65,3 +65,11 @@
    local-name: laser_slam
    uri: https://github.com/gawela/laser_slam.git
    version: feature/application
+- git:
+   local-name: image_undistort
+   uri: https://github.com/ethz-asl/image_undistort
+   version: feature/summer_school
+- git:
+   local-name: ros_rslidar
+   uri: https://github.com/RoboSense-LiDAR/ros_rslidar.git
+   version: master
