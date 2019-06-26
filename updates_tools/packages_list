@@ -3,35 +3,67 @@
 normal_packages:
 # general pkgs
 - rocoma_rqt
-- smb_common
+- libvisensor_devel
+# <summer_school_integration>
 - smb_highlevel_controller
-- smb_lowlevel_controller
+- confusion
 - smb_state_estimator
-- smb_common
+- smb_confusor
+
 
 meta_packages:
+    # visensor_node_devel  
+    # <feature/summer_school> 
+    visensor_node_devel: 
+        - visensor_node
+        - visensor_msgs
+
+    # smb_lowlevel_controller
+    # <summer_school_integration>
+    smb_lowlevel_controller:
+        - smb_lowlevel_controller
+        - smb_driver
+
+    # smb_common meta-pkg
+    # <summer_school_integration>
+    smb_common:
+        - smb_common
+        - smb_controllers
+        - smb_description
+        - smb_description_ros
+        - smb_gazebo
+        - smb_lpc
+        - smb_model
+        - smb_model_ros
+        - smb_msgs
+        - smb_opc
+        - smb_roco
+        - smb_ros
+        - smb_sim
+        - smb_tf_publisher
+
     # ocs2_dev meta-pkg
+    # <summer_school_integration>
     ocs2_dev:
-        - ocs2_core
-        #- ocs2_ddp       
-        - ocs2_ilqr
-        - ocs2_ddp_base 
-        - ocs2_slq
-        #- ocs2 
-        - ocs2_mpc
-        - ocs2_doc
-        - ocs2_ocs2
+        - ocs2
         - ocs2_comm_interfaces
-        - ocs2_frank_wolfe  
+        - ocs2_core
+        - ocs2_doc
+        - ocs2_frank_wolfe
+        - ocs2_mpc
         - ocs2_oc
+        - ocs2_ocs2
+        - ocs2_slq
         - ocs2_ballbot_example
         - ocs2_cart_pole_example
         - ocs2_double_integrator_example
+        - ocs2_double_integrator_noros_example
         - ocs2_quadrotor_example
-        #- ocs2_robotic_examples
+        - ocs2_robotic_examples
         - ocs2_robotic_tools
 
     # anymal_research meta-pkg
+    # <master>
     anymal_research:
         - anybot_gazebo_plugin
         - any_description
@@ -39,18 +71,21 @@ meta_packages:
         - any_hector_gazebo_plugins
         - any_measurements
         - any_measurements_ros
+        - anymal_state_estimator
         - any_msgs
         - any_node
         - any_worker
         - any_rbdl
+        - any_state_estimator
+        - any_state_estimator_msgs
         - collisions
         - collisions_bullet
-        - collisions_fcl
         - collisions_geometry
         - collisions_urdf
         - collisions_visualization
         - cosmo
         - cosmo_ros
+        - cosmo_node
         - gazebo_worlds
         - joy_interface
         - joy_manager
@@ -58,6 +93,9 @@ meta_packages:
         - joystick_label
         - kindr
         - kindr_ros
+        - kindr_msgs
+        - kindr_rviz_plugins
+        - multi_dof_joint_trajectory_rviz_plugins
         - rqt_signal_logger
         - signal_logger
         - signal_logger_core
@@ -80,6 +118,12 @@ meta_packages:
         - rocoma_ros
         - roco_ros
         - romo
+        - kindr_rbdl
+        - robot_msgs
+        - romo_doc
+        - romo_rbdl
+        - romo_std
+        - romo_test
         - rqt_gazebo_interface
         - rqt_joypad
         - rviz_gazebo_interaction

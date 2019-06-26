@@ -28,9 +28,10 @@ sudo apt install terminator
 Install [git](https://www.atlassian.com/git/tutorials/what-is-git) and other dependencies:
 ```
 sudo apt update
-sudo apt-get install git python-catkin-tools doxygen
-sudo apt-get install ros-melodic-octomap ros-melodic-octomap-msgs ros-melodic-octomap-ros ros-melodic-rosserial
-sudo apt-get install libpcap0.8-dev libeigen3-dev libopencv-dev libboost-dev ros-melodic-cmake-modules libssh2-1-dev
+sudo apt-get install git python-catkin-tools doxygen 
+sudo apt-get install ros-melodic-octomap ros-melodic-octomap-msgs ros-melodic-octomap-ros ros-melodic-rosserial ros-melodic-joy
+sudo apt-get install libpcap0.8-dev libeigen3-dev libopencv-dev libboost-dev ros-melodic-cmake-modules libssh2-1-dev 
+sudo apt-get install glpk-utils libglpk-dev 
 ```
 ## Install ROS Melodic
 
@@ -91,3 +92,19 @@ catkin config
 ```
 Then you should find CMake args as below:  
 Additional CMake Args: -DCMAKE_BUILD_TYPE=Release  
+
+* Memory allocation (leak) issue:  
+For compiling ocs2_ballbot_example or related examples needs 4G RAM per core.  
+Solution: either limit the core while compiling by adding '-j1' or enable swap space.  
+```
+catkin build -j1
+```
+
+# TODO
+* Replace 'ocs2_dev' (private) with 'ocs2' (public)
+```
+- git:
+   local-name: ocs2
+   uri: https://haochihlin@bitbucket.org/leggedrobotics/ocs2.git
+   version: summer_school_integration
+```
