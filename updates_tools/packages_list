@@ -3,7 +3,7 @@
 normal_packages:
 # general pkgs
 - rocoma_rqt
-- libvisensor_devel
+- libvisensor
 # <summer_school_integration>
 - smb_highlevel_controller
 - confusion
@@ -28,7 +28,11 @@ meta_packages:
     # <summer_school_integration>
     smb_common:
         - smb_common
-        - smb_controllers
+        - smb_path_following_controller
+        - smb_path_following_interface
+        - smb_emergency_controller
+        - smb_failproof_controller
+        - smb_joystick_controller
         - smb_description
         - smb_description_ros
         - smb_gazebo
@@ -71,44 +75,41 @@ meta_packages:
         - any_hector_gazebo_plugins
         - any_measurements
         - any_measurements_ros
-        - anymal_state_estimator
         - any_msgs
         - any_node
-        - any_worker
         - any_rbdl
         - any_state_estimator
         - any_state_estimator_msgs
+        - any_worker
         - collisions
         - collisions_bullet
         - collisions_geometry
         - collisions_urdf
         - collisions_visualization
         - cosmo
-        - cosmo_ros
         - cosmo_node
+        - cosmo_ros
         - gazebo_worlds
         - joy_interface
         - joy_manager
         - joy_manager_msgs
         - joystick_label
         - kindr
-        - kindr_ros
         - kindr_msgs
+        - kindr_rbdl
+        - kindr_ros
         - kindr_rviz_plugins
-        - multi_dof_joint_trajectory_rviz_plugins
-        - rqt_signal_logger
-        - signal_logger
-        - signal_logger_core
-        - signal_logger_doc
-        - signal_logger_example
-        - signal_logger_msgs
-        - signal_logger_ros
-        - signal_logger_std
         - message_logger
+        - multi_dof_joint_trajectory_rviz_plugins
         - notification
         - notification_msgs
         - parameter_handler
+        - parameter_handler_doc
+        - parameter_handler_msgs
+        - parameter_handler_ros
+        - parameter_handler_std
         - param_io
+        - robot_msgs
         - robot_utils
         - robot_utils_ros
         - roco
@@ -118,17 +119,24 @@ meta_packages:
         - rocoma_ros
         - roco_ros
         - romo
-        - kindr_rbdl
-        - robot_msgs
         - romo_doc
         - romo_rbdl
         - romo_std
         - romo_test
         - rqt_gazebo_interface
         - rqt_joypad
+        - rqt_parameters
+        - rqt_signal_logger
         - rviz_gazebo_interaction
         - rviz_world_loader
         - signal_handler
+        - signal_logger
+        - signal_logger_core
+        - signal_logger_doc
+        - signal_logger_example
+        - signal_logger_msgs
+        - signal_logger_ros
+        - signal_logger_std
         - std_utils
         - tinyxml_tools
         - yaml_tools
