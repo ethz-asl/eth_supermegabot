@@ -31,7 +31,8 @@ sudo apt update
 sudo apt-get install git python-catkin-tools doxygen 
 sudo apt-get install ros-melodic-octomap ros-melodic-octomap-msgs ros-melodic-octomap-ros ros-melodic-rosserial ros-melodic-joy
 sudo apt-get install libpcap0.8-dev libeigen3-dev libopencv-dev libboost-dev ros-melodic-cmake-modules libssh2-1-dev 
-sudo apt-get install glpk-utils libglpk-dev 
+sudo apt-get install glpk-utils libglpk-dev
+sudo apt-get install python-wstool
 ```
 ## Install ROS Melodic
 
