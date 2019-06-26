@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>joy_manager_msgs</name>
+  <version>0.6.0</version>
+  <description>
+    The joy_manager package
+  </description>
+  <maintainer email="liisler@ethz.ch">Linus Isler</maintainer>
+  <license>Proprietary</license>
+  <author email="liisler@ethz.ch">Linus Isler</author>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <depend>message_generation</depend>
+  <depend>message_runtime</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+</package>

@@ -1,0 +1,6 @@
+## Returns configuration of the logger
+---
+string 		logger_namespace
+string 		script_filepath
+string[] 	log_element_names
+float64 	collect_frequency

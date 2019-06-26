@@ -1,0 +1,114 @@
+/*! \page page_use_para Use the parameter handler in your program
+
+<H3>Access the parameter handler</H3>
+The parameter handler is stored as a global shared pointer and accessible from your executable or helper library using the following lines of code.
+\code{c}
+#include "parameter_handler/parameter_handler.hpp"
+parameter_handler::handler->
+\endcode
+
+
+<H3>Set the parameter handler</H3>
+In the source file of your main application you should set the parameter handler type. Three
+parameter handlers are provided:
+
+<H5>ParameterHandlerNone</H5>
+This is an empty implementation of the parameter handler.
+\code{c}
+#include "parameter_handler/parameter_handler.hpp"
+parameter_handler::setParameterHandlerNone();
+\endcode
+
+<H5>ParameterHandlerStd</H5>
+The ParameterHandlerStd allows setting/getting parameters from everywhere in the current application.
+\code{c}
+#include "parameter_handler_std/parameter_handler_std.hpp"
+parameter_handler_std::setParameterHandlerStd();
+\endcode
+
+<H5>ParameterHandlerRos</H5>
+The ros implementation of the parameter handler additionally provides services that allow setting/getting the parameters via ros.
+It can be used in combination with the rqt plugin.
+\code{c}
+#include "parameter_handler_ros/parameter_handler_ros.hpp"
+parameter_handler_ros::setParameterHandlerRos(&nh);
+\endcode
+
+<H3>Add variables to the parameter handler</H3>
+A parameter must be of the templated type parameter_handler::Parameter.
+\code{c}
+parameter_handler::Parameter<T> myParam_;
+\endcode
+Where T stands for any of the supported types (see below). <BR>
+The parameter can be initialized as follows:
+\code{c}
+// Initializer list
+MyConstructor():
+  myDoubleParam_ ("myDouble",    33.33,  11.11,  66.66)
+{
+}
+
+// Copy constructor
+myDoubleParam_ = parameter_handler::Parameter<double>("myDouble",    33.33,  11.11,  66.66);
+
+// Setters
+myDoubleParam_.setName("myDouble");
+myDoubleParam_.setValue(33.33);
+myDoubleParam_.setDefaultValue(33.33);
+myDoubleParam_.setMinValue(11.11);
+myDoubleParam_.setMaxValue(66.66);
+\endcode
+
+The parameter can then easily be added to the handler.
+\code{c}
+parameter_handler::handler->addParam(myDoubleParam_);
+\endcode
+
+<H3>Cleanup the parameter handler</H3>
+You should shutdown the parameter handler in the destructor of your main application.
+E.g the parameter handler ros should shutdown all ros communication as long as the nodehandle is still valid.
+\code{c}
+parameter_handler::handler->cleanup();
+\endcode
+
+<H3>Supported types</H3>
+The currently supported types are:
+  <ul>
+  <li><B>Integral Types</B></li><BR>
+    <I>bool<BR>
+       char<BR>
+       char16_t<BR>
+       char32_t<BR>
+       wchar_t<BR>
+       signed char<BR>
+       short int<BR>
+       int<BR>
+       long int<BR>
+       unsigned char<BR>
+       unsigned short int</I>
+  <li><B>Floating Point Types</B></li><BR>
+    <I>float<BR>
+       double</I>
+  <li><B>Eigen Integral Types</B></li><BR>
+  <I>Eigen::Matrix3i <BR>
+     Eigen::MatrixXi <BR>
+     Eigen::Vector2i <BR>
+     Eigen::Vector3i <BR>
+     Eigen::Vector4i <BR>
+     Eigen::VectorXi </I>
+  <li><B>Eigen Floating Point Types</B></li><BR>
+  <I>Eigen::Matrix3f <BR>
+     Eigen::MatrixXf <BR>
+     Eigen::Vector2f <BR>
+     Eigen::Vector3f <BR>
+     Eigen::Vector4f <BR>
+     Eigen::VectorXf <BR>
+     Eigen::Matrix3d <BR>
+     Eigen::MatrixXd <BR>
+     Eigen::Vector2d <BR>
+     Eigen::Vector3d <BR>
+     Eigen::Vector4d <BR>
+     Eigen::VectorXd </I>
+  </ul>
+
+*/

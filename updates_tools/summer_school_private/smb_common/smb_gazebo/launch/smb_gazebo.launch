@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+  <!-- GAZEBO ARGUMENTS -->
+  <!-- Run Gazebo headless -->
+  <arg name="headless"                              default="false"/>
+  <!-- Model path -->
+  <arg name="model_path"                            default="$(find gazebo_worlds)/.."/>
+  <!-- Name of the world -->
+  <arg name="world"                                 default="slope"/>
+  <!-- Path to the world file -->
+  <arg name="world_file"                            default="$(find gazebo_worlds)/worlds/$(arg world).world"/>
+  <!-- Set the name of the Gazebo config file -->
+  <arg name="config_file"                           default="default"/>
+  <!-- Enable/disable state estimation messages from Gazebo -->
+  <arg name="simulate_estimator"                    default="true"/>
+  <!-- Set true to simulate sensors without noise and bias -->
+  <arg name="perfect_sensors"                       default="true"/>
+  <!-- Set true to fix the robot's main body -->
+  <arg name="fixed"                                 default="false"/>
+  <!-- Set the initial pose of the robot's main body -->
+  <arg name="x"                                     default="0.0"/>
+  <arg name="y"                                     default="0.0"/>
+  <arg name="z"                                     default="0.4"/>
+  <arg name="roll"                                  default="0.0"/>
+  <arg name="pitch"                                 default="0.0"/>
+  <arg name="yaw"                                   default="0.0"/>
+  <!-- Start paused -->
+  <arg name="paused"                                default="false"/>
+  <!-- Use simulation clock -->
+  <arg name="use_sim_time"                          default="true"/>
+  <!-- Debug mode -->
+  <arg name="debug"                                 default="false"/>
+  <!-- Verbose mode -->
+  <arg name="verbose"                               default="false"/>
+  <!-- Load and draw meshes -->
+  <arg name="mesh"                                  default="true"/>
+  <!-- Frame offsets -->
+  <arg name="frame_odometry_offset_x"               default="0.0"/>
+  <arg name="frame_odometry_offset_y"               default="0.0"/>
+  <arg name="frame_odometry_offset_z"               default="0.0"/>
+  
+  <!-- GUI ARGUMENTS -->
+  <!-- Enable/disable Gazebo GUI -->
+  <arg name="run_gui"                               default="true"/>
+  
+  <!-- ROBOT ARGUMENTS -->
+  <!-- Name of the robot description parameter -->
+  <arg name="description_name_for_gazebo"                      default="smb_description_for_gazebo"/>
+  <!-- Path of robot description -->
+  <arg name="description_file"                      default="$(find smb_description)/urdf/smb_standalone.urdf.xacro"/>
+
+  <!-- Load parameters -->
+  <!--rosparam command="load" ns="gazebo" file="$(find smb_gazebo)/config/actuators.yaml"/-->
+  <rosparam command="load" ns="gazebo" file="$(find smb_gazebo)/config/publishers.yaml"/>
+  <rosparam command="load" ns="gazebo" file="$(find smb_gazebo)/config/subscribers.yaml"/>
+  <rosparam command="load" ns="gazebo" file="$(find smb_gazebo)/config/$(arg config_file).yaml"/>
+  <rosparam command="load" ns="gazebo" file="$(find smb_gazebo)/config/parameters.yaml"/>
+  <rosparam command="load" ns="gazebo" file="$(find smb_gazebo)/config/services.yaml" />
+
+  <param name="gazebo/simulate_estimator"       value="$(arg simulate_estimator)"/>
+  <param name="gazebo/frame/odometry/offset/x"  value="$(arg frame_odometry_offset_x)"/>
+  <param name="gazebo/frame/odometry/offset/y"  value="$(arg frame_odometry_offset_y)"/>
+  <param name="gazebo/frame/odometry/offset/z"  value="$(arg frame_odometry_offset_z)"/>
+  <param name="gazebo/sync_name"       value="smb_controller_sync" if="$(arg simulate_estimator)" />
+  <param name="gazebo/sync_name"       value="smb_sync" unless="$(arg simulate_estimator)"/>
+
+  <!-- Load Gazebo world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <env name="GAZEBO_MODEL_PATH" value="$(arg model_path)"/>
+    <arg name="world_name"        value="$(arg world_file)"/>
+    <arg name="paused"            value="$(arg paused)"/>
+    <arg name="use_sim_time"      value="$(arg use_sim_time)"/>
+    <arg name="gui"               value="$(arg run_gui)"/>
+    <arg name="headless"          value="$(arg headless)"/>
+    <arg name="debug"             value="$(arg debug)"/>
+    <arg name="verbose"           value="$(arg verbose)"/>
+  </include>
+
+  <!-- Load robot description for gazebo -->
+  <include file="$(find smb_description)/launch/load.launch">
+    <arg name="simulation"       value="true"/>
+    <!--arg name="perfect_sensors"  value="$(arg perfect_sensors)"/-->
+    <!--arg name="fixed"            value="$(arg fixed)"/-->
+    <arg name="description_name" value="$(arg description_name_for_gazebo)"/>
+    <arg name="description_file" value="$(arg description_file)"/>
+    <arg name="wheel_joint_type" value="continuous"/>
+  </include>
+
+  <!-- Spawn robot in Gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
+    args="-param $(arg description_name_for_gazebo) -urdf -model smb -x $(arg x)
+      -y $(arg y) -z $(arg z) -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"
+    output="screen"/>
+
+</launch>

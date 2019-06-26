@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<package format="2">
+
+  <name>any_msgs</name>
+  <version>0.6.0</version>
+  <description>Collection of commonly used ROS messages and services.</description>
+
+  <license>BSD</license>
+
+  <author email="rdiethelm@anybotics.com">Remo Diethelm</author>
+  <maintainer email="rdiethelm@anybotics.com">Remo Diethelm</maintainer>
+
+  <url type="website">https://bitbucket.org/leggedrobotics/any_common</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>message_generation</depend>
+  <depend>message_runtime</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+
+</package>

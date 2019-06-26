@@ -1,0 +1,3 @@
+should romo_std::actuator_containers be based on desired enum instead of description?
+
+Do I need SmbModes? It is done this way for Kinova, but I feel like I have added these modes also at other places already. Maybe only in smb_msgs?

@@ -1,0 +1,7 @@
+.cproject
+.project
+build/
+cmake/
+*~
+data/
+.settings/*

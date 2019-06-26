@@ -1,0 +1,346 @@
+{
+  "keys": {},
+  "groups": {
+    "pluginmanager": {
+      "keys": {
+        "running-plugins": {
+          "type": "repr",
+          "repr": "{u'GazeboInterfacePlugin': [1], u'rqt_joypad/JoypadPlugin': [1], u'WacoControlManagerPlugin': [1]}"
+        }
+      },
+      "groups": {
+        "plugin__LocoVisualizerPlugin__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__LocoVisualizer": {
+              "keys": {
+                "dockable": {
+                  "type": "repr",
+                  "repr": "u'true'"
+                },
+                "parent": {
+                  "type": "repr",
+                  "repr": "None"
+                },
+                "dock_widget_title": {
+                  "type": "repr",
+                  "repr": "u'Loco Visualizer'"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__WacoControlManagerPlugin__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__WacoControlManager": {
+              "keys": {
+                "dockable": {
+                  "type": "repr",
+                  "repr": "True"
+                },
+                "parent": {
+                  "type": "repr",
+                  "repr": "None"
+                },
+                "dock_widget_title": {
+                  "type": "repr",
+                  "repr": "u'Waco Control Manager'"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__MultiplotPlugin__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__MultiplotWidget": {
+              "keys": {
+                "dockable": {
+                  "type": "repr",
+                  "repr": "u'true'"
+                },
+                "parent": {
+                  "type": "repr",
+                  "repr": "None"
+                },
+                "dock_widget_title": {
+                  "type": "repr",
+                  "repr": "u'Multiplot - [file:///home/dbellicoso/git/quadruped_common/quadruped_logging/multiplots/joint_torques.xml]*'"
+                }
+              },
+              "groups": {}
+            },
+            "plugin": {
+              "keys": {},
+              "groups": {
+                "history": {
+                  "keys": {
+                    "config_3": {
+                      "type": "repr",
+                      "repr": "u'file:///home/dbellicoso/git/quadruped_common/quadruped_logging/multiplots/joint_torques.xml'"
+                    },
+                    "config_2": {
+                      "type": "repr",
+                      "repr": "u'file:///home/dbellicoso/git/quadruped_common/quadruped_logging/multiplots/old/terrain_model_freeplane.xml'"
+                    },
+                    "config_1": {
+                      "type": "repr",
+                      "repr": "u'file:///home/dbellicoso/git/quadruped_common/quadruped_logging/multiplots/terrain_model_freeplane.xml'"
+                    },
+                    "config_0": {
+                      "type": "repr",
+                      "repr": "u'file:///home/dbellicoso/git/quadruped_common/quadruped_logging/multiplots/joint_torques.xml'"
+                    },
+                    "config_5": {
+                      "type": "repr",
+                      "repr": "u'file:///home/dbellicoso/git/quadruped_common/quadruped_logging/multiplots/old/terrain_model_freeplane.xml'"
+                    },
+                    "config_4": {
+                      "type": "repr",
+                      "repr": "u'file:///home/dbellicoso/git/quadruped_common/quadruped_logging/multiplots/terrain_model_freeplane.xml'"
+                    },
+                    "max_length": {
+                      "type": "repr",
+                      "repr": "u'10'"
+                    }
+                  },
+                  "groups": {}
+                }
+              }
+            }
+          }
+        },
+        "plugin__ParametersPlugin__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__ParametersHandler": {
+              "keys": {
+                "dockable": {
+                  "type": "repr",
+                  "repr": "True"
+                },
+                "parent": {
+                  "type": "repr",
+                  "repr": "None"
+                },
+                "dock_widget_title": {
+                  "type": "repr",
+                  "repr": "u'Parameters'"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__rqt_joypad__JoypadPlugin__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__LocoJoypad": {
+              "keys": {
+                "dockable": {
+                  "type": "repr",
+                  "repr": "True"
+                },
+                "parent": {
+                  "type": "repr",
+                  "repr": "None"
+                },
+                "dock_widget_title": {
+                  "type": "repr",
+                  "repr": "u'Joypad'"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__GazeboInterfacePlugin__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__GazeboInterface": {
+              "keys": {
+                "dockable": {
+                  "type": "repr",
+                  "repr": "True"
+                },
+                "parent": {
+                  "type": "repr",
+                  "repr": "None"
+                },
+                "dock_widget_title": {
+                  "type": "repr",
+                  "repr": "u'Gazebo Controller'"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__rqt_bag__Bag__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__BagWidget": {
+              "keys": {
+                "dockable": {
+                  "type": "repr",
+                  "repr": "u'true'"
+                },
+                "parent": {
+                  "type": "repr",
+                  "repr": "None"
+                },
+                "dock_widget_title": {
+                  "type": "repr",
+                  "repr": "u'Bag'"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__rqt_highlevel_controlmanager__HighLevelControlManagerPlugin__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__HighLevelControlManagerPlugin": {
+              "keys": {
+                "dockable": {
+                  "type": "repr",
+                  "repr": "True"
+                },
+                "parent": {
+                  "type": "repr",
+                  "repr": "None"
+                },
+                "dock_widget_title": {
+                  "type": "repr",
+                  "repr": "u'Highlevel Control Manager'"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__rqt_console__Console__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__ConsoleWidget": {
+              "keys": {
+                "dockable": {
+                  "type": "repr",
+                  "repr": "u'true'"
+                },
+                "parent": {
+                  "type": "repr",
+                  "repr": "None"
+                },
+                "dock_widget_title": {
+                  "type": "repr",
+                  "repr": "u'Console'"
+                }
+              },
+              "groups": {}
+            },
+            "plugin": {
+              "keys": {
+                "show_highlighted_only": {
+                  "type": "repr",
+                  "repr": "u'false'"
+                },
+                "message_limit": {
+                  "type": "repr",
+                  "repr": "u'20000'"
+                },
+                "exclude_filters": {
+                  "type": "repr",
+                  "repr": "u'severity'"
+                },
+                "table_splitter": {
+                  "type": "repr(QByteArray.hex)",
+                  "repr(QByteArray.hex)": "QtCore.QByteArray('000000ff000000010000000200000273000000fa0100000009010000000200')",
+                  "pretty-print": "       s       "
+                },
+                "highlight_filters": {
+                  "type": "repr",
+                  "repr": "u'message'"
+                },
+                "paused": {
+                  "type": "repr",
+                  "repr": "u'false'"
+                },
+                "settings_exist": {
+                  "type": "repr",
+                  "repr": "u'true'"
+                },
+                "filter_splitter": {
+                  "type": "repr(QByteArray.hex)",
+                  "repr(QByteArray.hex)": "QtCore.QByteArray('000000ff0000000100000002000001d90000008f0100000009010000000200')",
+                  "pretty-print": "               "
+                }
+              },
+              "groups": {
+                "exclude_filter_0": {
+                  "keys": {
+                    "enabled": {
+                      "type": "repr",
+                      "repr": "u'true'"
+                    },
+                    "itemlist": {
+                      "type": "repr",
+                      "repr": "u''"
+                    }
+                  },
+                  "groups": {}
+                },
+                "highlight_filter_0": {
+                  "keys": {
+                    "regex": {
+                      "type": "repr",
+                      "repr": "u'false'"
+                    },
+                    "text": {
+                      "type": "repr",
+                      "repr": "u''"
+                    },
+                    "enabled": {
+                      "type": "repr",
+                      "repr": "u'true'"
+                    }
+                  },
+                  "groups": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "mainwindow": {
+      "keys": {
+        "geometry": {
+          "type": "repr(QByteArray.hex)",
+          "repr(QByteArray.hex)": "QtCore.QByteArray('01d9d0cb00020000000000ff0000021e000005a6000003d9000000ff0000023a000005a6000003d900000000000000000780')",
+          "pretty-print": "               :         "
+        },
+        "state": {
+          "type": "repr(QByteArray.hex)",
+          "repr(QByteArray.hex)": "QtCore.QByteArray('000000ff00000000fd000000020000000200000772000003fdfc0100000001fb00000046004d0075006c007400690070006c006f00740050006c007500670069006e005f005f0031005f005f004d0075006c007400690070006c006f0074005700690064006700650074010000000000000772000000000000000000000003000004a80000018afc0100000006fb00000034007200710074005f006200610067005f005f004200610067005f005f0031005f005f00420061006700570069006400670065007401000000000000042f0000000000000000fb0000004c007200710074005f0063006f006e0073006f006c0065005f005f0043006f006e0073006f006c0065005f005f0031005f005f0043006f006e0073006f006c00650057006900640067006500740100000000000004c10000000000000000fb0000004e007200710074005f006a006f0079007000610064005f005f004a006f00790070006100640050006c007500670069006e005f005f0031005f005f004c006f0063006f004a006f00790070006100640100000000000001a0000001a000fffffffb0000005e005700610063006f0043006f006e00740072006f006c004d0061006e00610067006500720050006c007500670069006e005f005f0031005f005f005700610063006f0043006f006e00740072006f006c004d0061006e006100670065007201000001a6000001fa000001fa00fffffffb000000ba007200710074005f0068006900670068006c006500760065006c005f0063006f006e00740072006f006c006d0061006e0061006700650072005f005f0048006900670068004c006500760065006c0043006f006e00740072006f006c004d0061006e00610067006500720050006c007500670069006e005f005f0031005f005f0048006900670068004c006500760065006c0043006f006e00740072006f006c004d0061006e00610067006500720050006c007500670069006e01000001a60000012f0000000000000000fc000003a6000001020000010200fffffffc0200000003fb0000004e004c006f0063006f00560069007300750061006c0069007a006500720050006c007500670069006e005f005f0031005f005f004c006f0063006f00560069007300750061006c0069007a00650072010000001a000001680000000000000000fb0000005200470061007a00650062006f0049006e00740065007200660061006300650050006c007500670069006e005f005f0031005f005f00470061007a00650062006f0049006e007400650072006600610063006501000000000000018a000000de00fffffffb0000004c0050006100720061006d006500740065007200730050006c007500670069006e005f005f0031005f005f0050006100720061006d0065007400650072007300480061006e0064006c006500720100000174000000ed0000000000000000000004a80000000000000004000000040000000800000008fc00000001000000030000000100000036004d0069006e0069006d0069007a006500640044006f0063006b00570069006400670065007400730054006f006f006c0062006100720000000000ffffffff0000000000000000')",
+          "pretty-print": "                 FMultiplotPlugin__1__MultiplotWidget                   4rqt_bag__Bag__1__BagWidget          Lrqt_console__Console__1__ConsoleWidget          Nrqt_joypad__JoypadPlugin__1__LocoJoypad          ^WacoControlManagerPlugin__1__WacoControlManager           rqt_highlevel_controlmanager__HighLevelControlManagerPlugin__1__HighLevelControlManagerPlugin                                                                 h                                                                                                  t                                                              "
+        }
+      },
+      "groups": {
+        "toolbar_areas": {
+          "keys": {
+            "MinimizedDockWidgetsToolbar": {
+              "type": "repr",
+              "repr": "8"
+            }
+          },
+          "groups": {}
+        }
+      }
+    }
+  }
+}

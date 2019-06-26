@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<package format="2">
+
+  <name>yaml_tools</name>
+  <version>0.6.0</version>
+  <description>Edit yaml nodes, read and write yaml files.</description>
+
+  <license>BSD</license>
+
+  <author email="rdiethelm@anybotics.com">Remo Diethelm</author>
+  <maintainer email="rdiethelm@anybotics.com">Remo Diethelm</maintainer>
+
+  <url type="website">https://bitbucket.org/leggedrobotics/any_utils</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>boost</depend>
+  <depend>message_logger</depend>
+  <depend>yaml-cpp</depend>
+
+</package>

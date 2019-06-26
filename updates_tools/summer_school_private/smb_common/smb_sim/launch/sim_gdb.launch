@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+  <!-- Launch simulation -->
+  <include file="$(find smb_sim)/launch/sim.launch">
+    <arg name="highlevel_controller_launch_prefix" value="terminator -x gdb --args"/>
+  </include>
+
+</launch>

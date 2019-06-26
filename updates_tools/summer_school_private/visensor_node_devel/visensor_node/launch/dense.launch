@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<launch>
+     <node  name="visensor_node" pkg="visensor_node" type="visensor_node" clear_params="true" output="screen">
+	<rosparam file="$(find visensor_node)/configuration/visensor_node.yaml" command="load" />
+   </node> 
+    <node  ns="/" name="stereo_image_proc" pkg="stereo_image_proc" type="stereo_image_proc" clear_params="true" output="screen">
+        <param name="queue_size" value="200000" />
+        <param name="disparity_range" value="64" />
+    </node>
+     <node  name="disp_view" pkg="image_view" type="disparity_view" clear_params="true" output="screen">
+       <remap from="image" to="disparity" />
+   </node>
+   <include file="$(find image_undistort)/launch/smb_undistort.launch">
+   </include> 
+</launch>

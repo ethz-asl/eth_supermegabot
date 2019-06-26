@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>rocoma_ros</name>
+  <version>0.4.0</version>
+  <description>The rocoma_ros package</description>
+  <maintainer email="gabriel.hottiger@mavt.ethz.ch">Gabriel Hottiger</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>roco</depend>
+  <depend>rocoma</depend>
+  <depend>rocoma_msgs</depend>
+  <depend>rocoma_plugin</depend>
+  <depend>pluginlib</depend>
+  <depend>roslib</depend>
+  <depend>std_srvs</depend>
+  <depend>std_msgs</depend>
+</package>

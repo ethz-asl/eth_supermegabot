@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SignalLoggerPlugin</class>
+ <widget class="QWidget" name="SignalLoggerPlugin">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>487</width>
+    <height>285</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Signal Logger</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <layout class="QVBoxLayout" name="statusBarLayout"/>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tabVariables">
+      <attribute name="title">
+       <string>Variables</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3"/>
+     </widget>
+     <widget class="QWidget" name="tabConfigure">
+      <attribute name="title">
+       <string>Configure</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4"/>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
