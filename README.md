@@ -32,7 +32,7 @@ sudo apt-get install git python-catkin-tools doxygen
 sudo apt-get install ros-melodic-octomap ros-melodic-octomap-msgs ros-melodic-octomap-ros ros-melodic-rosserial ros-melodic-joy
 sudo apt-get install libpcap0.8-dev libeigen3-dev libopencv-dev libboost-dev ros-melodic-cmake-modules libssh2-1-dev 
 sudo apt-get install glpk-utils libglpk-dev
-sudo apt-get install python-wstool
+sudo apt-get install python-wstool net-tools
 ```
 ## Install ROS Melodic
 
@@ -99,6 +99,19 @@ For compiling ocs2_ballbot_example or related examples needs 4G RAM per core.
 Solution: either limit the core while compiling by adding '-j1' or enable swap space.  
 ```
 catkin build -j1
+```
+
+* No internet connection on robot:
+Verify that you cannot ping google:
+```
+ping www.google.com  
+```
+If you do not get a connection, the 4G modom may have reconnected to a different sender. A power-cylcle on the Nighhawk router (The one with the 3 antennas) should fix this issue.
+
+* VI Sensor does not respond:
+Use the magic command:
+```
+sudo dhclient eno1
 ```
 
 # TODO
