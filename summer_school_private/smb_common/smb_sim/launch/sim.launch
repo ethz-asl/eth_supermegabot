@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+  <!-- GAZEBO ARGUMENTS -->
+  <!-- Run Gazebo headless -->
+  <arg name="gazebo_headless"                         default="false"/>
+  <!-- Model path -->
+  <!-- TODO Remove this path hack with the new version of the catkin command line tools. -->
+  <arg name="model_path"                              default="$(find gazebo_worlds)/../../.private/gazebo_worlds/share"/>
+  <!-- Name of the world -->
+  <arg name="world"                                   default="empty"/>
+  <!-- Path to the world file -->
+  <arg name="world_file"                              default="$(find gazebo_worlds)/worlds/$(arg world).world"/>
+  <!-- Set the name of the Gazebo config file -->
+  <arg name="gazebo_config_file"                      default="default"/>
+
+  <!-- Set true to simulate sensors without noise and bias -->
+  <arg name="perfect_sensors"                         default="true"/>
+  <!-- Set true to fix the robot's main body -->
+  <arg name="fixed"                                   default="false"/>
+  <!-- Set the initial pose of the robot's main body -->
+  <arg name="x"                                       default="0.0"/>
+  <arg name="y"                                       default="0.0"/>
+  <arg name="z"                                       default="0.4"/>
+  <arg name="roll"                                    default="0.0"/>
+  <arg name="pitch"                                   default="0.0"/>
+  <arg name="yaw"                                     default="0.0"/>
+  <!-- Frame offsets -->
+  <arg name="frame_odometry_offset_x"                 default="0.0"/>
+  <arg name="frame_odometry_offset_y"                 default="0.0"/>
+  <arg name="frame_odometry_offset_z"                 default="0.0"/>
+
+  <!-- GUI ARGUMENTS -->
+  <!-- Enable/disable Gazebo GUI -->
+  <arg name="run_gazebo_gui"                          default="false"/>
+  <!-- Enable/disable rviz -->
+  <arg name="run_rviz"                                default="true"/>
+  <!-- rviz configuration -->
+  <arg name="rviz_config_path"                        default="$(find smb_sim)/rviz/smb_sim.rviz"/>
+  <!-- Path to the RViz world -->
+  <arg name="rviz_world_path"                         default="$(find gazebo_worlds)/rviz/$(arg world).yaml"/>
+  <!-- Enable/disable tf minimal -->
+  <arg name="tf_minimal"                              default="false"/>
+  <!-- Enable/disable rqt -->
+  <arg name="run_rqt"                                 default="true"/>
+  <!-- Enable/disable Gazebo verbose -->
+  <arg name="run_gazebo_verbose"                      default="false"/>
+  <!-- Enable/disable Gazebo debug mode -->
+  <arg name="run_gazebo_debug"                        default="false"/>
+
+  <!-- ROBOT ARGUMENTS -->
+  <!-- Robot name -->
+  <arg name="robot_name"                              default="smb"/>
+  <!-- Description name -->
+  <arg name="description_name_for_model"	            default="smb_description_for_model"/>
+  <arg name="description_name_for_gazebo"             default="smb_description_for_gazebo"/>
+
+  <!-- Set robot description path -->
+  <arg name="description_file"                        default="$(find smb_description)/urdf/smb.urdf.xacro"/>
+  <!-- Load and draw meshes -->
+  <arg name="mesh"                                    default="true"/>
+  <!-- Controller time step -->
+  <arg name="time_step"                               default="0.004"/>
+  <!-- Use Kinova hand, or other custom end-effector (for which path needs to be given) -->
+  <arg name="add_kinova_end_effector"                 default="false"/>
+  <arg name="end_effector_urdf_package"               default="smb_description"/>
+  <arg name="end_effector_urdf_path"                  default="urdf/kinova_drawing_tool.urdf.xacro"/>
+
+  <!-- Use an external joystick device -->
+  <arg name="use_joystick"                            default="true"/>
+  <!-- The output can either be screen, log or an empty string -->
+  <arg name="joy_manager_output"                      default="screen"/>
+  <!-- Default joystick name. Supported are logitechf710, xbox and spacenav -->
+  <arg name="joystick_name"                           default="logitechf710"/>
+
+  <!-- Launch prefix for the highlevel controller -->
+  <arg name="highlevel_controller_launch_prefix"      default=""/>
+  <!-- RealSense at hand -->
+  <arg name="realsense_on_hand"                       default="false"/>
+  <!-- Enable/disable the april tag detection -->
+  <arg name="april_tag_detection"                     default="false" />
+
+  <!-- launch mpc node on startup -->
+  <arg name="launch_mpc"                              default="true" />
+
+
+  <!-- Set global simulation parameter -->
+  <param name="/simulation" value="true"/>
+
+  <!-- Gazebo -->
+  <include file="$(find smb_gazebo)/launch/smb_gazebo.launch">
+    <arg name="headless"                    value="$(arg gazebo_headless)"/>
+    <arg name="model_path"                  value="$(arg model_path)"/>
+    <arg name="world"                       value="$(arg world)"/>
+    <arg name="world_file"                  value="$(arg world_file)"/>
+    <arg name="config_file"                 value="$(arg gazebo_config_file)"/>
+    <arg name="perfect_sensors"             value="$(arg perfect_sensors)"/>
+    <arg name="fixed"                       value="$(arg fixed)"/>
+    <arg name="x"                           value="$(arg x)"/>
+    <arg name="y"                           value="$(arg y)"/>
+    <arg name="z"                           value="$(arg z)"/>
+    <arg name="roll"                        value="$(arg roll)"/>
+    <arg name="pitch"                       value="$(arg pitch)"/>
+    <arg name="yaw"                         value="$(arg yaw)"/>
+    <arg name="run_gui"                     value="$(arg run_gazebo_gui)"/>
+    <arg name="mesh"                        value="$(arg mesh)"/>
+    <arg name="frame_odometry_offset_x"     value="$(arg frame_odometry_offset_x)"/>
+    <arg name="frame_odometry_offset_y"     value="$(arg frame_odometry_offset_y)"/>
+    <arg name="frame_odometry_offset_z"     value="$(arg frame_odometry_offset_z)"/>
+    <arg name="debug"                       value="$(arg run_gazebo_debug)"/>
+    <arg name="verbose"                     value="$(arg run_gazebo_verbose)"/>
+    <arg name="description_name_for_gazebo" value="$(arg description_name_for_gazebo)"/>
+  </include>
+
+  <!-- Launch robot state publisher -->
+  <include file="$(find smb_tf_publisher)/launch/smb_tf_publisher.launch">
+    <arg name="description_name" default="$(arg description_name_for_gazebo)"/>
+    <!-- TF prefix -->
+    <arg name="tf_prefix" default=""/>
+    <!-- Joint state topic name -->
+    <arg name="joint_states_topic" default="/state_estimator/joint_states"/>
+    <!-- Namespace to run the nodes in -->
+    <arg name="ns" default="smb_tf_publisher"/>
+    <arg name="publish_frequency" default="100" />
+    <!-- Topic of the smb state -->
+    <arg name="smb_state_subscriber_name" default="/state_estimator/smb_state"/>
+    <!-- Publish map transforms -->
+    <arg name="publish_map_transforms" default="false"/>
+  </include>
+
+  <!-- Highlevel controller -->
+  <include file="$(find smb_highlevel_controller)/launch/smb_highlevel_controller.launch">
+    <arg name="simulation"                value="true"/>
+    <arg name="time_step"                 value="$(arg time_step)"/>
+    <arg name="launch_prefix"             value="$(arg highlevel_controller_launch_prefix)"/>
+  </include>
+
+  <include file="$(find smb_opc)/launch/opc.launch">
+    <arg name="launch_joystick"           value="true"/>
+    <arg name="world"  default="$(arg world)"/>
+  </include>
+
+
+</launch>

@@ -1,0 +1,5 @@
+if(COSMO_DEBUG_LEVEL EQUAL 1)
+  add_definitions(-DCOSMO_DEBUG_LEVEL1)
+elseif(COSMO_DEBUG_LEVEL EQUAL 2)
+  add_definitions(-DCOSMO_DEBUG_LEVEL1 -DCOSMO_DEBUG_LEVEL2)
+endif()

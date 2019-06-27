@@ -1,0 +1,12 @@
+.cproject
+.project
+build/
+cmake/
+*~
+data/*
+!data/.gitkeep
+.settings/*
+doc/html/
+doc/latex/
+*MHEConnections.png
+tag_tracker_map.txt

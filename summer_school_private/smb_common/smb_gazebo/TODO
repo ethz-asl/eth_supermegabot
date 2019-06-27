@@ -1,0 +1,5 @@
+config
+include
+SmbGazeboPlugin -> figure out what to do with contacts and frames
+launch - cleanup
+Use framesGenerator in gazeboPlugin?

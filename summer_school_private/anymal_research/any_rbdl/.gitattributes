@@ -1,0 +1,30 @@
+* text=auto whitespace=space-before-tab,indent-with-non-tab,trailing-space,tabwidth=4
+
+*.cs    diff=csharp
+*.cpp   diff=cpp
+*.h     diff=cpp
+*.idh   diff=cpp
+
+# Different settings for javascript files
+*.js   whitespace=-indent-with-non-tab,tab-in-indent,trailing-space,tabwidth=2
+*.ts   whitespace=-indent-with-non-tab,tab-in-indent,trailing-space,tabwidth=2
+*.htm* whitespace=-indent-with-non-tab,tab-in-indent,trailing-space,tabwidth=2
+*.tmx  whitespace=-indent-with-non-tab,tab-in-indent,trailing-space,tabwidth=2
+
+# Don't check (nor fix) whitespace for generated files
+*.csproj -whitespace
+*.resx -whitespace
+*.Designer.cs -whitespace
+*.vdproj -whitespace
+*.config -whitespace
+*.settings -whitespace
+*.ReSharper -whitespace
+*.vcxproj -whitespace
+*.vcxproj.filters -whitespace
+*.patch -whitespace
+*.svg -whitespace
+*.xml -whitespace
+*.bmml -whitespace
+*.DotSettings -whitespace
+*.mdpolicy -whitespace
+changelog -whitespace

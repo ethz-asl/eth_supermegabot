@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="smb">
+	
+	<!-- Includes -->
+	 <xacro:include filename="$(find smb_description)/urdf/smb_controller.gazebo.xacro"/>
+	 <xacro:include filename="$(find smb_description)/urdf/smb.urdf.xacro" />
+
+        <!-- Arguments -->
+        <xacro:arg name="wheel_joint_type"          default="fixed"/> <!-- continuous for gazebo -->
+
+	<!-- Global Properties -->
+	<!--xacro:property name="robot_name" value="smb"/-->  
+
+	<xacro:smb wheel_joint_type="$(arg wheel_joint_type)"/>
+
+</robot>

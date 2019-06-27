@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+  
+<launch>
+
+  <!-- Set true for simulation -->
+  <arg name="simulation" default="false"/>
+  
+  <!-- Set true for standalone -->
+  <arg name="standalone" default="true"/>
+
+  <!-- The output can either be screen, log or an empty string -->
+  <arg name="output" default="screen"/>
+  
+  <!-- Terminal launch prefix -->
+  <arg name="launch_prefix" default="gdb -ex run --args"/>
+
+
+  <arg name="load_description" default="true"/>
+
+  <rosparam command="load" ns="waco_state_estimator" file="$(find waco_state_estimator)/config/publishers.yaml"/>
+  <rosparam command="load" ns="waco_state_estimator" file="$(find waco_state_estimator)/config/subscribers.yaml"/>
+  <rosparam command="load" ns="waco_state_estimator" file="$(find waco_state_estimator)/config/services.yaml"/>
+
+  <group if="$(arg load_description)">
+   <include file="$(find waco_description)/launch/load.launch">
+     <arg name="simulation"         value="$(arg simulation)"/>
+   </include>
+  </group>
+
+  <!-- Launch the state estimator -->
+  <node name="waco_state_estimator" 
+  		pkg="waco_state_estimator" 
+  		type="waco_state_estimator_node" 
+  		output="$(arg output)"
+  		launch-prefix="$(arg launch_prefix)">
+    <param name="logger_prefix"                value="/state_estimator"/>
+    <param name="time_step"                    value="0.0025"/>
+    <param name="simulation"                   value="$(arg simulation)"/>
+    <param name="standalone"                   value="$(arg standalone)"/>
+    <param name="sync_slave_name"              value="waco_sync"/>
+    <param name="sync_master_name"             value="waco_controller_sync"/>
+    <param name="connect_imu"                value="false"/>
+    <rosparam command="load" file="$(find waco_state_estimator)/config/parameters.yaml"/>
+  </node>
+
+  <!-- Launch the camera and ConFusion
+  <include file="$(find pointgrey_driver_adrl)/launch/camera_sync.launch" />
+  <node name="waco_confusor" pkg="waco_state_estimator" type="waco_confusor" output="screen" /> -->
+
+</launch>

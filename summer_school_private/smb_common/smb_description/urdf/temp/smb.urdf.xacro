@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="smb"> 
+
+    <xacro:include filename="$(find smb_description)/urdf/smb_utils.urdf.xacro" />
+	    
+    <xacro:property name="PI" value="3.1415926535897931"/>
+    <xacro:property name="robot_name" value="smb"/> 
+
+    <xacro:property name="chassisHeight" value="0.22"/>
+    <xacro:property name="chassisLength" value="0.600"/>
+    <xacro:property name="chassisWidth" value="0.410"/>
+    <xacro:property name="chassisMass" value="110"/>
+	
+    <xacro:property name="wheelWidth" value="0.08"/>
+    <xacro:property name="wheelRadius" value="0.14"/>
+    <xacro:property name="frontWheelX" value="0.2159"/>
+    <xacro:property name="backWheelX" value="-0.2159"/>
+    <xacro:property name="wheelClearance" value="0.02"/>
+    <xacro:property name="wheelHeight" value="0.08"/>
+    <xacro:property name="wheelMass" value="5"/> 
+
+    <!-- Model macros -->   
+    <xacro:macro name="wheel" params="lr X Y wheel_joint_type">
+        <joint name="${robot_name}_wheel_${lr}_hinge" type="${wheel_joint_type}">
+            <parent link="${robot_name}_chassis"/>
+            <child link="${robot_name}_wheel_${lr}"/>
+            <origin xyz="${X} ${Y} ${wheelRadius}" rpy="0 0 0" />
+            <axis xyz="0 1 0" rpy="0 0 0" />
+            <dynamics damping="1.0" friction="0.0"/>
+            <limit effort="1" velocity="1"/>
+            <joint_properties damping="0.2" friction="0.2"/>
+        </joint>
+
+        <link name="${robot_name}_wheel_${lr}">
+            <collision>
+                <origin xyz="0 0 0" rpy="${PI/2} 0 0" />
+                <geometry>
+                    <cylinder length="${wheelWidth}" radius="${wheelRadius}"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin xyz="0 0 0" rpy="${PI/2} 0 0" />
+                <geometry>
+                    <cylinder length="${wheelWidth}" radius="${wheelRadius}"/>
+                </geometry>
+                <material name="black"/>
+            </visual>
+            <inertial>
+                <origin xyz="0 0 0" rpy="${PI/2} 0 0" />
+                <mass value="${wheelMass}"/>
+                <cylinder_inertia m="${wheelMass}" r="${wheelRadius}" h="${wheelWidth}"/>
+            </inertial>
+        </link>
+
+        <gazebo reference="${robot_name}_wheel_${lr}">
+            <mu1 value="0.2"/>
+            <mu2 value="0.2"/>
+            <fdir1 value="1 0 0"/>
+            <kp>10000000.0</kp> 
+            <kd>1.0</kd>
+            <minDepth>0.005</minDepth>
+            <maxVel>100.0</maxVel>
+            <material>Gazebo/Black</material>
+        </gazebo>
+    </xacro:macro>
+
+    <xacro:macro name="chassisFrame" params="lr">
+        <link name="base" />
+
+        <joint name="base_joint" type="fixed">
+            <parent link="base"/>
+            <child link="${robot_name}_${lr}"/>
+        </joint>
+        <link name="${robot_name}_${lr}">
+            <collision> 
+                <origin xyz="0 0 ${wheelHeight+chassisHeight/2}" rpy="0 0 0"/> 
+                <geometry> 
+                    <box size="${chassisLength} ${chassisWidth} ${chassisHeight}"/> 
+                </geometry> 
+            </collision>
+            <visual> 
+                <origin xyz="0 0 ${wheelHeight+chassisHeight/2}" rpy="0 0 0"/> 
+                <geometry> 
+                    <box size="${chassisLength} ${chassisWidth} ${chassisHeight}"/> 
+                </geometry> 
+                <material name="green"/>
+            </visual>
+            <inertial> 
+                <origin xyz="0 0 ${wheelHeight+chassisHeight/2}" rpy="0 0 0"/>
+                <mass value="${chassisMass}"/> 
+                <box_inertia m="${chassisMass}" 
+                    x="${chassisLength}" 
+                    y="${chassisWidth}"
+                    z="${chassisHeight}"/>
+            </inertial>
+        </link>
+
+        <gazebo reference="${robot_name}_${lr}">
+            <material>Gazebo/Green</material>
+        </gazebo>
+    </xacro:macro>
+
+    <xacro:macro name="smb" params="wheel_joint_type=continuous">
+        <chassisFrame lr="chassis"/>
+
+        <wheel lr="fl" X="${frontWheelX}" 
+            Y="${chassisWidth/2+wheelClearance+wheelWidth/2}" 
+            wheel_joint_type="${wheel_joint_type}" />
+        
+        <wheel lr="fr" X="${frontWheelX}" 
+            Y="${-chassisWidth/2-wheelClearance-wheelWidth/2}"
+            wheel_joint_type="${wheel_joint_type}" />
+
+        <wheel lr="bl" X="${backWheelX}" 
+            Y="${chassisWidth/2+wheelClearance+wheelWidth/2}"
+	    wheel_joint_type="${wheel_joint_type}" />
+
+        <wheel lr="br" X="${backWheelX}" 
+            Y="${-chassisWidth/2-wheelClearance-wheelWidth/2}"
+            wheel_joint_type="${wheel_joint_type}" />
+    </xacro:macro>
+</robot>

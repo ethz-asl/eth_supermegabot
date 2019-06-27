@@ -1,0 +1,4 @@
+<library path="lib/libsmb_failproof_controller_plugin">
+  <class type="SmbFailproofController" base_class_type="rocoma_plugin::FailproofControllerPluginInterface<smb_roco::RocoState, smb_roco::RocoCommand>">
+  </class>
+</library>

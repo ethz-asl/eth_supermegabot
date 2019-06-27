@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<package format="2">
+
+  <name>smb_msgs</name>
+  <version>0.2.1</version>
+  <description>The smb_msgs package</description>
+  <maintainer email="koen.kramer@mavt.ethz.ch">Christian Gehring</maintainer>
+  <author email="koen.kramer@mavt.ethz.ch">Peter Fankhauser</author>
+
+  <license>Proprietary</license>
+  <buildtool_depend>catkin</buildtool_depend>
+   
+  <depend>message_generation</depend> 
+  <depend>message_runtime</depend>
+  <depend>geometry_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>any_msgs</depend>
+
+</package>

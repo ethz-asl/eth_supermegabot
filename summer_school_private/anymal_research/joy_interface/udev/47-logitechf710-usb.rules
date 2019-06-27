@@ -1,0 +1,8 @@
+# Logitech F710 remote controller
+# This file should be installed to /etc/udev/rules.d so that you can access the Logic hardware without being root
+#
+# type this at the command prompt: sudo cp 47-logitechf710-usb.rules /etc/udev/rules.d
+
+KERNEL=="js*", SUBSYSTEM=="input", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c21f", SYMLINK+="input/jsLogitechF710"
+
+KERNEL=="event*", SUBSYSTEM=="input", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c21f", SYMLINK+="input/eventLogitechF710"

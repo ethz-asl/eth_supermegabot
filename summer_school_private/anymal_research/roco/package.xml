@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>roco</name>
+  <version>0.3.0</version>
+  <description>The Robot Controller package</description>
+
+  <maintainer email="cgehring@anybotics.com">Christian Gehring</maintainer>
+  <license>BSD</license>
+  <author email="cgehring@anybotics.com">Christian Gehring</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>message_logger</depend>
+  <build_export_depend>boost</build_export_depend>
+
+</package>
