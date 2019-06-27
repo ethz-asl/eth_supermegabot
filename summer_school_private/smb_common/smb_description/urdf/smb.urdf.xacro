@@ -7,15 +7,15 @@
     <xacro:property name="robot_name" value="smb"/> 
 
     <xacro:property name="chassisHeight" value="0.22"/>
-    <xacro:property name="chassisLength" value="0.600"/>
+    <xacro:property name="chassisLength" value="0.605"/>
     <xacro:property name="chassisWidth" value="0.410"/>
     <xacro:property name="chassisMass" value="40"/>
 	
-    <xacro:property name="wheelWidth" value="0.08"/>
-    <xacro:property name="wheelRadius" value="0.14"/>
+    <xacro:property name="wheelWidth" value="0.17"/>
+    <xacro:property name="wheelRadius" value="0.19"/>
     <xacro:property name="frontWheelX" value="0.2159"/>
     <xacro:property name="backWheelX" value="-0.2159"/>
-    <xacro:property name="wheelClearance" value="0.02"/>
+    <xacro:property name="wheelClearance" value="0.03"/>
     <xacro:property name="wheelHeight" value="0.08"/>
     <xacro:property name="wheelMass" value="5"/> 
 

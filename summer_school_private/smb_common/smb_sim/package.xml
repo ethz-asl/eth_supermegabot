@@ -29,4 +29,5 @@
   <depend>smb_highlevel_controller</depend>
   <depend>smb_tf_publisher</depend>
   <depend>smb_opc</depend>
+  <depend>elevation_mapping_demos</depend>
 </package>

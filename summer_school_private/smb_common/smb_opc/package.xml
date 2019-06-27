@@ -23,4 +23,5 @@
   <depend>rviz_gazebo_interaction</depend>
   <depend>rviz_world_loader</depend>
   <depend>rocoma_rqt</depend>
+  <depend>grid_map_rviz_plugin</depend>
 </package>

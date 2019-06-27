@@ -9,9 +9,9 @@
   <!-- TODO Remove this path hack with the new version of the catkin command line tools. -->
   <arg name="model_path"                              default="$(find gazebo_worlds)/../../.private/gazebo_worlds/share"/>
   <!-- Name of the world -->
-  <arg name="world"                                   default="empty"/>
+  <arg name="world"                                   default="big_map_summer_school"/>
   <!-- Path to the world file -->
-  <arg name="world_file"                              default="$(find gazebo_worlds)/worlds/$(arg world).world"/>
+  <arg name="world_file"                              default="$(find smb_gazebo)/worlds/$(arg world).world"/>
   <!-- Set the name of the Gazebo config file -->
   <arg name="gazebo_config_file"                      default="default"/>
 
@@ -37,7 +37,7 @@
   <!-- Enable/disable rviz -->
   <arg name="run_rviz"                                default="true"/>
   <!-- rviz configuration -->
-  <arg name="rviz_config_path"                        default="$(find smb_sim)/rviz/smb_sim.rviz"/>
+  <arg name="rviz_config_path"                        default="$(find smb_opc)/rviz/smb_opc_path_planner.rviz"/>
   <!-- Path to the RViz world -->
   <arg name="rviz_world_path"                         default="$(find gazebo_worlds)/rviz/$(arg world).yaml"/>
   <!-- Enable/disable tf minimal -->
@@ -140,6 +140,7 @@
   <include file="$(find smb_opc)/launch/opc.launch">
     <arg name="launch_joystick"           value="true"/>
     <arg name="world"  default="$(arg world)"/>
+    <arg name="rviz_config_path" default="$(arg rviz_config_path)"/>
   </include>
   
 </launch>

@@ -99,8 +99,8 @@ class RocoCommand : public roco::CommandInterface {
   SmbCommandsShm actuatorCommands_;
 
   // smb dimensions for skid steer controller. Should we read them from the urdf file?
-  static constexpr double wheelOffset_ = 0.26;  //[m]
-  static constexpr double wheelRadius_ = 0.14;  //[m]
+  static constexpr double wheelOffset_ = 0.32;  //[m]
+  static constexpr double wheelRadius_ = 0.19;  //[m]
 
   double maxLinearVelocity_ = 2.0;
   double maxRotationalVelocity_ = 2.0;
