@@ -29,7 +29,7 @@ Install [git](https://www.atlassian.com/git/tutorials/what-is-git) and other dep
 ```
 sudo apt update
 sudo apt-get install git python-catkin-tools doxygen 
-sudo apt-get install ros-melodic-octomap ros-melodic-octomap-msgs ros-melodic-octomap-ros ros-melodic-rosserial ros-melodic-joy
+sudo apt-get install ros-melodic-octomap ros-melodic-octomap-msgs ros-melodic-octomap-ros ros-melodic-rosserial ros-melodic-joy ros-melodic-ompl ros-melodic-costmap-2d ros-melodic-velodyne-gazebo-plugins
 sudo apt-get install libpcap0.8-dev libeigen3-dev libopencv-dev libboost-dev ros-melodic-cmake-modules libssh2-1-dev 
 sudo apt-get install libglpk-dev
 sudo apt-get install python-wstool net-tools
@@ -112,3 +112,6 @@ Use the magic command:
 ```
 sudo dhclient eno1
 ```
+
+* `fatal error: ethzasl_icp_mapper/LoadMap.h: No such file or directory`
+Just `catkin build` again.
