@@ -134,7 +134,9 @@ Verify that you cannot ping google:
 ```
 ping www.google.com  
 ```
-If you do not get a connection, the 4G modom may have reconnected to a different sender. A power-cylcle on the Nighhawk router (The one with the 3 antennas) should fix this issue.
+If you do not get a connection, the 4G modom may have reconnected to a different sender. Try to
+a) shut off and on the Nighhawk router (The one with the 3 antennas)
+b) if that didn't fix it, reboot the robot with `sudo reboot 0`.
 
 * VI Sensor does not respond:
 Use the magic command:
