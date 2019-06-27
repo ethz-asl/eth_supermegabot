@@ -1,0 +1,14 @@
+SET(MAPLAB_IMPORT_TEST_MAPS "test_maps")
+if("@DEVELSPACE@" STREQUAL "TRUE")
+  set(MAPLAB_TEST_DATA_DIR "@CMAKE_CURRENT_SOURCE_DIR@")
+else()
+  set(MAPLAB_TEST_DATA_DIR "@CMAKE_INSTALL_PREFIX@/@CATKIN_PACKAGE_SHARE_DESTINATION@")
+endif()
+add_custom_target(${MAPLAB_IMPORT_TEST_MAPS})
+add_custom_command(TARGET ${MAPLAB_IMPORT_TEST_MAPS}
+                   COMMAND rm -rf test_maps &&
+                   cp -r ${MAPLAB_TEST_DATA_DIR}/test_maps .)
+
+function(maplab_import_test_maps test_target)
+  add_dependencies(${test_target} ${MAPLAB_IMPORT_TEST_MAPS})
+endfunction()

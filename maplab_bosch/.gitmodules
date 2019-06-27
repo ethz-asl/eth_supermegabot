@@ -1,0 +1,24 @@
+[submodule "tools/maplab_test_data"]
+	path = tools/maplab_test_data
+	url = git@github.com:ethz-asl/maplab_test_data.git
+[submodule "aslam_cv2"]
+	path = aslam_cv2
+	url = git@github.com:ethz-asl/aslam_cv2.git
+[submodule "experimental/thirdparty/zeromq_catkin"]
+	path = experimental/thirdparty/zeromq_catkin
+	url = git@github.com:ethz-asl/zeromq_catkin.git
+[submodule "experimental/thirdparty/fw_gtsam_extensions"]
+	path = experimental/thirdparty/fw_gtsam_extensions
+	url = git@github.com:ethz-asl/fw_gtsam_extensions.git
+[submodule "experimental/thirdparty/gtsam_catkin"]
+	path = experimental/thirdparty/gtsam_catkin
+	url = git@github.com:ethz-asl/gtsam_catkin.git
+[submodule "experimental/thirdparty/gps_umd"]
+	path = experimental/thirdparty/gps_umd
+	url = git@github.com:ethz-asl/gps_umd.git
+[submodule "experimental/thirdparty/open_mono_dense_reconstruction"]
+	path = experimental/thirdparty/open_mono_dense_reconstruction
+	url = git@github.com:ethz-asl/open_mono_dense_reconstruction.git
+[submodule "tools/evaluation_tools"]
+	path = tools/evaluation_tools
+	url = git@github.com:ethz-asl/evaluation_tools.git

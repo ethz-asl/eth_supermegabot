@@ -1,0 +1,90 @@
+app_name: ze_vio_ceres
+app_executable: ze_vio_ceres_node
+
+# Calibration:
+cam_calib_file: calibration.yaml
+
+#parameter_files:
+
+
+# Algorithm settings
+parameters:
+  alsologtostderr: 1
+  v: 1
+  calib_filename: CAM_CALIB_FILENAME
+  bag_filename: BAG_FILENAME
+
+  vio_activate_backend: True
+  vio_delayed_nframe_processing: False
+  vio_use_svo_frontend: True
+
+  swe_imu_rate: 200
+  acc_noise_density: 0.008
+  acc_bias_random_walk: 0.1
+  gyro_noise_density: 0.0012
+  gyro_bias_random_walk: 0.03
+
+  vio_ceres_verbose: false
+  vio_ceres_marginalize: true
+  vio_ceres_iterations: 3
+  vio_ceres_sliding_window_size: 3
+  vio_ceres_numkeyframes: 5
+#  ceres_backend_use_unit_plane_reprojection_error: True
+
+#  extrinsics_sigma_abs_translation: 1.0e-10
+#  extrinsics_sigma_abs_orientation: 1.0e-3
+#  extrinsics_sigma_rel_translation: 1.0e-6
+#  extrinsics_sigma_rel_orientation: 1.0e-6
+
+  imp_detector_max_features_per_frame: 500
+  imp_detector_grid_size: 16
+  imp_detector_name: BRISK
+  imp_detector_border_margin: 30
+  imp_brisk_uniformity_radius: 20
+  imp_brisk_absolute_threshold: 50
+  vio_min_tracked_features_total: 150
+  vio_max_tracked_features_per_frame: 160
+
+  vio_kfselect_numfts_upper_thresh: 180
+  vio_kfselect_numfts_lower_thresh: 120
+  vio_kfselect_min_disparity: 30
+  vio_kfselect_min_num_frames_between_kfs: 0
+  vio_kfselect_every_nth_frame: -1
+  vio_kfselect_min_every_nth_frame: 5
+  vio_first_n_frames_as_keyframes: 0
+  vio_max_landmarks: 2000
+  vio_add_non_kf_to_backend: False
+
+  vio_min_depth: 0.4
+  vio_max_depth: 30.0
+  vio_median_depth: 4.0
+  vio_min_parallax_deg: 0.25
+
+  vio_sparse_img_align_lambda_rot: 10.0
+  vio_disparity_median_for_static_motion_classification: 0.5
+
+# Dataset
+datasets:
+  - name: euroc_machine_hall
+    instance: MH_01_easy.bag
+#  - name: euroc_machine_hall
+#    instance: MH_02_easy.bag
+
+
+# Evaluation scripts are executed after the experiment.
+#evaluation_scripts:
+#  - app_name: ze_trajectory_analysis
+#    app_executable: analyse.py
+#    parameters:
+#      format_gt: euroc
+#      format_es: swe
+#  - app_name: ze_trajectory_analysis
+#    app_executable: relative_errors.py
+#    parameters:
+#      format_gt: euroc
+#      format_es: swe
+#      segment_lengths: '5,10,20'
+#  - app_executable: timer_statistics_plotter.py
+#    app_name: ze_py
+#    parameters:
+#      filenames_prefix: timings_

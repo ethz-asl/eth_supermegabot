@@ -1,0 +1,39 @@
+app_name: ze_vio_swe
+app_executable: ze_vio_swe_node
+
+# Calibration:
+cam_calib_source: ze_calibration
+cam_id: 22030
+cam_calib_file: visensor_22030_swe_params.yaml
+
+# Algorithm settings
+parameter_files:
+ - config/prius_nov27_swe_params_half.yaml
+ - config/vio_svo_indoor_params.yaml
+
+# Algorithm settings
+parameters:
+  alsologtostderr: 1
+  v: 1
+  calib_filename: CAM_CALIB_FILENAME
+  bag_filename: BAG_FILENAME
+
+  # Wetrok specific:
+  vio_absolute_height_factor_active: True
+  vio_absolute_height_factor_sigma: 0.01
+  vio_landmark_triangulate_purge_floor: 1.0
+  vio_kfselect_min_every_nth_frame: 15
+
+# Evaluation scripts are executed after the experiment.
+evaluation_scripts:
+- app_executable: timer_statistics_plotter.py
+  app_name: ze_py
+  parameters:
+    filenames_prefix: timings_
+- app_executable: plot.py
+  app_name: ze_trajectory_analysis
+
+# Dataset
+datasets:
+ - name: wet_20160406_eth_no
+   instance: focus_terra_2016-04-06-16-02-22.bag

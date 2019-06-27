@@ -1,0 +1,112 @@
+app_name: ze_vio_swe
+app_executable: ze_vio_swe_node
+
+# Calibration:
+cam_calib_source: ze_calibration
+cam_id: litea_20160808
+cam_calib_file: zuricheye0_litea_imu1_20160808.yaml
+
+# Algorithm settings
+parameter_files:
+ - config/vio_svo_indoor_params.yaml
+
+# Algorithm settings
+parameters:
+  alsologtostderr: 1
+  v: 1
+  calib_filename: CAM_CALIB_FILENAME
+  bag_filename: BAG_FILENAME
+  topic_cam0: /cam_1_camera
+  topic_cam1: /cam_4_camera
+  topic_cam2: /cam_3_camera
+  num_imus: 1
+  num_accels: 1
+  num_gyros: 1
+  vio_use_split_imu_stream: true
+  topic_acc0: /imu_1_accelerometer
+  topic_gyr0: /imu_1_gyroscope
+
+  swe_imu_rate: 2000
+  acc_noise_density: 1.86e-3
+  acc_bias_random_walk: 4.33e-4
+  gyro_noise_density: 2.4e-4
+  gyro_bias_random_walk: 1.4e-5
+
+  # Wetrok specific:
+  vio_absolute_height_factor_active: False
+  vio_absolute_height_factor_sigma: 0.01
+  vio_landmark_triangulate_purge_floor: 1.0 # landmarks that are 1 meter below the camera after triangulation are removed!
+  vio_kfselect_min_every_nth_frame: 15      # select a keyframe at least every 15th frame.
+
+  # Localization:
+  swe_use_localization_thread: True
+  loop_detector_engine: inverted_multi_index
+  #swe_frame_localizer_ref_map_folder: DATASET_DIR/no_exploration_3cam/vi_map_latest
+  #swe_frame_localizer_ref_map_folder: DATASET_DIR/cla_centered_drive/vi_map_latest
+  swe_frame_localizer_ref_map_folder: DATASET_DIR/vi_map_cleaning_patterns
+  swe_use_baseframe_for_every_keyframe: True 
+  swe_delocalize_if_no_localization_factor_in_window: True
+  swe_use_prior_relocalization_update: False
+  perform_maptracking_when_possible: True
+  lc_ransac_pixel_sigma: 5.0
+  lc_debug_plot_stats: True
+  lc_min_inlier_ratio: 0.001
+
+  # Custom trained projection matrix and KD tree:
+  #tree_filename: /home/cfo/catkin_ws/src/ze_experiments/localization/10kBRISK.tree
+  #pl_projection_matrix_filename: /home/cfo/catkin_ws/src/ze_experiments/localization/projection_matrix_brisk.dat
+  #weights_filename: /home/cfo/catkin_ws/src/ze_experiments/localization/10kBRISK.weights
+
+# Evaluation scripts are executed after the experiment.
+evaluation_scripts:
+- app_executable: timer_statistics_plotter.py
+  app_name: ze_py
+  parameters:
+    filenames_prefix: timings_
+- app_executable: plot.py
+  app_name: ze_trajectory_analysis
+# - app_executable: analyse.py
+#   app_name: ze_trajectory_analysis
+#   parameters:
+#     format_gt: pose
+#     format_es: swe
+
+# Dataset
+datasets:
+  # - name: kobuki_20160804
+  #   instance: no_exploration.bag
+  # - name: kobuki_20160804
+  #   instance: no_straight_1.bag
+  # - name: kobuki_20160804
+  #   instance: no_straight_2.bag
+  # - name: kobuki_20160804
+  #   instance: no_straight_loop.bag
+  # - name: kobuki_20160804
+  #   instance: no_through_exhibit.bag
+  # - name: kobuki_20160804
+  #   instance: no_to_coffee.bag
+  # - name: kobuki_20160804
+  #   instance: cla_centered_drive.bag
+  #- name: ze_20160718_garage_leica_cleaning
+  #  instance: clagarage_wetrok_2_leica_0145_filter_1b.bag
+  # - name: kobuki_20160809
+  #   instance: cla_1012_cleaning_pattern.bag
+  # - name: kobuki_20160809
+  #   instance: cla_1017_cleaning_pattern.bag
+  # - name: kobuki_20160809
+  #   instance: cla_1020_eight_figure.bag
+  ## Needs IMU 4:
+  # - name: kobuki_20160810
+  #   instance: 1446_random_exploration.bag
+  # - name: kobuki_20160811
+  #   instance: garage_1109_exploration.bag
+  # - name: kobuki_20160811
+  #   instance: garage_1111_cleaning_pattern.bag
+  # - name: kobuki_20160811
+  #   instance: garage_1121_figure_eight.bag
+  # - name: kobuki_20160812
+  #   instance: garage_0948_extension.bag
+  # - name: kobuki_20160812
+  #   instance: garage_1509_mapping.bag
+  - name: kobuki_20160815
+    instance: garage_2016-08-16-09-36_cleaning_pattern.bag

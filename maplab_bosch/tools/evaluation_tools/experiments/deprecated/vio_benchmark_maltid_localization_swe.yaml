@@ -1,0 +1,56 @@
+app_name: swe_app
+app_executable: swe_app
+
+# Calibration:
+cam_calib_source: ze_calibration
+cam_id: 23012
+cam_calib_file: visensor_23012_swe_params.yaml
+
+# Algorithm settings
+parameter_files:
+ - config/prius_nov27_swe_params_half.yaml
+
+# Algorithm settings
+parameters:
+  alsologtostderr: 1
+  colorlogtostderr: 1
+  v: 1
+  swe_start_console: 0
+  swe_visualization: True
+  swe_viz_useros: False
+  swe_datasource: 1
+  swe_publish_pointcloud: True
+  swe_imu_rate: 200
+  swe_cam_rate: 20
+  swe_calibration_yaml: CAM_CALIB_FILENAME
+  swe_rosbag_filename: BAG_FILENAME
+  swe_auto_save_map: True
+  swe_write_csv: True
+  swe_global_csv_path_filename: LOG_DIR/traj_es_global.csv
+  swe_vinode_csv_path_filename: LOG_DIR/traj_es.csv
+  
+  loop_detector_engine: kd_tree
+  swe_frame_localizer_ref_map_folder: DATASET_DIR/../maps_from_ze_vio_swe/maltid/new_maps/2/gps_fused
+  swe_deterministic: False
+  pl_num_neighbors: 5
+
+# Evaluation scripts are executed after the experiment.
+evaluation_scripts:
+- app_executable: timer_statistics_plotter.py
+  app_name: ze_py
+  parameters:
+    filenames_prefix: timings_
+- app_executable: plot.py
+  app_name: ze_trajectory_analysis
+- app_executable: analyse.py
+  app_name: ze_trajectory_analysis
+  parameters:
+    format_gt: pose
+    format_es: swe
+
+# Dataset
+datasets:
+- name: vw_20160317_maltid
+  instance: 20160317_Maltid_03.bag
+- name: vw_20160317_maltid
+  instance: 20160317_Maltid_04.bag

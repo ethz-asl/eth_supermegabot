@@ -1,0 +1,31 @@
+# SVO Parameters
+vio_kfselect_min_num_frames_between_kfs: 0
+vio_kfselect_every_nth_frame: -1
+vio_kfselect_min_every_nth_frame: -1
+vio_first_n_frames_as_keyframes: 75
+vio_add_non_kf_to_backend: true
+vio_max_num_tracks_per_update: 20
+
+vio_descriptor_use_dummy: True
+imp_detector_name: FAST
+# Backend parameters
+
+swe_imu_rate: 200
+acc_noise_density: 0.008
+acc_bias_random_walk: 0.1
+gyro_noise_density: 0.0012
+gyro_bias_random_walk: 0.03
+
+vio_ceres_verbose: false
+vio_ceres_marginalize: true
+vio_ceres_iterations: 3
+vio_ceres_sliding_window_size: 3
+vio_ceres_numkeyframes: 5
+#vio_ceres_max_optimization_time: 20.0e-3
+
+vio_ceres_add_velocity_prior: false
+
+extrinsics_sigma_abs_translation: 1.0e-8
+extrinsics_sigma_abs_orientation: 1.0e-3
+#extrinsics_sigma_rel_translation: 1.0e-6
+#extrinsics_sigma_rel_orientation: 1.0e-6

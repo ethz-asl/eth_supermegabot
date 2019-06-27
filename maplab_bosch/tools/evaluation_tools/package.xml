@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>evaluation_tools</name>
+  <version>0.1.0</version>
+  <description>
+    Evaluation framework.
+  </description>
+  <maintainer email="mathias.buerki@mavt.ethz.ch">Mathias Buerki</maintainer>
+  <license>Unknown</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>catkin_simple</buildtool_depend>
+  <depend>aslam_cv_common</depend>
+  <depend>rospy</depend>
+</package>

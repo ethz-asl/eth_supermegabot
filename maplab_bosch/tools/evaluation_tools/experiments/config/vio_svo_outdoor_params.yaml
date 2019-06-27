@@ -1,0 +1,32 @@
+swe_use_provided_tracks: True
+swe_delayed_nframe_processing: False
+vio_activate_backend: True
+vio_delayed_nframe_processing: False
+vio_use_svo_frontend: True
+
+imp_detector_max_features_per_frame: 500
+imp_detector_grid_size: 16
+imp_detector_name: BRISK
+imp_detector_border_margin: 30
+imp_brisk_uniformity_radius: 20
+imp_brisk_absolute_threshold: 50
+vio_min_tracked_features_total: 180
+vio_max_tracked_features_per_frame: 180
+
+vio_kfselect_numfts_upper_thresh: 180
+vio_kfselect_numfts_lower_thresh: 120
+vio_kfselect_min_disparity: 30
+vio_kfselect_min_num_frames_between_kfs: 0
+vio_kfselect_every_nth_frame: -1
+vio_kfselect_min_every_nth_frame: 5
+vio_max_landmarks: 2000
+
+vio_min_depth: 2.0
+vio_max_depth: 30.0
+vio_median_depth: 10.0
+vio_min_parallax_deg: 0.25
+
+vio_sparse_img_align_lambda_rot: 10.0
+vio_disparity_median_for_static_motion_classification: 0.5
+
+vio_viz_marker_scale: 3.0

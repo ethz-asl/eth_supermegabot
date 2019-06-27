@@ -1,0 +1,40 @@
+app_name: swe_app
+app_executable: swe_app
+
+# The experiment name is optional. If it is not set, it will be generated.
+# experiment_name: example_swe
+
+# Calibration:
+cam_calib_file: calibration.yaml
+
+# Algorithm settings
+parameter_files:
+  - config/swe_run_params.yaml
+
+parameters:
+  swe_start_console: False
+  swe_auto_save_map: True
+  swe_write_csv: True
+  swe_auto_save_map_folder: LOG_DIR/vi_map_latest
+  swe_imu_rate: 200
+  swe_cam_rate: 20
+  v: 20
+  lc_ransac_pixel_sigma: 3.0
+
+# Dataset
+datasets:
+  - name: euroc_machine_hall
+    instance: MH_05_difficult.bag
+
+# Evaluation scripts are executed after the experiment.
+evaluation_scripts:
+  - app_name: ze_trajectory_analysis
+    app_executable: analyse.py
+    parameters:
+      format_gt: euroc
+      format_es: swe
+  - app_name: ze_trajectory_analysis
+    app_executable: relative_errors.py
+    parameters:
+      format_gt: euroc
+      format_es: swe

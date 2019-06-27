@@ -1,0 +1,71 @@
+app_name: ze_vo
+app_executable: ze_vo_node
+cam_calib_file: calibration.yaml
+
+parameters:
+  data_source: 1
+  bag_filename: BAG_FILENAME
+  calib_filename: CAM_CALIB_FILENAME
+  v: 1
+
+  vio_max_tracked_features_per_frame: 120
+  imp_detector_max_features_per_frame: 500
+  vio_max_landmarks: 1500
+  vio_reprojector_pyr_alignment: False
+
+  vio_kfselect_numfts_upper_thresh: 180
+  vio_kfselect_numfts_lower_thresh: 90
+  vio_kfselect_min_disparity: 30
+  vio_kfselect_min_num_frames_between_kfs: 2
+
+  vio_min_depth: 0.3
+  vio_max_depth: 10
+  vio_median_depth: 4.0
+
+  #vio_sparse_img_align_lambda_rot: 10.0
+
+  # TEST
+  #vio_log_performance: True
+
+evaluation_scripts:
+  - app_name: ze_trajectory_analysis
+    app_executable: analyse.py
+    parameters:
+      format_gt: euroc
+      format_es: swe
+  - app_name: ze_trajectory_analysis
+    app_executable: relative_errors.py
+    parameters:
+      format_gt: euroc
+      format_es: swe
+      segment_lengths: '5,10,20'
+  - app_executable: timer_statistics_plotter.py
+    app_name: ze_py
+    parameters:
+      filenames_prefix: timings_
+  - app_executable: plot_num_tracked_features.py
+    app_name: ze_vio_frontend
+
+datasets:
+  - name: euroc_machine_hall
+    instance: MH_01_easy.bag
+  - name: euroc_machine_hall
+    instance: MH_02_easy.bag
+  - name: euroc_machine_hall
+    instance: MH_03_medium.bag
+  - name: euroc_machine_hall
+    instance: MH_04_difficult.bag
+  - name: euroc_machine_hall
+    instance: MH_05_difficult.bag
+  - name: euroc_vicon_1
+    instance: V1_01_easy.bag
+  - name: euroc_vicon_1
+    instance: V1_02_medium.bag
+  - name: euroc_vicon_1
+    instance: V1_03_difficult.bag
+  - name: euroc_vicon_2
+    instance: V2_01_easy.bag
+  - name: euroc_vicon_2
+    instance: V2_02_medium.bag
+  - name: euroc_vicon_2
+    instance: V2_03_difficult.bag

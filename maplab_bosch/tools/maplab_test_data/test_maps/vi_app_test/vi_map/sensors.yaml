@@ -1,0 +1,66 @@
+sensors:
+  - id: 7301e8e2ffffffff0100000000000000
+    sensor_type: IMU
+    hardware_id: imu0
+    sigmas:
+      gyro_noise_density: 0.053088444
+      gyro_bias_random_walk_noise_density: 0.14125375
+      acc_noise_density: 0.001883649
+      acc_bias_random_walk_noise_density: 0.012589254
+    saturation_accel_max_mps2: 150
+    saturation_gyro_max_radps: 7.5
+    gravity_magnitude_mps2: 9.808083883386614
+ncameras:
+  - label: Tango camera
+    id: 4809a0c7e7ca060b45856a9a18040434
+    cameras:
+      - camera:
+          label: unnamed camera
+          id: fb35c057f9845c71aa169aa26f86f607
+          line-delay-nanoseconds: 0
+          image_height: 480
+          image_width: 640
+          type: pinhole
+          intrinsics:
+            rows: 4
+            cols: 1
+            data:
+              - 253.24
+              - 253.949
+              - 317.661
+              - 248.708
+          distortion:
+            type: fisheye
+            parameters:
+              rows: 1
+              cols: 1
+              data:
+                - 0.920805
+        T_B_C:
+          rows: 4
+          cols: 4
+          data:
+            - -2.220446049250313e-16
+            - -0.9749435239382782
+            - 0.2224525233185989
+            - 0.0012
+            - -1
+            - 1.110223024625157e-16
+            - -1.387778780781446e-17
+            - -0.05899699999999998
+            - -1.387778780781446e-17
+            - -0.2224525233185989
+            - -0.9749435239382782
+            - -0.001572500000000002
+            - 0
+            - 0
+            - 0
+            - 1
+mission_sensors_associations:
+  - mission_id: c7957efb9cf29d4874676106d6beb551
+    sensor_ids:
+      - sensor_id: 7301e8e2ffffffff0100000000000000
+mission_ncamera_associations:
+  - mission_id: c7957efb9cf29d4874676106d6beb551
+    ncamera_id: 4809a0c7e7ca060b45856a9a18040434
+mission_optional_ncamera_associations: ~

@@ -1,0 +1,26 @@
+app_name: swe_app
+app_executable: swe_app
+
+# The experiment name is optional. If it is not set, it will be generated.
+# experiment_name: example_swe
+
+# Calibration:
+cam_calib_source: ze_calibration
+cam_id: 23012
+cam_calib_file: visensor_23012_swe_params.yaml
+
+# Algorithm settings
+parameter_files:
+  - config/swe_run_params.yaml
+
+parameters:
+  swe_imu_rate: 800
+  swe_cam_rate: 20
+  v: 20
+
+# Dataset
+datasets:
+  - name: siemens_20160314
+    instance: siemens_2016-03-15-13-47-53.bag
+  # - name: siemens_20160314
+  #   instance: siemens_2016-03-15-15-28-01.bag

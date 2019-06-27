@@ -1,0 +1,91 @@
+app_name: ze_vio_swe
+app_executable: ze_vio_swe_node
+
+# Calibration:
+cam_calib_source: ze_calibration
+cam_id: 23013
+cam_calib_file: visensor_23013_swe_params.yaml
+
+# Algorithm settings
+parameter_files:
+ - config/prius_nov27_swe_params.yaml
+
+# Algorithm settings
+parameters:
+  alsologtostderr: 1
+  v: 1
+  calib_filename: CAM_CALIB_FILENAME
+  bag_filename: BAG_FILENAME
+  vio_viz_marker_scale: 3.0
+
+  swe_use_provided_tracks: True
+  vio_max_landmarks: 1500
+  vio_use_svo_frontend: False
+
+  vio_activate_backend: True
+  vio_skip_rate: 5
+
+  imp_detector_max_features_per_frame: 750
+  imp_detector_name: BRISK
+  imp_detector_border_margin: 30
+  imp_brisk_uniformity_radius: 20
+  imp_brisk_absolute_threshold: 50
+
+  vio_min_tracked_features_total: 500
+  vio_use_5pt_ransac: True
+
+  vio_min_depth: 2.0
+  vio_max_depth: 50.0
+  vio_min_parallax_deg: 0.25
+
+# Dataset
+datasets:
+ - name: prius_2016-04-28
+   instance: susen_2016-04-28-17-29-04.bag
+ - name: prius_2016-04-28
+   instance: sorell_2016-04-28-17-36-19.bag
+
+ #- name: prius_2016-04-28
+ #  instance: eth2dolder_2016-04-28-09-31-20.bag
+ #- name: prius_2016-04-28
+ #  instance: eth2dolder_2016-04-28-17-04-01.bag
+ #- name: prius_2016-04-28
+ #  instance: fifa_2016-04-28-09-56-48.bag
+ #- name: prius_2016-04-28
+ #  instance: fifa_2016-04-28-17-14-33.bag
+ #- name: prius_2016-04-28
+ #  instance: fifa_2016-04-28-17-24-53.bag
+ #- name: prius_2016-04-28
+ #  instance: sorell_2016-04-28-10-15-42.bag
+ #- name: prius_2016-04-28
+ #  instance: susen_2016-04-28-10-03-13.bag
+ #- name: prius_2016-04-28
+ #  instance: zoo2eth_2016-04-28-10-21-31.bag
+ #- name: prius_2016-04-28
+ #  instance: zoo2eth_2016-04-28-17-41-41.bag
+ #- name: prius_2016-04-28
+ #  instance: dolder_2016-04-28-09-46-34.bag
+ #- name: prius_2016-04-28
+ #  instance: dolder_2016-04-28-17-19-04.bag
+
+# Evaluation scripts are executed after the experiment.
+# Evaluation scripts are executed after the experiment.
+evaluation_scripts:
+- app_executable: timer_statistics_plotter.py
+  app_name: ze_py
+  parameters:
+    filenames_prefix: timings_
+- app_executable: plot.py
+  app_name: ze_trajectory_analysis
+- app_executable: relative_errors.py
+  app_name: ze_trajectory_analysis
+  parameters:
+    format_gt: pose
+    format_es: swe
+    segment_lengths: '40,160,360,640'
+    segment_align_lsq: True
+- app_executable: analyse.py
+  app_name: ze_trajectory_analysis
+  parameters:
+    format_gt: pose
+    format_es: swe

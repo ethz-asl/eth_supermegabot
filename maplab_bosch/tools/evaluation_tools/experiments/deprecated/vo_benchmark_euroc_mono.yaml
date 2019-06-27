@@ -1,0 +1,41 @@
+app_name: ze_vo
+app_executable: ze_vo_node
+cam_calib_file: calibration.yaml
+
+parameters:
+  data_source: 1
+  bag_filename: BAG_FILENAME
+  calib_filename: CAM_CALIB_FILENAME
+  v: 1
+  data_sync_init_skip_n_frames: 1000
+  calib_use_single_camera: True
+  vio_depth_at_first_frame: 4.0
+
+  vio_max_tracked_features_per_frame: 140
+  imp_detector_max_features_per_frame: 500
+
+  vio_kfselect_numfts_upper_thresh: 180
+  vio_kfselect_numfts_lower_thresh: 90
+  vio_kfselect_min_disparity: 40
+  vio_kfselect_min_num_frames_between_kfs: 2
+
+  vio_sparse_img_align_lambda_rot: 0.0
+  vio_pose_optim_only_use_converged_seeds: False
+
+evaluation_scripts:
+  - app_name: ze_trajectory_analysis
+    app_executable: analyse.py
+    parameters:
+      format_gt: euroc
+      format_es: swe
+      alignment: sim3
+  - app_executable: timer_statistics_plotter.py
+    app_name: ze_py
+    parameters:
+      filenames_prefix: timings_
+
+datasets:
+  - name: euroc_machine_hall
+    instance: MH_01_easy.bag
+#  - name: euroc_machine_hall
+#    instance: MH_02_easy.bag

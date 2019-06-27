@@ -1,0 +1,31 @@
+app_name: swe_app
+app_executable: swe_app
+
+# The experiment name is optional. If it is not set, it will be generated.
+# experiment_name: example_swe
+
+# Calibration:
+cam_calib_source: ze_calibration
+cam_id: 23012
+cam_calib_file: visensor_23012_swe_params.yaml
+
+# Algorithm settings
+parameter_files:
+  - config/vw.yaml
+
+parameters:
+  v: 3
+  swe_viz_useros: True
+  gyro_bias_init_x: 0.00118205086792423
+  gyro_bias_init_y: -0.00369771193251977
+  gyro_bias_init_z: -0.00466979667617239
+  acc_bias_init_x: -0.0141384709277412
+  acc_bias_init_y: -0.100440374014657
+  acc_bias_init_z: 0.0173247328945809
+
+# Dataset
+datasets:
+ #- name: vw_20160317_maltid
+ #  instance: 20160317_Maltid_04.bag
+ - name: vw_20160407_sweden_dolphin
+   instance: 20160407_Dolphin_05.bag

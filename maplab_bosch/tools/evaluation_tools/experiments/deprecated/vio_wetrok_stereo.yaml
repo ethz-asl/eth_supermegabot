@@ -1,0 +1,22 @@
+app_name: ze_stereo
+app_executable: stereo_batch_node
+
+# Calibration:
+cam_calib_source: ze_calibration
+cam_id: 22030
+cam_calib_file: visensor_22030_swe_params.yaml
+
+# Algorithm settings
+parameters:
+  alsologtostderr: 1
+  v: 3
+  bag_filename: BAG_FILENAME
+  map_folder: DATASET_DIR/focus_terra_2016-04-06-16-02-22_vi_map
+  stereo_visualize: True
+  stereo_scale_factor: 0.8
+  stereo_num_warps: 5
+
+# Dataset
+datasets:
+ - name: wet_20160406_eth_no
+   instance: focus_terra_2016-04-06-16-02-22.bag

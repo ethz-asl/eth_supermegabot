@@ -1,0 +1,30 @@
+app_name: ze_okvis
+app_executable: okvis_node
+
+# Calibration:
+cam_calib_file: calibration.yaml
+
+# Algorithm settings
+parameters:
+  okvis_config: ZE_EXPERIMENTS/experiments/config/okvis_default_params.yaml
+  img_processing_rate: 60.0
+  calib_filename: CAM_CALIB_FILENAME
+  bag_filename: BAG_FILENAME
+
+# Dataset
+datasets:
+  - name: euroc_machine_hall
+    instance: MH_01_easy.bag
+
+# Evaluation scripts are executed after the experiment.
+evaluation_scripts:
+  - app_name: ze_trajectory_analysis
+    app_executable: analyse.py
+    parameters:
+      format_gt: euroc
+      format_es: swe
+  - app_name: ze_trajectory_analysis
+    app_executable: relative_errors.py
+    parameters:
+      format_gt: euroc
+      format_es: swe

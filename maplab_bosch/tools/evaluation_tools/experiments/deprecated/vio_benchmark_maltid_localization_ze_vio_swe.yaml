@@ -1,0 +1,73 @@
+app_name: ze_vio_swe
+app_executable: ze_vio_swe_node
+
+# Calibration:
+cam_calib_source: ze_calibration
+cam_id: 23012
+cam_calib_file: visensor_23012_swe_params.yaml
+
+# Algorithm settings
+parameter_files:
+ - config/prius_nov27_swe_params_half.yaml
+
+# Algorithm settings
+parameters:
+  alsologtostderr: 1
+  v: 1
+  calib_filename: CAM_CALIB_FILENAME
+  bag_filename: BAG_FILENAME
+  vio_viz_marker_scale: 3.0
+
+  swe_use_provided_tracks: True
+  swe_use_localization_thread: True
+  loop_detector_engine: kd_tree
+  swe_frame_localizer_ref_map_folder: /media/ze_nas/Datasets/maps_from_ze_vio_swe/maltid/new_maps/2/gps_fused
+
+  swe_use_baseframe_for_every_keyframe: True 
+  swe_delocalize_if_no_localization_factor_in_window: True
+
+  swe_log_residuals: False
+
+  swe_deterministic: True
+  lc_ransac_pixel_sigma: 3.0
+  lc_min_inlier_ratio: 0.001
+
+  swe_use_prior_relocalization_update: False
+
+  vio_max_landmarks: 1500
+  vio_use_svo_frontend: False
+
+  vio_activate_backend: True
+  vio_skip_rate: 5
+
+  imp_detector_max_features_per_frame: 750
+  imp_detector_name: BRISK
+  imp_detector_border_margin: 30
+  imp_brisk_uniformity_radius: 20
+  imp_brisk_absolute_threshold: 50
+
+  vio_min_tracked_features_total: 500
+  vio_use_5pt_ransac: True
+
+  vio_min_depth: 2.0
+  vio_max_depth: 50.0
+  vio_min_parallax_deg: 0.25
+
+# Evaluation scripts are executed after the experiment.
+evaluation_scripts:
+- app_executable: timer_statistics_plotter.py
+  app_name: ze_py
+  parameters:
+    filenames_prefix: timings_
+- app_executable: plot.py
+  app_name: ze_trajectory_analysis
+- app_executable: analyse.py
+  app_name: ze_trajectory_analysis
+  parameters:
+    format_gt: pose
+    format_es: swe
+
+# Dataset
+datasets:
+- name: vw_20160317_maltid
+  instance: 20160317_Maltid_04.bag

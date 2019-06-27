@@ -1,0 +1,59 @@
+app_name: ze_vio_swe
+app_executable: ze_vio_swe_node
+
+# Calibration:
+cam_calib_file: calibration.yaml
+
+parameter_files:
+ - config/prius_nov27_swe_params.yaml
+ - config/vio_svo_indoor_params.yaml
+
+# Algorithm settings
+parameters:
+  alsologtostderr: 1
+  v: 1
+  calib_filename: CAM_CALIB_FILENAME
+  bag_filename: BAG_FILENAME
+
+# Dataset
+datasets:
+  - name: euroc_machine_hall
+    instance: MH_01_easy.bag
+  - name: euroc_machine_hall
+    instance: MH_02_easy.bag
+  - name: euroc_machine_hall
+    instance: MH_03_medium.bag
+  - name: euroc_machine_hall
+    instance: MH_04_difficult.bag
+  - name: euroc_machine_hall
+    instance: MH_05_difficult.bag
+  - name: euroc_vicon_1
+    instance: V1_01_easy.bag
+  - name: euroc_vicon_1
+    instance: V1_02_medium.bag
+  - name: euroc_vicon_1
+    instance: V1_03_difficult.bag
+  - name: euroc_vicon_2
+    instance: V2_01_easy.bag
+  - name: euroc_vicon_2
+    instance: V2_02_medium.bag
+  - name: euroc_vicon_2
+    instance: V2_03_difficult.bag
+
+# Evaluation scripts are executed after the experiment.
+evaluation_scripts:
+  - app_name: ze_trajectory_analysis
+    app_executable: analyse.py
+    parameters:
+      format_gt: euroc
+      format_es: swe
+  - app_name: ze_trajectory_analysis
+    app_executable: relative_errors.py
+    parameters:
+      format_gt: euroc
+      format_es: swe
+      segment_lengths: '5,10,20'
+  - app_executable: timer_statistics_plotter.py
+    app_name: ze_py
+    parameters:
+      filenames_prefix: timings_

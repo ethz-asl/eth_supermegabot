@@ -1,0 +1,45 @@
+app_name: ze_vo
+app_executable: ze_vo_node
+
+# Calibration:
+cam_calib_file: falcon_stereo_mono.yaml
+
+# Algorithm settings
+parameters:
+  alsologtostderr: 1
+  v: 1
+  data_source: 1
+  calib_filename: CAM_CALIB_FILENAME
+  bag_filename: BAG_FILENAME
+  data_sync_init_skip_n_frames: 1
+
+  vio_max_tracked_features_per_frame: 120
+  imp_detector_max_features_per_frame: 500
+  vio_max_landmarks: 1500
+
+  vio_kfselect_numfts_upper_thresh: 180
+  vio_kfselect_numfts_lower_thresh: 90
+  vio_kfselect_min_disparity: 30
+  vio_kfselect_min_every_nth_frame: 10
+  vio_kfselect_min_num_frames_between_kfs: 0
+
+  vio_min_depth: 0.5
+  vio_max_depth: 30.0
+  vio_median_depth: 5.0
+
+  topic_cam0: /falcon/sync/cam0/image_raw
+  topic_cam1: /falcon/sync/cam1/image_raw
+  topic_cam2: /falcon/sync/cam2/image_raw
+  topic_imu0: /falcon/imu
+
+# Dataset
+datasets:
+  - name: rpg_20160408_falcon
+    instance: 2016-04-08-12-19-53.bag
+
+# Evaluation scripts are executed after the experiment.
+evaluation_scripts:
+  - app_executable: timer_statistics_plotter.py
+    app_name: ze_py
+    parameters:
+      filenames_prefix: timings_

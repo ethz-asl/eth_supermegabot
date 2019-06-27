@@ -1,0 +1,22 @@
+app_package_name: swe_app
+app_executable: swe_app
+
+# Calibration:
+ncamera_calibration_file: Wolle/ncamera_mission_33974f7ac5d1c7e70b00000000000000.yaml
+additional_odometry_calibration_file: Wolle/wheel_odometry_20000000000000000000000000000000.yaml
+
+# Algorithm settings
+parameter_files:
+ - swe_test_parameters.yaml
+
+# Algorithm settings
+parameters:
+  alsologtostderr: 1
+  v: 1
+
+# Evaluation scripts are executed after the experiment.
+evaluation_scripts:
+
+# Dataset
+datasets:
+- name: 20170324_Patio_01_slice.bag

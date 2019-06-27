@@ -1,0 +1,14 @@
+swe_start_console: 0
+swe_auto_save_map: 0
+swe_visualization: 1
+colorlogtostderr: 1
+alsologtostderr: 1
+pl_num_neighbors: 5
+swe_viz_useros: 1
+swe_publish_pointcloud: 1
+swe_datasource: 1
+swe_write_csv: 1
+swe_calibration_yaml: CAM_CALIB_FILENAME
+swe_rosbag_filename: BAG_FILENAME
+swe_vinode_csv_path_filename: LOG_DIR/traj_es.csv
+swe_global_csv_path_filename: LOG_DIR/swe-output-global.csv

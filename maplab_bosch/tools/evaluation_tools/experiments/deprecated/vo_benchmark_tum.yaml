@@ -1,0 +1,41 @@
+app_name: ze_vo
+app_executable: ze_vo_node
+
+# Calibration:
+cam_calib_file: calibration.yaml
+
+# Algorithm settings
+parameters:
+  data_source: 0
+  data_dir: BAG_FILENAME
+  calib_filename: CAM_CALIB_FILENAME
+  v: 1
+  topic_cam0: cam0
+  num_imus: 0
+
+  vio_init_disparity: 30
+  vio_max_tracked_features_per_frame: 160
+  imp_detector_max_features_per_frame: 500
+
+  vio_kfselect_numfts_upper_thresh: 180
+  vio_kfselect_numfts_lower_thresh: 60
+  vio_kfselect_min_disparity: 30
+  vio_kfselect_min_num_frames_between_kfs: 2
+
+  vio_pose_optim_only_use_converged_seeds: False
+
+# Dataset
+datasets:
+ - name: tum_fr2
+   instance: fr2_desk
+ - name: tum_fr2
+   instance: fr2_xyz
+
+# Evaluation scripts are executed after the experiment.
+evaluation_scripts:
+  - app_name: ze_trajectory_analysis
+    app_executable: analyse.py
+    parameters:
+      format_gt: pose
+      format_es: pose
+      alignment: sim3

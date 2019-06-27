@@ -1,0 +1,35 @@
+app_name: swe_app
+app_executable: swe_app
+
+# The experiment name is optional. If it is not set, it will be generated.
+# experiment_name: example_swe
+
+# Calibration:
+cam_calib_source: ze_calibration
+cam_id: 22030
+cam_calib_file: ncamera_camchain-imucam-dyn_1443516825.yaml
+
+# Algorithm settings
+parameter_files:
+ - config/swe_run_params.yaml
+ - config/prius_nov27_swe_params.yaml
+
+# Dataset
+datasets:
+- name: prius_2015-11-27
+  instance: 2015-11-27-12-05-06.bag
+
+# Preprocessing scripts are executed before the experiment.
+preprocessing_scripts:
+  - app_name: ze_evaluation_job
+    app_executable: extract_bagfile.py
+    parameters:
+      format: applanix
+
+# Evaluation scripts are executed after the experiment.
+evaluation_scripts:
+  - app_name: ze_trajectory_analysis
+    app_executable: analyse.py
+    parameters:
+      format_gt: 'pose'
+      format_es: 'pose'

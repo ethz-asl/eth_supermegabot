@@ -1,0 +1,34 @@
+app_name: swe_app
+app_executable: swe_app
+
+# The experiment name is optional. If it is not set, it will be generated.
+experiment_name: example_swe_sweep
+
+# Calibration:
+cam_calib_file: calibration.yaml
+
+# Algorithm settings
+parameter_files:
+ - config/swe_run_params.yaml
+
+parameters:
+  swe_start_console: 0
+
+parameter_sweep:
+  name: gyro_noise_density
+  min: 0.0000372
+  max: 0.00372
+  num_steps: 5
+
+# Dataset
+datasets:
+  - name: euroc_machine_hall
+    instance: MH_01_easy.bag
+
+# Evaluation scripts are executed after the experiment.
+evaluation_scripts:
+  - app_name: ze_trajectory_analysis
+    app_executable: relative_errors.py
+    parameters:
+      format_gt: euroc
+      format_es: swe

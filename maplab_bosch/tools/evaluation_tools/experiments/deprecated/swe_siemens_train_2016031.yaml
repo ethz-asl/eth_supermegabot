@@ -1,0 +1,37 @@
+app_name: swe_app
+app_executable: swe_app
+
+# The experiment name is optional. If it is not set, it will be generated.
+# experiment_name: example_swe
+
+# Calibration:
+cam_calib_source: ze_calibration
+cam_id: 23012
+cam_calib_file: visensor_23012_swe_params.yaml
+
+# Algorithm settings
+parameter_files:
+  - config/swe_run_params.yaml
+
+parameters:
+  swe_imu_rate: 800
+  swe_cam_rate: 20
+  v: 20
+
+# Dataset
+datasets:
+  - name: siemens_20160314
+    instance: siemens_2016-03-15-13-47-53.bag
+
+# # Evaluation scripts are executed after the experiment.
+# evaluation_scripts:
+#   - app_name: ze_trajectory_analysis
+#     app_executable: analyse.py
+#     parameters:
+#       format_gt: euroc
+#       format_es: swe
+#   - app_name: ze_trajectory_analysis
+#     app_executable: relative_errors.py
+#     parameters:
+#       format_gt: euroc
+#       format_es: swe

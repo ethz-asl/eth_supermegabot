@@ -1,0 +1,28 @@
+app_name: ze_calibration_validation
+app_executable: ze_calibration_validation_node
+
+# Calibration:
+#cam_calib_source: ze_calibration
+#cam_id: 23013
+#cam_calib_file:  visensor_23013_swe_params.yaml
+cam_calib_file: aevena_20160511_swe_params.yaml
+
+# Algorithm settings
+parameters:
+  alsologtostderr: 1
+  v: 3
+  rig_calibration: CAM_CALIB_FILENAME
+  bag_filename: BAG_FILENAME
+  topic_cam0: /slam/left/image_raw
+  topic_cam1: /slam/right/image_raw
+
+# Evaluation scripts are executed after the experiment.
+evaluation_scripts:
+- app_executable: evaluate.py
+  app_name: ze_calibration_validation
+
+# Dataset
+datasets:
+- name: aevena_20160511
+  instance: fly.bag
+

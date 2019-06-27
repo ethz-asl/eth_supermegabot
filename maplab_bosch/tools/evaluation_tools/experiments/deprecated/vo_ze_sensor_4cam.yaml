@@ -1,0 +1,47 @@
+app_name: ze_vo
+app_executable: ze_vo_node
+cam_calib_file: zuricheye0_sn0001.yaml
+
+parameters:
+  data_source: 1
+  bag_filename: BAG_FILENAME
+  calib_filename: CAM_CALIB_FILENAME
+  v: 1
+  data_sync_init_skip_n_frames: 1
+  topic_cam0: /cam_4_camera
+  topic_cam1: /cam_0_camera
+  topic_cam2: /cam_5_camera
+  topic_cam3: /cam_1_camera
+  num_imus: 1
+  num_accels: 1
+  num_gyros: 1
+  vio_use_split_imu_stream: true
+  topic_acc0: /imu_0_accelerometer
+  topic_gyr0: /imu_0_gyroscope
+
+  vio_max_tracked_features_per_frame: 120
+  imp_detector_max_features_per_frame: 500
+  vio_max_landmarks: 2000
+
+  vio_kfselect_numfts_upper_thresh: 400
+  vio_kfselect_numfts_lower_thresh: 200
+  vio_kfselect_min_disparity: 30
+  vio_kfselect_min_num_frames_between_kfs: 0
+
+  vio_min_depth: 0.5
+  vio_max_depth: 4
+  vio_median_depth: 1.8
+
+  vio_sparse_img_align_lambda_rot: 10.0
+
+evaluation_scripts:
+  - app_executable: timer_statistics_plotter.py
+    app_name: ze_py
+    parameters:
+      filenames_prefix: timings_
+
+datasets:
+  #- name: ze_20160614
+  #  instance: test_corridor_0145.bag
+  - name: eth_zuricheye1_0145_auto_test
+    instance: 0145_auto_eth_1b.bag

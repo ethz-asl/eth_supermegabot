@@ -1,0 +1,10 @@
+swe_deterministic: 1
+# swe_stationary_attitude_init: 0
+
+swe_imu_rate: 200
+swe_cam_rate: 20
+lc_ransac_pixel_sigma: 3.0
+acc_noise_density: 0.00186
+acc_bias_random_walk: 0.000433
+gyro_noise_density: 0.000186
+gyro_bias_random_walk: 0.0000266

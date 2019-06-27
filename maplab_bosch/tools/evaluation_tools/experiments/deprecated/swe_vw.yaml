@@ -1,0 +1,24 @@
+app_name: swe_app
+app_executable: swe_app
+
+# The experiment name is optional. If it is not set, it will be generated.
+# experiment_name: example_swe
+
+# Calibration:
+cam_calib_source: ze_calibration
+cam_id: 23012
+cam_calib_file: visensor_23012_swe_params.yaml
+
+# Algorithm settings
+parameter_files:
+  - config/swe_run_params.yaml
+
+parameters:
+  swe_imu_rate: 200
+  swe_cam_rate: 20
+  v: 20
+
+# Dataset
+datasets:
+ - name: vw_20160304_ganbarou
+   instance: 20160304_ganbarou_MLC_03.bag

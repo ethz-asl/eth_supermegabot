@@ -45,7 +45,7 @@
 - git:
    local-name: catkin_simple
    uri: https://github.com/catkin/catkin_simple.git
-- git: 
+- git:
    local-name: volumetric_mapping
    uri: https://github.com/ethz-asl/volumetric_mapping.git
 - git:
@@ -68,3 +68,55 @@
 - git:
    local-name: rosserial
    uri: https://github.com/ros-drivers/rosserial.git
+- git:
+   local-name: hand_eye_calibration
+   uri: https://github.com/ethz-asl/hand_eye_calibration.git
+   version: 5d5077572d650a5491040a4a90d98850df4cf068
+- git:
+   local-name: ethzasl_brisk
+   uri: https://github.com/ethz-asl/ethzasl_brisk.git
+   version: 92dbcd71104d09380faeedf7b00594e0bab48f9e
+- git:
+   local-name: kindr
+   uri: https://github.com/ANYbotics/kindr.git
+   version: cec35abc6c0080d609f95d543589fb743631c43e
+- git:
+   local-name: maplab_rovio
+   uri: https://github.com/ethz-asl/maplab_rovio.git
+   version: c5a4dad4e517f21d8df0c4672a5b2d1b1d1eb949
+- git:
+   local-name: plotty
+   uri: https://github.com/ethz-asl/plotty.git
+   version: 19d7e222e8679fcca02824b7e03714f5197e99c1
+- git:
+   local-name: benchmark_catkin
+   uri: https://github.com/ethz-asl/benchmark_catkin.git
+   version: 5018b4bb92ee0021a8f5a2884660a1e02c4573d4
+- git:
+   local-name: ceres_catkin
+   uri: https://github.com/ethz-asl/ceres_catkin.git
+   version: cf68d87f4efbeab91fd280cf25d72b7cd56caced
+- git:
+   local-name: opencv3_catkin
+   uri: https://github.com/ethz-asl/opencv3_catkin.git
+   version: 7cbc60555d308f5208e1f0fb8a89c81aa6376548
+- git:
+   local-name: opengv
+   uri: https://github.com/ethz-asl/opengv.git
+   version: 7542b890f4d8655119c80763795475bec4667fc9
+- git:
+   local-name: protobuf_catkin
+   uri: https://github.com/ethz-asl/protobuf_catkin.git
+   version: 59874105931dbf2958397c58101368944f724c97
+- git:
+   local-name: suitesparse
+   uri: https://github.com/ethz-asl/suitesparse.git
+   version: b0a2b346847b8b3c5b9b2f7568a71ad7cc574287
+- git:
+   local-name: vision_opencv
+   uri: https://github.com/ethz-asl/vision_opencv.git
+   version: c56b5ebbc9ed8daaa6495a4461a9c29f55185fe7
+- git:
+   local-name: yaml_cpp_catkin
+   uri: https://github.com/ethz-asl/yaml_cpp_catkin.git
+   version: 6cad108c4d5a9b9ddc95edd6f7cb23b572926351

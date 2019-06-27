@@ -1,0 +1,54 @@
+app_name: ze_vio_swe
+app_executable: ze_vio_swe_node
+
+# Calibration:
+cam_calib_source: ze_calibration
+cam_id: ZurichEye0_20161706
+cam_calib_file: zuricheye0_sn0001_swe_17JUN2016.yaml
+
+# Algorithm settings
+parameter_files:
+ - config/vio_svo_indoor_params.yaml
+
+# Algorithm settings
+parameters:
+  alsologtostderr: 1
+  v: 1
+  calib_filename: CAM_CALIB_FILENAME
+  bag_filename: BAG_FILENAME
+  topic_cam0: /cam_4_camera
+  topic_cam1: /cam_0_camera
+  topic_cam2: /cam_5_camera
+  topic_cam3: /cam_1_camera
+  num_imus: 1
+  num_accels: 1
+  num_gyros: 1
+  vio_use_split_imu_stream: true
+  topic_acc0: /imu_0_accelerometer
+  topic_gyr0: /imu_0_gyroscope
+
+  vio_viz_level: 1
+
+  swe_imu_rate: 2000
+  acc_noise_density: 1.86e-3
+  acc_bias_random_walk: 4.33e-4
+  gyro_noise_density: 2.4e-4
+  gyro_bias_random_walk: 1.4e-5
+
+# Evaluation scripts are executed after the experiment.
+evaluation_scripts:
+- app_executable: timer_statistics_plotter.py
+  app_name: ze_py
+  parameters:
+    filenames_prefix: timings_
+- app_executable: plot.py
+  app_name: ze_trajectory_analysis
+
+# Dataset
+datasets:
+ - name: ze_20160718_garage_leica_handheld
+   instance: clagarage_handheld_1_leica_0145_filter_1b.bag
+ - name: ze_20160718_garage_leica_handheld
+   instance: clagarage_handheld_2_leica_0145_filter_1b.bag
+ - name: ze_20160718_garage_leica_handheld
+   instance: clagarage_handheld_3_leica_0145_filter_1b.bag

@@ -1,0 +1,28 @@
+files {
+  file_type: 0
+  path: "missions"
+}
+files {
+  file_type: 1
+  path: "vertices0"
+}
+files {
+  file_type: 1
+  path: "vertices1"
+}
+files {
+  file_type: 1
+  path: "vertices2"
+}
+files {
+  file_type: 2
+  path: "edges0"
+}
+files {
+  file_type: 3
+  path: "landmark_index"
+}
+files {
+  file_type: 10
+  path: "optional_sensor_data"
+}

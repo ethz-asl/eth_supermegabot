@@ -1,0 +1,40 @@
+## Global parameters ##
+# Name
+experiment_name: sample_experiment
+
+# Executable
+# Note: app needs to be installed into the devel space.
+app_package_name: evaluation_tools
+app_executable: dummy_app_for_unit_test
+
+# Calibration
+ncamera_calibration_file: Kermit/ncamera.yaml
+
+## Evaluation space parameters ##
+# Parameters
+parameter_files:
+ - sample_parameters_1.yaml
+ - sample_parameters_2.yaml
+ - sample_parameters_with_sweep.yaml
+
+# Datasets.
+# Name can either be a name entry from the datasets yaml or a path to an
+# existing bagfile.
+datasets:
+- name: sample_dataset
+  additional_parameters:
+    test_parameter: value
+
+## Optional parameters ##
+# Evaluation scripts
+evaluation_scripts:
+
+# If enabled, plots statistics
+summarize_statistics:
+  enabled: true
+  whitelisted_metrics:
+    # - keypoint tracking (1 image) in ms
+    # - non-maximum suppression (1 image) in ms
+  blacklisted_metrics:
+    - swe-optimize_ num_variables
+    - swe-optimize_ final_error

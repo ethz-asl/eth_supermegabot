@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package format="2">
+  <name>maplab</name>
+  <version>2.2.0</version>
+  <description>
+    Metapackage to build the
+      (i)  maplab console and its core plugins, and
+      (ii) rovioli, the localization and mapping frontend.
+  </description>
+  <maintainer email="maplab-dev@mavt.ethz.ch">maplab-developers</maintainer>
+  <license>Apache 2.0</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>maplab_console_full</exec_depend>
+  <exec_depend>rovioli</exec_depend>
+  <export>
+    <metapackage />
+  </export>
+</package>

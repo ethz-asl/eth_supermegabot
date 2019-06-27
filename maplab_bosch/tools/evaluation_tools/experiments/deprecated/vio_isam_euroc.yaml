@@ -1,0 +1,42 @@
+app_name: ze_vio_isam
+app_executable: ze_vio_isam_node
+
+# Calibration:
+cam_calib_file: calibration.yaml
+
+# Algorithm settings
+parameters:
+  alsologtostderr: 1
+  v: 3
+  calib_filename: CAM_CALIB_FILENAME
+  bag_filename: BAG_FILENAME
+  data_sync_init_skip_n_frames: 0
+
+  vio_delayed_nframe_processing: False
+  vio_activate_backend: True
+  vio_use_svo_frontend: True
+
+  vio_min_depth: 2.0
+  vio_max_depth: 30.0
+  vio_median_depth: 10.0
+
+  imp_detector_max_features_per_frame: 500
+
+  vio_max_tracked_features_per_frame: 120
+
+  vio_kfselect_numfts_upper_thresh: 180
+  vio_kfselect_numfts_lower_thresh: 120
+  vio_kfselect_min_disparity: 30
+  vio_kfselect_min_num_frames_between_kfs: 0
+  vio_kfselect_every_nth_frame: -1
+  vio_kfselect_min_every_nth_frame: 5
+
+  vio_sparse_img_align_lambda_rot: 0.0
+  vio_disparity_median_for_static_motion_classification: 0.5
+
+# Dataset
+datasets:
+  - name: euroc_machine_hall
+    instance: MH_01_easy.bag
+  #- name: euroc_machine_hall
+  #  instance: MH_02_easy.bag

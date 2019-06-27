@@ -1,0 +1,14 @@
+# Dataset from a remote server (will be downloaded and extracted).
+- name: MH_01_easy
+  url: http://robotics.ethz.ch/~asl-datasets/maplab/evaluation_datasets/MH_01_easy.tar.gz
+  file_name: MH_01_easy/MH_01_easy.bag  # Path inside the archive.
+
+# Example local dataset. Dataset will be copied from <dir>/<name>.
+- name: local_dataset.bag
+  dir: /path/to/local/dataset/folder
+
+# Dummy entry to be used in a unit test. This refers to an actual file, but not
+# a real dataset.
+- name: sample_dataset
+  dir: datasets
+

@@ -1,0 +1,25 @@
+v: 1
+gyro_lk_max_pyramid_levels: 4
+swe_nframe_timestamp_tolerance_nanoseconds: 15000000
+swe_datasource: 1
+swe_imu_rate: 100
+swe_cam_rate: 12.5
+swe_estimator_rate: 12
+swe_num_keyframes: 10
+swe_use_pose_odometry: true
+swe_rosbag_filename: <BAG_FILENAME>
+swe_sensors_yaml: <SENSORS_YAML>
+swe_visualization: 1
+swe_publish_pointcloud: 1
+gyro_noise_density: 1e-4
+gyro_bias_random_walk: 1e-4
+acc_noise_density: 4e-3
+acc_bias_random_walk: 4e-3
+swe_rosbag_start_s: 10
+swe_rosbag_end_s: 20
+swe_max_persistent_tracks_for_zero_velocity_update: 0
+parameter_sweep:
+  name: gyro_lk_max_pyramid_levels
+  min: 2
+  max: 4
+  step_size: 1

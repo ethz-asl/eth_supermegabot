@@ -1,0 +1,69 @@
+sensors:
+  - id: b91fa7a1ffffffff0100000000000000
+    sensor_type: IMU
+    hardware_id: imu0
+    sigmas:
+      gyro_noise_density: 0.0001
+      gyro_bias_random_walk_noise_density: 0.0001
+      acc_noise_density: 0.004
+      acc_bias_random_walk_noise_density: 0.004
+    saturation_accel_max_mps2: 150
+    saturation_gyro_max_radps: 7.5
+    gravity_magnitude_mps2: 9.808083883386614
+ncameras:
+  - label: 23016 turtlebot factory
+    id: 412eab8e4058621f7036b5e765dfe813
+    cameras:
+      - camera:
+          label: unnamed camera
+          id: 54812562fa109c40fe90b29a59dd7795
+          line-delay-nanoseconds: 0
+          image_height: 480
+          image_width: 752
+          type: pinhole
+          intrinsics:
+            rows: 4
+            cols: 1
+            data:
+              - 472.2863830700696
+              - 470.8375968434678
+              - 368.8316828103749
+              - 232.2368870696565
+          distortion:
+            type: equidistant
+            parameters:
+              rows: 4
+              cols: 1
+              data:
+                - -0.005740195474458931
+                - 0.02878252863739417
+                - -0.04010621197185408
+                - 0.02008469575876223
+        T_B_C:
+          rows: 4
+          cols: 4
+          data:
+            - 0.9999218482505452
+            - -0.01241688973740762
+            - -0.001455417624833115
+            - 0.03661313999999618
+            - 0.01242827026330047
+            - 0.9998900372788196
+            - 0.008090206970351213
+            - -0.01027102000001149
+            - 0.001354802375246977
+            - -0.008107663030110427
+            - 0.99996621458463
+            - -0.006544660000003794
+            - 0
+            - 0
+            - 0
+            - 1
+mission_sensors_associations:
+  - mission_id: e53886ecffffffff0100000000000000
+    sensor_ids:
+      - sensor_id: b91fa7a1ffffffff0100000000000000
+mission_ncamera_associations:
+  - mission_id: e53886ecffffffff0100000000000000
+    ncamera_id: 412eab8e4058621f7036b5e765dfe813
+mission_optional_ncamera_associations: ~
