@@ -43,7 +43,7 @@ echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 ## Create and setup your catkin workspace.
 ```
 mkdir -p ~/catkin_ws/src
-cd ~/catkin_ws/src
+cd ~/catkin_ws
 catkin_init_workspace
 catkin config --extend /opt/ros/melodic
 catkin config --merge-devel
