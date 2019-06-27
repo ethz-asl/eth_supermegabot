@@ -105,10 +105,6 @@
    uri: https://github.com/ethz-asl/benchmark_catkin.git
    version: 5018b4bb92ee0021a8f5a2884660a1e02c4573d4
 - git:
-   local-name: ceres_catkin
-   uri: https://github.com/ethz-asl/ceres_catkin.git
-   version: cf68d87f4efbeab91fd280cf25d72b7cd56caced
-- git:
    local-name: opencv3_catkin
    uri: https://github.com/ethz-asl/opencv3_catkin.git
    version: 7cbc60555d308f5208e1f0fb8a89c81aa6376548
