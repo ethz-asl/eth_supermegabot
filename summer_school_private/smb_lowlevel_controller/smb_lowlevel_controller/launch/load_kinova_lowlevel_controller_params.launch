@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+  <!-- Arguments -->
+  <arg name="time_step"           default="0.0025"/>
+  <arg name="anydrive_setup_path" default="/default/path"/>
+  <arg name="anydrive_ros_prefix" default="/anydrive_studio_ros"/>
+
+  <!-- Load lowlevel parameters -->
+  <group ns="anymal_lowlevel_controller">
+    <param name="setup_path"           value="$(arg anydrive_setup_path)"/>
+    <param name="time_step"            value="$(arg time_step)"/>
+    <param name="standalone"           value="false"/>
+    <param name="run_publishers"       value="true"/>
+    <param name="publishing_time_step" value="0.01"/>
+    <param name="ros_prefix"           value="$(arg anydrive_ros_prefix)"/>
+    <rosparam command="load" file="$(find anymal_lowlevel_controller)/config/ros.yaml"/>
+    <rosparam command="load" file="$(find anymal_lowlevel_controller)/config/anydrive_studio_ros/ros.yaml"/>
+  </group>
+
+</launch>
+

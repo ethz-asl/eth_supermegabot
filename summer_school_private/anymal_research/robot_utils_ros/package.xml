@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>robot_utils_ros</name>
+  <version>0.6.0</version>
+  <description>The Robot Utilities package</description>
+  <maintainer email="cgehring@anybotics.com">Christian Gehring</maintainer>
+  <license>Proprietary</license>
+  <author email="cgehring@anybotics.com">Christian Gehring</author>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>robot_utils</depend>
+  <depend>message_generation</depend>
+  <depend>message_runtime</depend>
+  <depend>std_msgs</depend>
+  <depend>std_utils</depend>
+</package>

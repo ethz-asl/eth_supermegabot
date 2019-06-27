@@ -17,13 +17,6 @@
    local-name: metis_catkin
    uri: https://github.com/ethz-asl/metis_catkin.git
 - git:
-   local-name: mincurves
-   uri: https://github.com/ethz-asl/mincurves.git
-- git:
-   local-name: gtsam_catkin
-   uri: https://github.com/ethz-asl/gtsam_catkin.git
-   version: ecf6a04b7ad25d3d5b8303277ba10c88fa27bd7e
-- git:
    local-name: libnabo
    uri: https://github.com/ethz-asl/libnabo.git
 - git:
@@ -33,25 +26,18 @@
    local-name: minkindr
    uri: https://github.com/ethz-asl/minkindr.git
 - git:
-   local-name: minkindr_gtsam
-   uri: https://github.com/ethz-asl/minkindr_gtsam.git
-- git:
    local-name: minkindr_ros
    uri: https://github.com/ethz-asl/minkindr_ros.git
 - git:
    local-name: ethzasl_icp_mapping
    uri: https://github.com/gawela/ethzasl_icp_mapping.git
-   version: 02bd084e3c7ebbeed0a69433573b92924a04e41a
+   version: feature/summer_school
 - git:
    local-name: catkin_simple
    uri: https://github.com/catkin/catkin_simple.git
 - git:
    local-name: volumetric_mapping
    uri: https://github.com/ethz-asl/volumetric_mapping.git
-- git:
-   local-name: pcl_catkin
-   uri: https://github.com/ethz-asl/pcl_catkin.git
-   version: 9e4365abe44da48ef01b42e86602ce17be808eb5
 - git:
    local-name: catkin_boost_python_buildtool
    uri: https://github.com/ethz-asl/catkin_boost_python_buildtool.git
@@ -62,13 +48,39 @@
    local-name: doxygen_catkin
    uri: https://github.com/ethz-asl/doxygen_catkin.git
 - git:
-   local-name: laser_slam
-   uri: https://github.com/gawela/laser_slam.git
-   version: feature/application
+   local-name: image_undistort
+   uri: https://github.com/ethz-asl/image_undistort
+   version: feature/summer_school
 - git:
    local-name: rosserial
    uri: https://github.com/ros-drivers/rosserial.git
 - git:
+   local-name: ros_rslidar
+   uri: https://github.com/RoboSense-LiDAR/ros_rslidar.git
+   version: master
+- git:
+   local-name: ceres_catkin
+   uri: https://github.com/ethz-asl/ceres_catkin
+   version: master
+- git:
+   local-name: ocs2
+   uri: https://haochihlin@bitbucket.org/leggedrobotics/ocs2.git
+   version: summer_school_integration
+- git:
+   local-name: smb_path_planner
+   uri: https://github.com/VIS4ROB-lab/smb_path_planner.git
+- git:
+   local-name: voxblox
+   uri: https://github.com/ethz-asl/voxblox.git
+- git:
+   local-name: elevation_mapping
+   uri: https://github.com/ANYbotics/elevation_mapping.git
+- git:
+   local-name: traversability_estimation
+   uri: https://github.com/leggedrobotics/traversability_estimation.git
+- git:
+   local-name: grid_map
+   uri: https://github.com/ANYbotics/grid_map.git
    local-name: hand_eye_calibration
    uri: https://github.com/ethz-asl/hand_eye_calibration.git
    version: 5d5077572d650a5491040a4a90d98850df4cf068

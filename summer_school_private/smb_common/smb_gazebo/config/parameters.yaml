@@ -1,0 +1,14 @@
+contact_forces:
+  linear_velocity_threshold: 0.6
+  
+frame:
+  base:
+    name:                base
+  odometry:
+    name:                odom
+  world:
+    name:                map
+  world_gravity_aligned:
+    name:                map_ga
+
+    

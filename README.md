@@ -1,4 +1,4 @@
-## ETh Center for robotics summer school 2019
+## ETH Center for robotics summer school 2019
 
 This is a basic set-up guide for the workspace packages and tutorial to use the super mega bots.
 
@@ -18,16 +18,21 @@ Update your installation to the newest version:
 sudo apt update
 sudo apt upgrade
 ```
+## Preliminary dependencies:
 We recommend you to use terminator, that allows you to have multiple terminals in one window.
 It can be installed with.
 ```
 sudo apt update
 sudo apt install terminator
 ```
-Install [git](https://www.atlassian.com/git/tutorials/what-is-git).
+Install [git](https://www.atlassian.com/git/tutorials/what-is-git) and other dependencies:
 ```
-> sudo apt update
-> sudo apt install git
+sudo apt update
+sudo apt-get install git python-catkin-tools doxygen
+sudo apt-get install ros-melodic-octomap ros-melodic-octomap-msgs ros-melodic-octomap-ros ros-melodic-rosserial ros-melodic-joy ros-melodic-ompl ros-melodic-costmap-2d ros-melodic-velodyne-gazebo-plugins
+sudo apt-get install libpcap0.8-dev libeigen3-dev libopencv-dev libboost-dev ros-melodic-cmake-modules libssh2-1-dev
+sudo apt-get install libglpk-dev
+sudo apt-get install python-wstool net-tools
 ```
 ## Install ROS Melodic
 
@@ -44,12 +49,11 @@ echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 ```
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws
-catkin_init_workspace
+catkin init
 catkin config --extend /opt/ros/melodic
 catkin config --merge-devel
 catkin config -DCMAKE_BUILD_TYPE=Release
 ```
-## Presently, we do not use the ws tool setup, an update will follow for the installation sequence.
 We use wstool to manage packages in the workspace, at least for your initial setup, do:
 ```
 cd ~/catkin_ws/src/
@@ -72,3 +76,42 @@ shell (terminal).
 ```
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 ```
+
+# Troubleshooting  
+* Header file not found:  
+Solution: resource your catkin workspace, then build again.  
+```
+source ~/catkin_ws/devel/setup.bash  
+catkin build  
+```
+
+* DCMAKE_BUILD_TYPE not specified, etc:  
+Solution: Double check the catkin config  
+```
+catkin config  
+```
+Then you should find CMake args as below:  
+Additional CMake Args: -DCMAKE_BUILD_TYPE=Release  
+
+* Memory allocation (leak) issue:  
+For compiling ocs2_ballbot_example or related examples needs 4G RAM per core.  
+Solution: either limit the core while compiling by adding '-j1' or enable swap space.  
+```
+catkin build -j1
+```
+
+* No internet connection on robot:
+Verify that you cannot ping google:
+```
+ping www.google.com  
+```
+If you do not get a connection, the 4G modom may have reconnected to a different sender. A power-cylcle on the Nighhawk router (The one with the 3 antennas) should fix this issue.
+
+* VI Sensor does not respond:
+Use the magic command:
+```
+sudo dhclient eno1
+```
+
+* `fatal error: ethzasl_icp_mapper/LoadMap.h: No such file or directory`
+Just `catkin build` again.

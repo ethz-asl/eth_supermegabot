@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>parameter_handler_ros</name>
+  <version>0.3.0</version>
+  <description>The parameter_handler_std package</description>
+  <maintainer email="cgehring@anybotics.com">Christian Gehring</maintainer>
+  <license>BSD</license>
+  <url type="website">https://bitbucket.org/leggedrobotics/parameter_handler</url>
+  <author email="bellicoso@mavt.ethz.ch">Dario Bellicoso</author>
+  <author email="cgehring@anybotics.com">Christian Gehring</author>
+  <url>https://github.com/anybotics/parameter_handler</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>parameter_handler_std</depend>
+  <depend>parameter_handler_msgs</depend>
+</package>

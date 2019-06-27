@@ -1,0 +1,10 @@
+## This service queries the logger for the properties of a
+## logger element with name 'name'. If the element is part
+## of the logger, the 'success' flag is set to true and
+## 'log_element' is filled with the element properties. Else
+## 'success' is set to false, and 'log_element' is left empty.
+
+string name
+---
+bool success
+LogElement log_element

@@ -1,0 +1,12 @@
+cameras:
+    #specify a specific calibration for camera 0
+  - camera_number: 0
+    rate: 10
+    slot_id: 0
+    is_flipped: 1
+    lens_type: radtan
+    projection_type: pinhole
+    # only specify the costumer slot 1. Any calibration saved in slot 1 is loaded.
+  - camera_number: 1
+    rate: 10
+    slot_id: 1

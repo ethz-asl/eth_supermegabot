@@ -1,0 +1,55 @@
+/*!
+@page installation Installation
+ConFusion is written in C++ and is tested running in Ubuntu 14.04 and 18.04.
+
+\section dependencies Dependencies
+First install the following dependencies:
+ - <a href="http://wiki.ros.org/ROS/Installation" target="_blank">ROS</a>. ConFusion is tested with Kinetic and Melodic.
+ - <a href="http://eigen.tuxfamily.org/index.php?title=Main_Page" target="_blank">Eigen 3</a>
+ - <a href="http://wiki.ros.org/catkin" target="_blank">catkin</a> build system
+ - <a href="http://ceres-solver.org/installation.html" target="_blank">Ceres Solver</a>. We recommend installing the optional SuiteSparse when running large sensor fusion problems.
+ - <a href="https://opencv.org" target="_blank">OpenCV</a>. Both OpenCV2 and OpenCV3 are supported. (This is optional. Only required for the confusion::TagTracker example and confusion::Diagram functionality.)
+ 
+\section compilation Compilation
+ To build ConFusion using 
+ <a href="https://catkin-tools.readthedocs.io/en/latest/" target="_blank">catkin_tools</a>, 
+ execute the following commands in a terminal 
+ (assuming that your catkin workspace is named "catkin_ws"):
+ \verbatim
+ cd catkin_ws/src
+ git clone https://bitbucket.org/tsandy/confusion.git
+ catkin build -DCMAKE_BUILD_TYPE=RELEASE
+ \endverbatim
+ 
+ To build this documentation:
+ \verbatim
+ cd catkin_ws/src/confusion
+ doxygen Doxyfile
+ \endverbatim
+ 
+ To run the unit tests:
+ \verbatim
+ cd catkin_ws/src/confusion
+ catkin run_tests --this
+ \endverbatim
+
+\section example TagTracker Example
+ ConFusion ships with a simple example state estimator and bag file for testing.
+ The example tracks the motion of an IMU relative to fidicual markers observed with a monocular camera.
+ To run the example, first start a roscore. Then in a new terminal and with the workspace which contains ConFusion sourced, run:
+ \verbatim
+ rosrun confusion tag_tracker_node
+ \endverbatim
+ In another terminal, navigate to the confusion/example directory and run:
+ \verbatim
+ rosbag play vi_test.bag
+ \endverbatim
+ You can visualize the example using the rviz config at confusion/example/tag_tracker.rviz. You can also play with configuration parameters, and look into data logging and batch calibration using the config file at confusion/example/tagtracker_config.cfg.
+
+ The confusion::TagTracker class was made as a simple example that can be built upon. You can create a derived implementation where additional measurements are received and used by the ConFusor in user-defined cost functions.
+ confusion::TagTracker is templated on the State class, so you can also create your own confusion::State implementation which expands the minimal ImuState to include additional state parameters or to initialize new static parameters as measurements are received.
+ 
+\section ucf Using ConFusion
+ To start building your own sensor fusion problem, create a separate package which
+ depends on ConFusion and refer to \ref getting_started "getting started".
+*/

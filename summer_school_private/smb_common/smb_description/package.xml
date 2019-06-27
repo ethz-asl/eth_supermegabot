@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>smb_description</name>
+  <version>0.1.0</version>
+  <description>Super mega bot description</description>
+  <maintainer email="koen.kraemer@mavt.ethz.ch">Koen Kraemer</maintainer>
+  <license>BSD</license>
+  <url type="website">
+    https://bitbucket.org/leggedrobotics/smb_common
+  </url>
+  <author email="koen.kraemer@mavt.ethz.ch">Koen Kraemer</author>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>any_measurements</depend>
+  <depend>any_description</depend>
+  <depend>geometry_msgs</depend>
+  <depend>robot_utils</depend>
+  <depend>romo</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_utils</depend>
+  <depend>xacro</depend>
+  <depend>smb_common</depend>
+  <depend>velodyne_description</depend>
+</package>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<package format="2">
+
+  <name>tinyxml_tools</name>
+  <version>0.6.0</version>
+  <description>Parse XML files using the TinyXML library.</description>
+
+  <license>BSD</license>
+
+  <author email="bellicoso@mavt.ethz.ch">Dario Bellicoso</author>
+  <author email="ghottiger@anybotics.com">Gabriel Hottiger</author>
+  <maintainer email="bellicoso@mavt.ethz.ch">Dario Bellicoso</maintainer>
+  <maintainer email="ghottiger@anybotics.com">Gabriel Hottigoer</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>cmake_clang_tools</build_depend>
+  <depend>message_logger</depend>
+  <depend>tinyxml</depend>
+  <build_export_depend>eigen</build_export_depend>
+
+</package>

@@ -1,0 +1,21 @@
+subscribers:
+  actuator_readings:
+    topic:              /sensors/actuator_readings
+    queue_size:         1
+    latch:              false
+  smb_state:
+    topic:              /state_estimator/smb_state
+    queue_size:         1
+    latch:              false
+  joy_cmd_vel:
+    topic: /joy_manager/commands/twist
+    queue_size: 1
+    latch: false
+  cmd_vel:
+    topic: cmd_vel
+    queue_size: 1
+    latch: false
+  joy:
+    topic: /joy_manager/joy
+    queue_size: 1
+    latch: false

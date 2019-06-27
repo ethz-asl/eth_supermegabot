@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<package format="2">
+
+  <name>notification</name>
+  <version>0.6.0</version>
+  <description>The notification package</description>
+
+  <license>BSD</license>
+
+  <author email="cgehring@anybotics.com">Christian Gehring</author>
+  <maintainer email="cgehring@anybotics.com">Christian Gehring</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>notification_msgs</depend>
+  <depend>roscpp</depend>
+
+</package>
