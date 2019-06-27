@@ -78,3 +78,6 @@
 - git:
    local-name: traversability_estimation
    uri: https://github.com/leggedrobotics/traversability_estimation.git
+- git:
+   local-name: grid_map
+   uri: https://github.com/ANYbotics/grid_map.git
