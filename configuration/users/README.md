@@ -15,6 +15,11 @@ sudo adduser your_username
 sudo usermod -aG sudo,developers,dialout,plugdev,adm,lpadmin,cdrom,dip,sambashare your_username
 ``` 
 ### Generate ssh keys
+First, enter your user:
+```
+su your_username
+```
+Then, generate the ssh keys:
 ```
 ssh-keygen
 eval `ssh-agent`
