@@ -45,6 +45,35 @@ Source the environment
 source /opt/ros/melodic/setup.bash
 echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 ```
+## (OPTIONAL) Install ccache for faster rebuilds.
+ccache is a tool that caches intermediate build files to speed up rebuilds of the same code. On Ubuntu it can be set up with the following command. The max. cache size is set to 10GB and can be adapt on the lines below:
+
+```bash
+sudo apt install -y ccache &&\
+echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc &&\
+source ~/.bashrc && echo $PATH
+ccache --max-size=10G
+```
+Your path (at least the beginning) should look like:
+```
+/usr/lib/ccache:/usr/local/cuda-5.5/bin/:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+```
+And g++/gcc should now point to:
+```
+which g++ gcc
+/usr/lib/ccache/g++
+/usr/lib/ccache/gcc
+```
+Show cache statistics:
+```
+ccache -s
+```
+Empty the cache and reset the stats:
+```
+ccache -C -z
+```
+ccache only works for a clean workspace. You will need a `make clean` otherwise.
+
 ## Create and setup your catkin workspace.
 ```
 mkdir -p ~/catkin_ws/src
