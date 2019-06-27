@@ -101,6 +101,19 @@ Solution: either limit the core while compiling by adding '-j1' or enable swap s
 catkin build -j1
 ```
 
+* Python problems:
+In case you get problems with python workspaces in your system, use catkin in a virtual environment. Before initializing the workspace, do:
+```
+virtualenv --python=python2 ~/py_catkin
+source ~/py_catkin/bin/activate
+pip install --upgrade pip
+pip install catkin_tools
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws
+catkin init
+...
+```
+
 * No internet connection on robot:
 Verify that you cannot ping google:
 ```
