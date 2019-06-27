@@ -112,3 +112,6 @@ Use the magic command:
 ```
 sudo dhclient eno1
 ```
+
+* `fatal error: ethzasl_icp_mapper/LoadMap.h: No such file or directory`
+Just `catkin build` again.
