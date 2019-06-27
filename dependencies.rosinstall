@@ -69,3 +69,15 @@
    local-name: ocs2
    uri: https://haochihlin@bitbucket.org/leggedrobotics/ocs2.git
    version: summer_school_integration
+- git:
+   local-name: smb_path_planner
+   uri: https://github.com/VIS4ROB-lab/smb_path_planner.git
+- git:
+   local-name: voxblox
+   uri: https://github.com/ethz-asl/voxblox.git
+- git:
+   local-name: elevation_mapping
+   uri: https://github.com/ANYbotics/elevation_mapping.git
+- git:
+   local-name: traversability_estimation
+   uri: https://github.com/leggedrobotics/traversability_estimation.git
