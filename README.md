@@ -107,7 +107,7 @@ In case you get problems with python workspaces in your system, use catkin in a 
 virtualenv --python=python2 ~/py_catkin
 source ~/py_catkin/bin/activate
 pip install --upgrade pip
-pip install catkin_tools
+pip install catkin_tools wstool empy
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws
 catkin init
