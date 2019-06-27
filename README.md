@@ -106,6 +106,14 @@ shell (terminal).
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 ```
 
+# Connect to robot
+Use ssh smb@10.0.0.5 to log into the robot.
+
+Copy this alias to your .bashrc to connect to the robot's ros master (for running the opc)
+```
+alias connect-smb='export ROS_MASTER_URI=http://10.0.0.5:11311 ; export ROS_IP=`ip route get 10.0.0.5 | awk '"'"'{print $5; exit}'"'"'` ; echo "ROS_MASTER_URI and ROS_IP set to " ; printenv ROS_MASTER_URI ; printenv ROS_IP'
+```
+
 # Troubleshooting  
 * Header file not found:  
 Solution: resource your catkin workspace, then build again.  
