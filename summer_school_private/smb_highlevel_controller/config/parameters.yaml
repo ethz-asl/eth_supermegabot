@@ -1,0 +1,21 @@
+logger:
+  sampling_window: 180
+  config_file: "/home/integration/.ros/logger.yaml"
+  type: "ros"
+  enable: true
+  update_on_start: true
+  logfile_type: "binary"
+
+notification:
+  notifiers:
+    default:
+      topic: /notification
+      queue_size: 100
+      latch: false
+      output_devices:
+        - "operator_screen"
+
+maxLinearVelocity:          0.5 #[m/s]
+maxRotationalVelocity:      1.0 #[rad/s]
+maxLinearAcceleration:      1.0 #[m/s^2]
+maxRotationalAcceleration: 2.0 #[rad/s^2]
