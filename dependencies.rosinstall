@@ -81,6 +81,7 @@
 - git:
    local-name: grid_map
    uri: https://github.com/ANYbotics/grid_map.git
+- git:
    local-name: hand_eye_calibration
    uri: https://github.com/ethz-asl/hand_eye_calibration.git
    version: 5d5077572d650a5491040a4a90d98850df4cf068
