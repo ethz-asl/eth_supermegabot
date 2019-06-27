@@ -17,13 +17,6 @@
    local-name: metis_catkin
    uri: https://github.com/ethz-asl/metis_catkin.git
 - git:
-   local-name: mincurves
-   uri: https://github.com/ethz-asl/mincurves.git
-- git:
-   local-name: gtsam_catkin
-   uri: https://github.com/ethz-asl/gtsam_catkin.git
-   version: ecf6a04b7ad25d3d5b8303277ba10c88fa27bd7e
-- git:
    local-name: libnabo
    uri: https://github.com/ethz-asl/libnabo.git
 - git:
@@ -41,17 +34,13 @@
 - git:
    local-name: ethzasl_icp_mapping
    uri: https://github.com/gawela/ethzasl_icp_mapping.git
-   version: 02bd084e3c7ebbeed0a69433573b92924a04e41a
+   version: feature/summer_school
 - git:
    local-name: catkin_simple
    uri: https://github.com/catkin/catkin_simple.git
 - git: 
    local-name: volumetric_mapping
    uri: https://github.com/ethz-asl/volumetric_mapping.git
-- git:
-   local-name: pcl_catkin
-   uri: https://github.com/ethz-asl/pcl_catkin.git
-   version: 9e4365abe44da48ef01b42e86602ce17be808eb5
 - git:
    local-name: catkin_boost_python_buildtool
    uri: https://github.com/ethz-asl/catkin_boost_python_buildtool.git
@@ -61,10 +50,6 @@
 - git:
    local-name: doxygen_catkin
    uri: https://github.com/ethz-asl/doxygen_catkin.git
-- git:
-   local-name: laser_slam
-   uri: https://github.com/gawela/laser_slam.git
-   version: feature/application
 - git:
    local-name: image_undistort
    uri: https://github.com/ethz-asl/image_undistort
