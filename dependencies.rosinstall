@@ -26,9 +26,6 @@
    local-name: minkindr
    uri: https://github.com/ethz-asl/minkindr.git
 - git:
-   local-name: minkindr_gtsam
-   uri: https://github.com/ethz-asl/minkindr_gtsam.git
-- git:
    local-name: minkindr_ros
    uri: https://github.com/ethz-asl/minkindr_ros.git
 - git:
