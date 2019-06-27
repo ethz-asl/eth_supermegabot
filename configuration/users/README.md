@@ -9,13 +9,17 @@ ssh smb@10.0.0.5
 ### Create a user 
 ```
 sudo adduser your_username
-sudo usermod -aG sudo your_username
-``` 
+```
 ### Add the user to the developers group
 ```
-sudo adduser your_username developers
-```
+sudo usermod -aG sudo,developers,dialout,plugdev,adm,lpadmin,cdrom,dip,sambashare your_username
+``` 
 ### Generate ssh keys
+First, enter your user:
+```
+su your_username
+```
+Then, generate the ssh keys:
 ```
 ssh-keygen
 eval `ssh-agent`
