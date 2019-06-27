@@ -124,3 +124,7 @@
    local-name: yaml_cpp_catkin
    uri: https://github.com/ethz-asl/yaml_cpp_catkin.git
    version: 6cad108c4d5a9b9ddc95edd6f7cb23b572926351
+- git:
+   local-name: lpsolve_catkin
+   uri: https://github.com/ethz-asl/lpsolve_catkin
+   version: 338b8880c309b4e3bce356dd54a7073951cc8a9b
