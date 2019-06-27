@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!-- Namespace -->
+  <arg name="ns" value="user_interface"/>
+
+  <!-- Parameter (without namespace) -->
+  <rosparam file="$(find rqt_signal_logger)/params/example.yaml"
+            command="load"/>
+
+  <!-- Node -->
+  <node ns="$(arg ns)" pkg="rqt_signal_logger"
+        type="rqt_signal_logger" name="rqt_signal_logger"
+        output="screen"/>
+</launch>

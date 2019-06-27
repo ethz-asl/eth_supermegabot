@@ -1,0 +1,6 @@
+joint_states:
+  default_positions:
+    -  0.0
+    -  0.0
+    -  0.0
+    -  0.0

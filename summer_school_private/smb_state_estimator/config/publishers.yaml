@@ -1,0 +1,84 @@
+publishers:
+  robot_state: 
+    topic: /state_estimator/smb_state
+    queue_size: 10
+    latch: false
+  robot_state_throttle: 
+    topic: /state_estimator/smb_state_throttle
+    queue_size: 10
+    latch: false
+    decimation: 40
+  joint_state: 
+    topic: /state_estimator/joint_states
+    queue_size: 10
+    latch: false
+  joint_state_throttle: 
+    topic: /state_estimator/joint_states_throttle
+    queue_size: 10
+    latch: false
+    decimation: 40
+  imu: 
+    topic: /state_estimator/imu
+    queue_size: 10
+    latch: false
+  imu_throttle: 
+    topic: /state_estimator/imu_throttle
+    queue_size: 10
+    latch: false
+    decimation: 40  
+  pose_in_odom: 
+    topic: /state_estimator/pose_in_odom
+    queue_size: 100
+    latch: false
+  pose_in_odom_throttle: 
+    topic: /state_estimator/pose_in_odom_throttle
+    queue_size: 100
+    latch: false
+    decimation: 40  
+  pose_in_map: 
+    topic: /state_estimator/pose_in_map
+    queue_size: 100
+    latch: false
+  pose_in_map_throttle: 
+    topic: /state_estimator/pose_in_map_throttle
+    queue_size: 100
+    latch: false
+    decimation: 40    
+  pose_in_map_ga: 
+    topic: /state_estimator/pose_in_map_ga
+    queue_size: 100
+    latch: false
+  pose_in_map_ga_throttle: 
+    topic: /state_estimator/pose_in_map_ga_throttle
+    queue_size: 100
+    latch: false
+    decimation: 40    
+  twist: 
+    topic: /state_estimator/twist
+    queue_size: 100
+    latch: false
+  twist_throttle: 
+    topic: /state_estimator/twist
+    queue_size: 100
+    latch: false
+    decimation: 40    
+  global_localization_state:
+    topic: /state_estimator/global_localization_state
+    queue_size: 1
+    latch: true
+  use_pose_meas:
+    topic: /state_estimator/use_pose_meas
+    queue_size: 100
+    latch: false
+  force_calibrator_commands:
+    topic: /state_estimator/force_calibrator_commands
+    queue_size: 1
+    latch: false
+  imu:
+    topic: /state_estimator/imu
+    queue_size: 1
+    latch: false
+  actuator_readings:
+    topic: /state_estimator/actuator_readings
+    queue_size: 10
+    latch: false

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>signal_logger</name>
+  <version>0.5.0</version>
+  <description>The signal_logger package</description>
+
+  <maintainer email="ghottiger@anybotics.com">Gabriel Hottiger</maintainer>
+  <maintainer email="cgehring@anybotics.com">Christian Gehring</maintainer>
+  <maintainer email="bellicoso@mavt.ethz.ch">Dario Bellicoso</maintainer>
+  <author email="ghottiger@anybotics.com">Gabriel Hottiger</author>
+  <author email="cgehring@anybotics.com">Christian Gehring</author>
+  <author email="bellicoso@mavt.ethz.ch">Dario Bellicoso</author>
+  <license>BSD</license>
+  <url>https://github.com/anybotics/signal_logger</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>signal_logger_core</depend>
+  <depend>signal_logger_ros</depend>
+  <depend>signal_logger_std</depend>
+
+</package>

@@ -1,0 +1,3 @@
+user_interface:
+  rqt_parameters:
+    handler_namespace: "anymal_highlevel_controller"

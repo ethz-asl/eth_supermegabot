@@ -1,0 +1,5 @@
+# Request
+---
+# Response
+bool success  # indicate successful run of triggered service
+string data   # returned string

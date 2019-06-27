@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<package format="2">
+
+  <name>anybot_gazebo_plugin</name>
+  <version>0.6.0</version>
+  <description>The anybot_gazebo_plugin package</description>
+  <license>Proprietary</license>
+
+  <author email="bellicoso@mavt.ethz.ch">Dario Bellicoso</author>
+  <maintainer email="bellicoso@mavt.ethz.ch">Dario Bellicoso</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>any_gazebo_msgs</depend>
+  <depend>any_hector_gazebo_plugins</depend>
+  <depend>any_measurements_ros</depend>
+  <depend>any_msgs</depend>
+  <depend>boost</depend>
+  <depend>gazebo_plugins</depend>
+  <depend>gazebo_ros</depend>
+  <depend>gazebo_worlds</depend>
+  <depend>geometry_msgs</depend>
+  <depend>message_logger</depend>
+  <depend>robot_utils</depend>
+  <depend>std_utils</depend>
+  <depend>romo_std</depend>
+  <depend>roscpp</depend>
+  <depend>urdf</depend>
+  <depend>xacro</depend>
+  <depend>cosmo</depend>
+  <depend>cosmo_ros</depend>
+  <depend>signal_logger</depend>
+  <depend>signal_logger_ros</depend>
+
+</package>

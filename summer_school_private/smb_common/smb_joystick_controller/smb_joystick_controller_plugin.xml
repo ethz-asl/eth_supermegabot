@@ -1,0 +1,5 @@
+<library path="lib/libsmb_joystick_controller_plugin">
+  <class type="SmbJoystickControllerPlugin"
+         base_class_type="rocoma_plugin::ControllerRosPluginInterface<smb_roco::RocoState, smb_roco::RocoCommand>">
+  </class>
+</library>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <name>visensor_msgs</name>
+  <version>1.1.0</version>
+  <description>
+
+	ros messages for the vi-sensor
+
+  </description>
+  <url>http://www.skybotix.com</url>
+  <author>Sammy Omari, Pascal Gohl, Michael Burri and Thomas Schneider</author>
+  <maintainer email="pascal.gohl@mavt.ethz.ch">Pascal Gohl</maintainer>
+  <license>Proprietary</license>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>geometry_msgs</build_depend>
+
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>message_runtime</run_depend>
+
+</package>

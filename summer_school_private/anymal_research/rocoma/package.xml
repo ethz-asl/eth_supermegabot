@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>rocoma</name>
+  <version>0.4.0</version>
+  <description>The robot controller manager package</description>
+  <maintainer email="cgehring@anybotics.com">Christian Gehring</maintainer>
+  <license>BSD</license>
+  <author email="cgehring@anybotics.com">Christian Gehring</author>
+  <url>https://github.com/anybotics/rocoma</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roco</depend>
+  <depend>any_worker</depend>
+  <depend>message_logger</depend>
+  <depend>signal_logger</depend>
+
+</package>

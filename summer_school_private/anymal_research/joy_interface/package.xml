@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>joy_interface</name>
+  <version>0.6.0</version>
+  <description>
+    The joy_interface package
+  </description>
+  <maintainer email="cgehring@anybotics.com">Christian Gehring</maintainer>
+  <license>Proprietary</license>
+  <author email="lisler@anybotics.com">Linus Isler</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>boost</build_depend>
+
+  <depend>any_node</depend>
+  <depend>joy</depend>
+  <depend>joy_manager_msgs</depend>
+  <depend>notification</depend>
+  <depend>sensor_msgs</depend>
+  <depend>pluginlib</depend>
+  <depend>roscpp</depend>
+
+</package>
