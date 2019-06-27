@@ -7,6 +7,7 @@
   </description>
   <maintainer email="rdiethelm@anybotics.com">Remo Diethelm</maintainer>
   <license>BSD</license>
+  <url>https://github.com/anybotics/kindr_ros</url>
 
   <url>none</url>
   <author>Remo Diethelm</author>

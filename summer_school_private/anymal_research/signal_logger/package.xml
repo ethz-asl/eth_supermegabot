@@ -4,14 +4,14 @@
   <version>0.5.0</version>
   <description>The signal_logger package</description>
 
-  <url type="website">https://bitbucket.org/leggedrobotics/signal_logger</url>
-  <maintainer email="gabriel.hottiger@mavt.ethz.ch">Gabriel Hottiger</maintainer>
-  <maintainer email="gehrinch@ethz.ch">Christian Gehring</maintainer>
+  <maintainer email="ghottiger@anybotics.com">Gabriel Hottiger</maintainer>
+  <maintainer email="cgehring@anybotics.com">Christian Gehring</maintainer>
   <maintainer email="bellicoso@mavt.ethz.ch">Dario Bellicoso</maintainer>
-  <author email="gabriel.hottiger@mavt.ethz.ch">Gabriel Hottiger</author>
-  <author email="gehrinch@ethz.ch">Christian Gehring</author>
+  <author email="ghottiger@anybotics.com">Gabriel Hottiger</author>
+  <author email="cgehring@anybotics.com">Christian Gehring</author>
   <author email="bellicoso@mavt.ethz.ch">Dario Bellicoso</author>
   <license>BSD</license>
+  <url>https://github.com/anybotics/signal_logger</url>
 
   <buildtool_depend>catkin</buildtool_depend>
 

@@ -91,6 +91,7 @@ set(ANY_RBDL_SOURCES
   src/rbdl_version.cc
   src/rbdl_mathutils.cc
   src/rbdl_utils.cc
+  src/Body.cc
   src/Contacts.cc
   src/Dynamics.cc
   src/Logging.cc

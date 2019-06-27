@@ -49,29 +49,14 @@ class RigidBodyRbdl : public romo::RigidBody<ConcreteDescription_> {
   // Get the world to body center of mass position in world or main body frame
   Eigen::Vector3d getPositionWorldToBodyCom(const CoordinateFrameEnum& frame = CoordinateFrameEnum::WORLD) const override;
 
-  // Set the world to body center of mass position in world or main body frame
-  bool setPositionWorldToBodyCom(const Eigen::Vector3d& centerOfMass, const CoordinateFrameEnum& frame = CoordinateFrameEnum::WORLD) const override;
-
   // Get the world to body center of mass position in world or main body frame
   Eigen::Vector3d getPositionBodyToBodyCom(const CoordinateFrameEnum& frame = CoordinateFrameEnum::WORLD) const override;
-
-  // Set the world to body center of mass position in world or main body frame
-  bool setPositionBodyToBodyCom(const Eigen::Vector3d& centerOfMass, const CoordinateFrameEnum& frame = CoordinateFrameEnum::WORLD) const override;
 
   // Get the body mass
   double getMass() const override;
 
-  // Set the body mass
-  bool setMass(double mass) const override;
-
   // Get the body inertia matrix
   const Eigen::Matrix3d& getInertiaMatrix() const override;
-
-  // Set the body inertia matrix
-  bool setInertiaMatrix(const Eigen::Matrix3d& inertiaMatrix) const override;
-
-  // Update the inertia properties
-  bool updateInertiaProperties() const override;
 
   // Get the rotation matrix which rotates a vector from world frame to body frame
   const Eigen::Matrix3d& getOrientationWorldToBody() const override;
@@ -106,6 +91,7 @@ class RigidBodyRbdl : public romo::RigidBody<ConcreteDescription_> {
 
   //! If true, this body is fixed on its parent body.
   bool isFixedBody_;
+
 };
 
 } /* namespace romo */

@@ -3,11 +3,11 @@
   <name>parameter_handler_std</name>
   <version>0.3.0</version>
   <description>The parameter_handler_std package</description>
-  <maintainer email="gehrinch@ethz.ch">Christian Gehring</maintainer>
+  <maintainer email="cgehring@anybotics.com">Christian Gehring</maintainer>
   <license>BSD</license>
-  <url type="website">https://bitbucket.org/leggedrobotics/parameter_handler</url>
   <author email="bellicoso@mavt.ethz.ch">Dario Bellicoso</author>
-  <author email="gehrinch@ethz.ch">Christian Gehring</author>
+  <author email="cgehring@anybotics.com">Christian Gehring</author>
+  <url>https://github.com/anybotics/parameter_handler</url>
   <buildtool_depend>catkin</buildtool_depend>
   <depend>message_logger</depend>
   <depend>tinyxml_tools</depend>

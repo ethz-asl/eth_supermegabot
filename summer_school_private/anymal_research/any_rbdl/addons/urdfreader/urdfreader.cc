@@ -96,8 +96,8 @@ bool construct_model (Model* rbdl_model, ModelPtr urdf_model, bool verbose) {
 	  for (unsigned int j = 0; j < root_joint.mDoFCount; j++) {
 		cout << "    " << j << ": " << root_joint.mJointAxes[j].transpose() << endl;
 	  }
-	  cout << "  body inertia: " << endl << root_link.mInertia << endl;
-	  cout << "  body mass   : " << root_link.mMass << endl;
+	  cout << "  body inertia: " << endl << root_link.GetInertia() << endl;
+	  cout << "  body mass   : " << root_link.GetMass() << endl;
 	  cout << "  body name   : " << root->name << endl;
 	}
 
@@ -244,8 +244,8 @@ bool construct_model (Model* rbdl_model, ModelPtr urdf_model, bool verbose) {
 	  for (unsigned int j = 0; j < rbdl_joint.mDoFCount; j++) {
 		cout << "    " << j << ": " << rbdl_joint.mJointAxes[j].transpose() << endl;
 	  }
-	  cout << "  body inertia: " << endl << rbdl_body.mInertia << endl;
-	  cout << "  body mass   : " << rbdl_body.mMass << endl;
+	  cout << "  body inertia: " << endl << rbdl_body.GetInertia() << endl;
+	  cout << "  body mass   : " << rbdl_body.GetMass() << endl;
 	  cout << "  body name   : " << urdf_child->name << endl;
 	}
 
@@ -375,8 +375,8 @@ bool construct_model (Model* rbdl_model, ModelPtr urdf_model,
 	  for (unsigned int j = 0; j < root_joint.mDoFCount; j++) {
 		cout << "    " << j << ": " << root_joint.mJointAxes[j].transpose() << endl;
 	  }
-	  cout << "  body inertia: " << endl << root_link.mInertia << endl;
-	  cout << "  body mass   : " << root_link.mMass << endl;
+	  cout << "  body inertia: " << endl << root_link.GetInertia() << endl;
+	  cout << "  body mass   : " << root_link.GetMass() << endl;
 	  cout << "  body name   : " << root->name << endl;
 	}
 
@@ -546,8 +546,8 @@ bool construct_model (Model* rbdl_model, ModelPtr urdf_model,
 	  for (unsigned int j = 0; j < rbdl_joint.mDoFCount; j++) {
 		cout << "    " << j << ": " << rbdl_joint.mJointAxes[j].transpose() << endl;
 	  }
-	  cout << "  body inertia: " << endl << rbdl_body.mInertia << endl;
-	  cout << "  body mass   : " << rbdl_body.mMass << endl;
+	  cout << "  body inertia: " << endl << rbdl_body.GetInertia() << endl;
+	  cout << "  body mass   : " << rbdl_body.GetMass() << endl;
 	  cout << "  body name   : " << urdf_child->name << endl;
 	}
 

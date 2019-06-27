@@ -6,7 +6,6 @@
   <maintainer email="bellicoso@mavt.ethz.ch">Dario Bellicoso</maintainer>
   <maintainer email="martin.felis@iwr.uni-heidelberg.de">Martin Felis</maintainer>
   <license>BSD</license>
-  <url type="website">https://bitbucket.org/ethz-asl-lr/rbdl</url>
   <author email="martin.felis@iwr.uni-heidelberg.de">Martin Felis</author>
 
   <buildtool_depend>catkin</buildtool_depend>

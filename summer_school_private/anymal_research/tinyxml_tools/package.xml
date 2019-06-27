@@ -9,11 +9,9 @@
   <license>BSD</license>
 
   <author email="bellicoso@mavt.ethz.ch">Dario Bellicoso</author>
-  <author email="gabriel.hottiger@mavt.ethz.ch">Gabriel Hottiger</author>
+  <author email="ghottiger@anybotics.com">Gabriel Hottiger</author>
   <maintainer email="bellicoso@mavt.ethz.ch">Dario Bellicoso</maintainer>
-  <maintainer email="gabriel.hottiger@mavt.ethz.ch">Gabriel Hottigoer</maintainer>
-
-  <url type="website">https://bitbucket.org/leggedrobotics/any_utils</url>
+  <maintainer email="ghottiger@anybotics.com">Gabriel Hottigoer</maintainer>
 
   <buildtool_depend>catkin</buildtool_depend>
 

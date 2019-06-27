@@ -5,16 +5,14 @@
   <name>rviz_world_loader</name>
   <version>0.6.0</version>
   <description>Visualize worlds in RViz as markers from YAML descriptions.</description>
-  
+
   <license>BSD</license>
-  
-  <author email="pfankhauser@ethz.ch">Peter Fankhauser</author>
-  <maintainer email="pfankhauser@ethz.ch">Peter Fankhauser</maintainer>
-  
-  <url type="website">https://bitbucket.org/leggedrobotics/any_utils_ros</url>
+
+  <author email="pfankhauser@anybotics.com">Peter Fankhauser</author>
+  <maintainer email="pfankhauser@anybotics.com">Peter Fankhauser</maintainer>
 
   <buildtool_depend>catkin</buildtool_depend>
-  
+
   <depend>rospy</depend>
-  
+
 </package>

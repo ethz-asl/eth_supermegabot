@@ -21,7 +21,6 @@ using namespace RigidBodyDynamics;
 using namespace RigidBodyDynamics::Math;
 
 Model::Model() {
-	Body root_body;
 	Joint root_joint;
 
 	Vector3d zero_position (0., 0., 0.);
@@ -70,15 +69,15 @@ Model::Model() {
 	f.push_back (zero_spatial);
 	SpatialRigidBodyInertia rbi (0., Vector3d (0., 0., 0.), Matrix3d::Zero(3,3));
 	Ic.push_back (rbi);
-	I.push_back(rbi);
 	hc.push_back (zero_spatial);
 
 	// Bodies
 	X_lambda.push_back(SpatialTransform());
 	X_base.push_back(SpatialTransform());
 
-	mBodies.push_back(root_body);
+	mBodies.emplace_back(new Body);
 	mBodyNameMap["ROOT"] = 0;
+	rootId = 0;
 
 	fixed_body_discriminator = std::numeric_limits<unsigned int>::max() / 2;
 }
@@ -90,24 +89,23 @@ unsigned int AddBodyFixedJoint (
 		const Joint &joint,
 		const Body &body,
 		std::string body_name) {
-	FixedBody fbody = FixedBody::CreateFromBody (body);
-	fbody.mMovableParent = parent_id;
-	fbody.mParentTransform = joint_frame;
+	model.mFixedBodies.emplace_back (new FixedBody(FixedBody::CreateFromBody (body)));
+	FixedBody& fbody = *model.mFixedBodies.back();
+
 
 	if (model.IsFixedBodyId(parent_id)) {
-		FixedBody fixed_parent = model.mFixedBodies[parent_id - model.fixed_body_discriminator];
+		const FixedBody& fixed_parent = *model.mFixedBodies[parent_id - model.fixed_body_discriminator];
 
 		fbody.mMovableParent = fixed_parent.mMovableParent;
 		fbody.mParentTransform = joint_frame * fixed_parent.mParentTransform;
+
+		model.mBodies[fixed_parent.mMovableParent]->AddChildFixedBody(model.mFixedBodies.back().get());
+	} else {
+		fbody.mMovableParent = parent_id;
+		fbody.mParentTransform = joint_frame;
+
+		model.mBodies[parent_id]->AddChildFixedBody(model.mFixedBodies.back().get());
 	}
-
-	// merge the two bodies
-	Body parent_body = model.mBodies[fbody.mMovableParent];
-	parent_body.Join (fbody.mParentTransform, body);
-	model.mBodies[fbody.mMovableParent] = parent_body;
-	model.I[fbody.mMovableParent] = SpatialRigidBodyInertia::createFromMassComInertiaC (parent_body.mMass, parent_body.mCenterOfMass, parent_body.mInertia);
-
-	model.mFixedBodies.push_back (fbody);
 
 	if (model.mFixedBodies.size() > std::numeric_limits<unsigned int>::max() - model.fixed_body_discriminator) {
 		std::cerr << "Error: cannot add more than " << std::numeric_limits<unsigned int>::max() - model.mFixedBodies.size() << " fixed bodies. You need to modify Model::fixed_body_discriminator for this." << std::endl;
@@ -243,8 +241,8 @@ unsigned int Model::AddBody (const unsigned int parent_id,
 
 	if (IsFixedBodyId(parent_id)) {
 		unsigned int fbody_id = parent_id - fixed_body_discriminator;
-		movable_parent_id = mFixedBodies[fbody_id].mMovableParent;
-		movable_parent_transform = mFixedBodies[fbody_id].mParentTransform;
+		movable_parent_id = mFixedBodies[fbody_id]->mMovableParent;
+		movable_parent_transform = mFixedBodies[fbody_id]->mParentTransform;
 	}
 
 	// structural information FIXME: proper implementation for mimic joints
@@ -261,7 +259,7 @@ unsigned int Model::AddBody (const unsigned int parent_id,
 	// Bodies
 	X_lambda.push_back(SpatialTransform());
 	X_base.push_back(SpatialTransform());
-	mBodies.push_back(body);
+	mBodies.emplace_back(new Body(body));
 
 	if (body_name.size() != 0) {
 		if (mBodyNameMap.find(body_name) != mBodyNameMap.end()) {
@@ -349,10 +347,9 @@ unsigned int Model::AddBody (const unsigned int parent_id,
 
 	f.push_back (SpatialVector (0., 0., 0., 0., 0., 0.));
 
-	SpatialRigidBodyInertia rbi = SpatialRigidBodyInertia::createFromMassComInertiaC (body.mMass, body.mCenterOfMass, body.mInertia);
+	SpatialRigidBodyInertia rbi = body.GetSpatialRigidBodyInertia();
 
 	Ic.push_back (rbi);
-	I.push_back (rbi);
 	hc.push_back (SpatialVector(0., 0., 0., 0., 0., 0.));
 
 	if (mBodies.size() == fixed_body_discriminator) {
@@ -394,19 +391,6 @@ unsigned int Model::AddBody (const unsigned int parent_id,
 //	}
 
 	return previously_added_body_id;
-}
-
-bool Model::updateInertia(unsigned int i) {
-	SpatialRigidBodyInertia rbi = SpatialRigidBodyInertia::createFromMassComInertiaC (mBodies[i].mMass, mBodies[i].mCenterOfMass, mBodies[i].mInertia);
-	Ic[i] = rbi;
-	I[i] =  rbi;
-	return true;
-}
-
-bool Model::updateAllInertias() {
-	for (unsigned int i=0; i<mBodies.size(); ++i)
-		updateInertia(i);
-	return true;
 }
 
 unsigned int Model::AppendBody (

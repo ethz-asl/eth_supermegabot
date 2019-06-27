@@ -3,11 +3,11 @@
 # ETH Zurich
 #
 # Author(s): Christian Gehring
-# email    : gehrinch@ethz.ch
+# email    : cgehring@anybotics.com
 # Date     : 1-Dec-2014
 #
 #-------------------------------------------------------------------------------
-cmake_minimum_required (VERSION 2.8)  
+cmake_minimum_required (VERSION 2.8)
 
 add_definitions(--std=c++11)
 

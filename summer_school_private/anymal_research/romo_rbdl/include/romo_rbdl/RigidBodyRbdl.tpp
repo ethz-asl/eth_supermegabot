@@ -36,21 +36,9 @@ double RigidBodyRbdl<ConcreteDescription_>::getMass() const {
 //    throw std::runtime_error("Asking for fixed body (" + this->getName() + ") mass.");
     return 0.0;
   } else {
-    return model_->mBodies[bodyId_].mMass;
+    return model_->mBodies[bodyId_]->GetMass();
   }
 }
-
-template<typename ConcreteDescription_>
-bool RigidBodyRbdl<ConcreteDescription_>::setMass(double mass) const {
-  if (isFixedBody_ || mass < 0.0) {
-//    throw std::runtime_error("Trying to set mass of fixed body (" + this->getName() + ").");
-    return false;
-  } else {
-    model_->mBodies[bodyId_].mMass = mass;
-    return true;
-  }
-}
-
 template<typename ConcreteDescription_>
 Eigen::Vector3d RigidBodyRbdl<ConcreteDescription_>::getPositionWorldToBodyCom(
     const CoordinateFrameEnum& frame) const
@@ -64,48 +52,19 @@ Eigen::Vector3d RigidBodyRbdl<ConcreteDescription_>::getPositionWorldToBodyCom(
     case (CoordinateFrameEnum::WORLD): {
       return RigidBodyDynamics::CalcBodyToBaseCoordinates(
           *model_, RigidBodyDynamics::Math::VectorNd(), bodyId_,
-          model_->mBodies[bodyId_].mCenterOfMass, false);
+          model_->mBodies[bodyId_]->GetCenterOfMass(), false);
     }
     case (CoordinateFrameEnum::BASE): {
       return (model_->X_base[model_->rootId].E
           * RigidBodyDynamics::CalcBodyToBaseCoordinates(
               *model_, RigidBodyDynamics::Math::VectorNd(), bodyId_,
-              model_->mBodies[bodyId_].mCenterOfMass, false));
+              model_->mBodies[bodyId_]->GetCenterOfMass(), false));
     }
     default:
       throw std::runtime_error(
           "[RigidBodyRbdl::getPositionWorldToBodyCom] Invalid frame.");
   }
 }
-
-template<typename ConcreteDescription_>
-bool RigidBodyRbdl<ConcreteDescription_>::setPositionWorldToBodyCom(
-    const Eigen::Vector3d& centerOfMass, const CoordinateFrameEnum& frame) const
-{
-  if (isFixedBody_) {
-    throw std::runtime_error(
-        "[RigidBodyRbdl::setPositionWorldToBodyCom] Trying to set center of mass of fixed body (" + std::string(RD::mapKeyEnumToKeyName(bodyEnum_)) + ").");
-  }
-
-  switch (frame) {
-    case (CoordinateFrameEnum::WORLD): {
-        model_->mBodies[bodyId_].mCenterOfMass = RigidBodyDynamics::CalcBaseToBodyCoordinates(
-          *model_, RigidBodyDynamics::Math::VectorNd(), bodyId_, centerOfMass, false);
-        return true;
-    }
-    case (CoordinateFrameEnum::BASE): {
-        model_->mBodies[bodyId_].mCenterOfMass = (model_->X_base[model_->rootId].E
-          * RigidBodyDynamics::CalcBaseToBodyCoordinates(
-              *model_, RigidBodyDynamics::Math::VectorNd(), bodyId_,
-              centerOfMass, false));
-        return true;
-    }
-    default:
-      throw std::runtime_error(
-          "[RigidBodyRbdl::setPositionWorldToBodyCom] Invalid frame.");
-  }
-}
-
 
 template<typename ConcreteDescription_>
 Eigen::Vector3d RigidBodyRbdl<ConcreteDescription_>::getPositionBodyToBodyCom(
@@ -117,15 +76,15 @@ Eigen::Vector3d RigidBodyRbdl<ConcreteDescription_>::getPositionBodyToBodyCom(
 
   switch (frame) {
     case (CoordinateFrameEnum::WORLD): {
-      return (getOrientationWorldToBody().transpose()*model_->mBodies[bodyId_].mCenterOfMass);
+      return (getOrientationWorldToBody().transpose()*model_->mBodies[bodyId_]->GetCenterOfMass());
     }
 
     case (CoordinateFrameEnum::BASE): {
-      return (model_->X_base[model_->rootId].E*(getOrientationWorldToBody().transpose()*model_->mBodies[bodyId_].mCenterOfMass));
+      return (model_->X_base[model_->rootId].E*(getOrientationWorldToBody().transpose()*model_->mBodies[bodyId_]->GetCenterOfMass()));
     }
 
     case (CoordinateFrameEnum::BODY): {
-      return model_->mBodies[bodyId_].mCenterOfMass;
+      return model_->mBodies[bodyId_]->GetCenterOfMass();
     }
 
     default:
@@ -134,54 +93,11 @@ Eigen::Vector3d RigidBodyRbdl<ConcreteDescription_>::getPositionBodyToBodyCom(
 }
 
 template<typename ConcreteDescription_>
-bool RigidBodyRbdl<ConcreteDescription_>::setPositionBodyToBodyCom(const Eigen::Vector3d& centerOfMass, const CoordinateFrameEnum& frame) const
-{
-  if (isFixedBody_) {
-    throw std::runtime_error(
-            "[RigidBodyRbdl::setPositionBodyToBodyCom] Trying to set center of mass of fixed body (" + std::string(RD::mapKeyEnumToKeyName(bodyEnum_)) + ").");
-  }
-
-  switch (frame) {
-    case (CoordinateFrameEnum::WORLD): {
-        model_->mBodies[bodyId_].mCenterOfMass = getOrientationWorldToBody()*centerOfMass;
-        return true;
-    }
-    case (CoordinateFrameEnum::BASE): {
-        model_->mBodies[bodyId_].mCenterOfMass = model_->X_base[model_->rootId].E*(getOrientationWorldToBody().transpose()*centerOfMass);
-        return true;
-    }
-    case (CoordinateFrameEnum::BODY): {
-      model_->mBodies[bodyId_].mCenterOfMass = centerOfMass;
-      return true;
-    }
-
-    default:
-      throw std::runtime_error("[RigidBodyRbdl::setPositionBodyToBodyCom] Invalid frame.");
-  }
-}
-
-template<typename ConcreteDescription_>
 const Eigen::Matrix3d& RigidBodyRbdl<ConcreteDescription_>::getInertiaMatrix() const {
   if (isFixedBody_){
     throw std::runtime_error("[RigidBodyRbdl::getInertiaMatrix] Asking for fixed body (" + std::string(RD::mapKeyEnumToKeyName(bodyEnum_)) + ") inertia matrix.");
   }
-  return model_->mBodies[bodyId_].mInertia;
-}
-
-template<typename ConcreteDescription_>
-bool RigidBodyRbdl<ConcreteDescription_>::setInertiaMatrix(const Eigen::Matrix3d& inertiaMatrix) const {
-  if (model_->IsFixedBodyId(bodyId_)){
-    return false;
-    //throw std::runtime_error("Trying to set inertia matrix of fixed body (" + this->getName() + ").");
-  }
-  model_->mBodies[bodyId_].mInertia = inertiaMatrix;
-  return true;
-}
-
-template<typename ConcreteDescription_>
-bool RigidBodyRbdl<ConcreteDescription_>::updateInertiaProperties() const {
-  model_->updateInertia(bodyId_);
-  return true;
+  return model_->mBodies[bodyId_]->GetInertia();
 }
 
 template<typename ConcreteDescription_>
@@ -223,11 +139,11 @@ template<typename ConcreteDescription_>
 const Eigen::Matrix3d& RigidBodyRbdl<ConcreteDescription_>::getOrientationWorldToBody() const {
   if (this->isFixedBody_) {
     const unsigned int fbody_id = bodyId_ - model_->fixed_body_discriminator;
-    model_->mFixedBodies[fbody_id].mBaseTransform =
-        model_->mFixedBodies[fbody_id].mParentTransform
-      * model_->X_base[model_->mFixedBodies[fbody_id].mMovableParent];
+    model_->mFixedBodies[fbody_id]->mBaseTransform =
+        model_->mFixedBodies[fbody_id]->mParentTransform
+      * model_->X_base[model_->mFixedBodies[fbody_id]->mMovableParent];
 
-    return model_->mFixedBodies[fbody_id].mBaseTransform.E;
+    return model_->mFixedBodies[fbody_id]->mBaseTransform.E;
   }
 
   return model_->X_base[bodyId_].E;

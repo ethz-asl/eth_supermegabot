@@ -44,29 +44,14 @@ class RigidBody {
   // Get the world to body center of mass position in world or main body frame
   virtual Eigen::Vector3d getPositionWorldToBodyCom(const CoordinateFrameEnum& frame = CoordinateFrameEnum::WORLD) const = 0;
 
-  // Set the world to body center of mass position in world or main body frame
-  virtual bool setPositionWorldToBodyCom(const Eigen::Vector3d& centerOfMass, const CoordinateFrameEnum& frame = CoordinateFrameEnum::WORLD) const = 0;
-
   // Get the world to body center of mass position in world or main body frame
   virtual Eigen::Vector3d getPositionBodyToBodyCom(const CoordinateFrameEnum& frame = CoordinateFrameEnum::WORLD) const = 0;
-
-  // Set the world to body center of mass position in world or main body frame
-  virtual bool setPositionBodyToBodyCom(const Eigen::Vector3d& centerOfMass, const CoordinateFrameEnum& frame = CoordinateFrameEnum::WORLD) const = 0;
 
   // Get the body inertia matrix
   virtual const Eigen::Matrix3d& getInertiaMatrix() const = 0;
 
-  // Set the body inertia matrix
-  virtual bool setInertiaMatrix(const Eigen::Matrix3d& inertiaMatrix) const = 0;
-
   // Get the body mass
   virtual double getMass() const = 0;
-
-  // Set the body mass
-  virtual bool setMass(const double mass) const = 0;
-
-  // Update the inertia properties
-  virtual bool updateInertiaProperties() const = 0;
 
   // Get the rotation matrix which rotates a vector from world frame to body frame
   virtual const Eigen::Matrix3d& getOrientationWorldToBody() const = 0;

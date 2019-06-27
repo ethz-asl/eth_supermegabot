@@ -98,7 +98,7 @@ class DocumentHandleXML : public DocumentHandle {
   bool resolveDefault();
   bool resolveIncludes();
   bool resolveExtensions();
-  std::string convertPath(const std::string& path);
+  virtual std::string convertPath(const std::string& path);
   bool merge(const std::string& path, MergeMode mode, bool force);
   bool mergeTrees(TiXmlHandle tree1, TiXmlHandle tree2, MergeMode mode);
   void findElements(std::vector<TiXmlHandle>& handles, TiXmlHandle tree, std::string elementName);

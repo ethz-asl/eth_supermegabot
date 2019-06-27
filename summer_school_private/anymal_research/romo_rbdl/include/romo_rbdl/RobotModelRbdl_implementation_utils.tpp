@@ -171,15 +171,15 @@ void RobotModelRbdl<ConcreteDescription_, RobotState_>::printModelParameters() c
     if (it.second < rbdlModel_->fixed_body_discriminator) {
       MELO_INFO_STREAM("[RobotModel::printModelParameters] Movable body.");
       MELO_INFO_STREAM("[RobotModel::printModelParameters] Id: " << it.second);
-      MELO_INFO_STREAM("[RobotModel::printModelParameters] mass: " << rbdlModel_->mBodies[it.second].mMass);
-      MELO_INFO_STREAM("[RobotModel::printModelParameters] com: " << rbdlModel_->mBodies[it.second].mCenterOfMass.transpose());
+      MELO_INFO_STREAM("[RobotModel::printModelParameters] mass: " << rbdlModel_->mBodies[it.second]->GetMass());
+      MELO_INFO_STREAM("[RobotModel::printModelParameters] com: " << rbdlModel_->mBodies[it.second]->GetCenterOfMass().transpose());
     } else {
       const int fixedBodyId = it.second-rbdlModel_->fixed_body_discriminator;
-      const int movableParentId = rbdlModel_->mFixedBodies[fixedBodyId].mMovableParent;
+      const int movableParentId = rbdlModel_->mFixedBodies[fixedBodyId]->mMovableParent;
       MELO_INFO_STREAM("[RobotModel::printModelParameters] Fixed body.");
       MELO_INFO_STREAM("[RobotModel::printModelParameters] Id: " << fixedBodyId);
-      MELO_INFO_STREAM("[RobotModel::printModelParameters] mass: " << rbdlModel_->mFixedBodies[fixedBodyId].mMass);
-      MELO_INFO_STREAM("[RobotModel::printModelParameters] com: " << rbdlModel_->mFixedBodies[fixedBodyId].mCenterOfMass.transpose());
+      MELO_INFO_STREAM("[RobotModel::printModelParameters] mass: " << rbdlModel_->mFixedBodies[fixedBodyId]->GetIndividualMass());
+      MELO_INFO_STREAM("[RobotModel::printModelParameters] com: " << rbdlModel_->mFixedBodies[fixedBodyId]->GetIndividualCenterOfMass().transpose());
       MELO_INFO_STREAM("[RobotModel::printModelParameters] Movable parent: " << rbdlModel_->GetBodyName(movableParentId));
     }
     MELO_INFO_STREAM("[RobotModel::printModelParameters] -------------------");

@@ -68,9 +68,9 @@ void ForwardDynamics (
 		*/
 
 		model.c[i] = model.c_J[i] + crossm(model.v[i],model.v_J[i]);
-		model.I[i].setSpatialMatrix (model.IA[i]);
+		model.mBodies[i]->GetSpatialRigidBodyInertia().setSpatialMatrix (model.IA[i]);
 
-		model.pA[i] = crossf(model.v[i],model.I[i] * model.v[i]);
+		model.pA[i] = crossf(model.v[i],model.mBodies[i]->GetSpatialRigidBodyInertia() * model.v[i]);
 
 		if (f_ext != NULL && (*f_ext)[i] != SpatialVectorZero) {
 			LOG << "External force (" << i << ") = " << model.X_base[i].toMatrixAdjoint() * (*f_ext)[i] << std::endl;
@@ -256,8 +256,8 @@ void GravityTerms (
 			a[i] = model.X_lambda[i].apply(a[model.lambda[i]]);
 		}
 
-		if (!model.mBodies[i].mIsVirtual) {
-			model.f[i] = model.I[i] * a[i];
+		if (!model.mBodies[i]->mIsVirtual) {
+			model.f[i] = model.mBodies[i]->GetSpatialRigidBodyInertia() * a[i];
 		} else {
 			model.f[i].setZero();
 		}
@@ -306,8 +306,8 @@ void NonlinearEffects (
 			a[i] = model.X_lambda[i].apply(a[model.lambda[i]]) + model.c[i];
 		}
 
-		if (!model.mBodies[i].mIsVirtual) {
-			model.f[i] = model.I[i] * a[i] + crossf(model.v[i],model.I[i] * model.v[i]);
+		if (!model.mBodies[i]->mIsVirtual) {
+			model.f[i] = model.mBodies[i]->GetSpatialRigidBodyInertia() * a[i] + crossf(model.v[i],model.mBodies[i]->GetSpatialRigidBodyInertia() * model.v[i]);
 		} else {
 			model.f[i].setZero();
 		}
@@ -367,8 +367,8 @@ void InverseDynamics (
 			model.a[i] = model.X_lambda[i].apply(model.a[lambda]) + model.c[i] + model.S[i] * QDDot[q_index];
 		}
 
-		if (!model.mBodies[i].mIsVirtual) {
-			model.f[i] = model.I[i] * model.a[i] + crossf(model.v[i],model.I[i] * model.v[i]);
+		if (!model.mBodies[i]->mIsVirtual) {
+			model.f[i] = model.mBodies[i]->GetSpatialRigidBodyInertia() * model.a[i] + crossf(model.v[i],model.mBodies[i]->GetSpatialRigidBodyInertia() * model.v[i]);
 		} else {
 			model.f[i].setZero();
 		}
@@ -405,7 +405,7 @@ void CompositeRigidBodyAlgorithm (Model& model, const VectorNd &Q, MatrixNd &H, 
 		if (update_kinematics) {
 			jcalc_X_lambda_S (model, i, Q);
 		}
-		model.Ic[i] = model.I[i];
+		model.Ic[i] = model.mBodies[i]->GetSpatialRigidBodyInertia();
 	}
 
 	// set of already processed mimic joints

@@ -5,7 +5,6 @@
   <description>The robot model package</description>
   <maintainer email="bellicoso@mavt.ethz.ch">Dario Bellicoso</maintainer>
   <license>Proprietary</license>
-  <url type="website">https://bitbucket.org/leggedrobotics/romo</url>
   <author email="bellicoso@mavt.ethz.ch">Dario Bellicoso</author>
   <buildtool_depend>catkin</buildtool_depend>
   <build_export_depend>eigen</build_export_depend>

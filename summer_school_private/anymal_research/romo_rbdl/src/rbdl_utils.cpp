@@ -262,9 +262,9 @@ bool construct_model(Model* rbdl_model, ModelPtr urdf_model,
     } else {
       std::cout << "Id: "   << rbdlRootBodyId << std::endl;
       std::cout << "Name: " << rbdl_model->GetBodyName(rbdlRootBodyId) << std::endl;
-      std::cout << "Mass: " << rbdl_model->mBodies[rbdlRootBodyId].mMass << std::endl;
-      std::cout << "CoM:  " << rbdl_model->mBodies[rbdlRootBodyId].mCenterOfMass.transpose().format(internal::eigenFormat) << std::endl;
-      std::cout << "Inertia:" << std::endl << rbdl_model->mBodies[rbdlRootBodyId].mInertia.format(internal::eigenFormat) << std::endl;
+      std::cout << "Mass: " << rbdl_model->mBodies[rbdlRootBodyId]->GetMass() << std::endl;
+      std::cout << "CoM:  " << rbdl_model->mBodies[rbdlRootBodyId]->GetCenterOfMass().transpose().format(internal::eigenFormat) << std::endl;
+      std::cout << "Inertia:" << std::endl << rbdl_model->mBodies[rbdlRootBodyId]->GetInertia().format(internal::eigenFormat) << std::endl;
     }
   }
 
@@ -688,8 +688,8 @@ bool construct_model(Model* rbdl_model, ModelPtr urdf_model,
       for (unsigned int j = 0; j < rbdl_joint.mDoFCount; j++) {
         std::cout << "\taxes for dof " << j << ": " << rbdl_joint.mJointAxes[j].transpose() << std::endl;
       }
-      std::cout << "  body inertia: " << std::endl << rbdl_body.mInertia.format(internal::eigenFormat) << std::endl;
-      std::cout << "  body mass   : " << rbdl_body.mMass << std::endl;
+      std::cout << "  body inertia: " << std::endl << rbdl_body.GetInertia().format(internal::eigenFormat) << std::endl;
+      std::cout << "  body mass   : " << rbdl_body.GetMass() << std::endl;
       std::cout << "  body name   : " << urdf_child->name << std::endl;
     }
 
@@ -699,7 +699,7 @@ bool construct_model(Model* rbdl_model, ModelPtr urdf_model,
         if (verbose) {
           MELO_INFO_STREAM("[romo::construct_model] Parent is fixed. Parent Id: " << rbdl_parent_id);
         }
-        movableParentId = rbdl_model->mFixedBodies[rbdl_parent_id - rbdl_model->fixed_body_discriminator].mMovableParent;
+        movableParentId = rbdl_model->mFixedBodies[rbdl_parent_id - rbdl_model->fixed_body_discriminator]->mMovableParent;
       } else {
         if (verbose) {
           MELO_INFO_STREAM("[romo::construct_model] Parent is movable.");
@@ -710,8 +710,8 @@ bool construct_model(Model* rbdl_model, ModelPtr urdf_model,
         MELO_INFO_STREAM("[romo::construct_model] Movable parent id: " << movableParentId);
         MELO_INFO_STREAM("[romo::construct_model] Movable parent name: " << rbdl_model->GetBodyName(movableParentId));
         MELO_INFO_STREAM("[romo::construct_model] Movable parent inertia before adding fixed joint: " << std::endl
-                         << "mass: " << rbdl_model->mBodies[movableParentId].mMass << std::endl
-                         << " com: " << rbdl_model->mBodies[movableParentId].mCenterOfMass.transpose());
+                         << "mass: " << rbdl_model->mBodies[movableParentId]->GetMass() << std::endl
+                         << " com: " << rbdl_model->mBodies[movableParentId]->GetCenterOfMass().transpose());
       }
     }
 
@@ -732,8 +732,8 @@ bool construct_model(Model* rbdl_model, ModelPtr urdf_model,
     if (urdf_joint->type == urdf::Joint::FIXED) {
       if (verbose) {
         MELO_INFO_STREAM("[romo::construct_model] Movable parent inertia after adding fixed joint: " << std::endl
-                         << "mass: " << rbdl_model->mBodies[movableParentId].mMass << std::endl
-                         << " com: " << rbdl_model->mBodies[movableParentId].mCenterOfMass.transpose());
+                         << "mass: " << rbdl_model->mBodies[movableParentId]->GetMass() << std::endl
+                         << " com: " << rbdl_model->mBodies[movableParentId]->GetCenterOfMass().transpose());
       }
     }
 

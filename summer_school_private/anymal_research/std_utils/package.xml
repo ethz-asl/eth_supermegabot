@@ -8,20 +8,18 @@
 
   <license>BSD</license>
 
-  <author email="gehrinch@ethz.ch">Christian Gehring</author>
-  <author email="pfankhauser@ethz.ch">Peter Fankhauser</author>
+  <author email="cgehring@anybotics.com">Christian Gehring</author>
+  <author email="pfankhauser@anybotics.com">Peter Fankhauser</author>
   <author email="bellicoso@mavt.ethz.ch">Dario Bellicoso</author>
-  <author email="gabriel.hottiger@mavt.ethz.ch">Gabriel Hottiger</author>
+  <author email="ghottiger@anybotics.com">Gabriel Hottiger</author>
 
-  <maintainer email="gabriel.hottiger@mavt.ethz.ch">Gabriel Hottiger</maintainer>
+  <maintainer email="ghottiger@anybotics.com">Gabriel Hottiger</maintainer>
   <maintainer email="bellicoso@mavt.ethz.ch">Dario Bellicoso</maintainer>
-  
-  <url type="website">http://bitbucket.org/leggedrobotics/any_utils</url>
 
   <buildtool_depend>catkin</buildtool_depend>
-  
+
   <depend>boost</depend>
-  
+
   <test_depend>gtest</test_depend>
 
 </package>

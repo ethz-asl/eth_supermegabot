@@ -81,10 +81,10 @@ int main (int argc, char *argv[]) {
 		RigidBodyDynamics::UpdateKinematics (model, q_zero, qdot_zero, qdot_zero);
 
 		for (unsigned int i = 1; i < model.mBodies.size(); i++) {
-			if (model.mBodies[i].mIsVirtual)
+			if (model.mBodies[i]->mIsVirtual)
 				continue;
 
-			SpatialRigidBodyInertia rbi_base = model.X_base[i].apply(model.I[i]);
+			SpatialRigidBodyInertia rbi_base = model.X_base[i].apply(model.mBodies[i]->GetSpatialRigidBodyInertia());
 			Vector3d body_com = rbi_base.h / rbi_base.m;
 			cout << setw(12) << model.GetBodyName (i) << ": " << setw(10) <<  body_com.transpose() << endl;
 		}

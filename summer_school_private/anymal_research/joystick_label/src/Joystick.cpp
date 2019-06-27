@@ -3,7 +3,7 @@
  *                                                                            *
  *                                                                            *
  *                                                                            *
- * Author: Samuel Bachmann <samuel.bachmann@gmail.com>                        *
+ * Author: Samuel Bachmann <sbachmann@anybotics.com>                          *
  ******************************************************************************/
 
 #include "joystick_label/Joystick.h"

@@ -79,7 +79,9 @@ if(TARGET test_${PROJECT_NAME})
   )
 endif()
 
-
+install(DIRECTORY test/xml_includes # For unit tests of tinyxml_tools_ros
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/test
+)
 install(DIRECTORY include/${PROJECT_NAME}/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
   PATTERN ".svn" EXCLUDE

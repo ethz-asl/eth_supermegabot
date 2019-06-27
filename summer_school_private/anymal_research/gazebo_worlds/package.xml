@@ -5,15 +5,13 @@
   <name>gazebo_worlds</name>
   <version>0.6.0</version>
   <description>Collection of Gazebo world files</description>
-  
+
   <license>Proprietary</license>
-  
+
   <author email="bellicoso@mavt.ethz.ch">Dario Bellicoso</author>
   <author email="pfankhauser@anybotics.com">Peter Fankhauser</author>
   <maintainer email="bellicoso@mavt.ethz.ch">Dario Bellicoso</maintainer>
-  
-  <url type="website">https://bitbucket.org/leggedrobotics/any_gazebo</url>
-  
+
   <buildtool_depend>catkin</buildtool_depend>
-  
+
 </package>

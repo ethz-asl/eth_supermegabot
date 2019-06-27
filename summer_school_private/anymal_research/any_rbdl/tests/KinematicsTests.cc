@@ -592,12 +592,12 @@ TEST_F ( Human36, SpatialJacobianFixedBody ) {
 	CalcBodySpatialJacobian (*model, q, uppertrunk_id, G);
 
 	unsigned int fixed_body_id = uppertrunk_id - model->fixed_body_discriminator;
-	unsigned int movable_parent = model->mFixedBodies[fixed_body_id].mMovableParent;
+	unsigned int movable_parent = model->mFixedBodies[fixed_body_id]->mMovableParent;
 
 	UpdateKinematicsCustom (*model, &q, &qdot, NULL);
 	SpatialVector v_body = SpatialVector(G * qdot);
 
-	SpatialVector v_fixed_body = model->mFixedBodies[fixed_body_id].mParentTransform.apply (model->v[movable_parent]);
+	SpatialVector v_fixed_body = model->mFixedBodies[fixed_body_id]->mParentTransform.apply (model->v[movable_parent]);
 
 	KINDR_ASSERT_DOUBLE_MX_EQ_ABS_REL (v_fixed_body, v_body, TEST_PREC, TEST_PREC, "");
 }

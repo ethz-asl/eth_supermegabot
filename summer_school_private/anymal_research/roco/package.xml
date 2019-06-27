@@ -4,10 +4,9 @@
   <version>0.3.0</version>
   <description>The Robot Controller package</description>
 
-  <maintainer email="gehrinch@ethz.ch">Christian Gehring</maintainer>
+  <maintainer email="cgehring@anybotics.com">Christian Gehring</maintainer>
   <license>BSD</license>
-  <url type="website">http://bitbucket.org/leggedrobotics/roco</url>
-  <author email="gehrinch@ethz.ch">Christian Gehring</author>
+  <author email="cgehring@anybotics.com">Christian Gehring</author>
 
   <buildtool_depend>catkin</buildtool_depend>
   <depend>message_logger</depend>

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Author: Peter Fankhauser, pfankhauser@ethz.ch
+# Author: Peter Fankhauser, pfankhauser@anybotics.com
 
 import roslib
 roslib.load_manifest('rviz_world_loader')

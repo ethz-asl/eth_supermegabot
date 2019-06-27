@@ -3,12 +3,11 @@
   <name>robot_utils</name>
   <version>0.6.0</version>
   <description>The Robot Utilities package</description>
-  <maintainer email="gehrinch@ethz.ch">Christian Gehring</maintainer>
-  <maintainer email="pfankhauser@ethz.ch">Peter Fankhauser</maintainer>
+  <maintainer email="cgehring@anybotics.com">Christian Gehring</maintainer>
+  <maintainer email="pfankhauser@anybotics.com">Peter Fankhauser</maintainer>
   <license>Proprietary</license>
-  <url type="website">http://bitbucket.org/leggedrobotics/robot_utils</url>
-  <author email="gehrinch@ethz.ch">Christian Gehring</author>
-  <author email="pfankhauser@ethz.ch">Peter Fankhauser</author>
+  <author email="cgehring@anybotics.com">Christian Gehring</author>
+  <author email="pfankhauser@anybotics.com">Peter Fankhauser</author>
   <author email="bellicoso@mavt.ethz.ch">Dario Bellicoso</author>
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>cmake_clang_tools</build_depend>

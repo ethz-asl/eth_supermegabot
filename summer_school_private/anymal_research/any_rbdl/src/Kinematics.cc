@@ -160,10 +160,10 @@ Vector3d CalcBodyToBaseCoordinates (
 
 	if (body_id >= model.fixed_body_discriminator) {
 		unsigned int fbody_id = body_id - model.fixed_body_discriminator;
-		unsigned int parent_id = model.mFixedBodies[fbody_id].mMovableParent;
+		unsigned int parent_id = model.mFixedBodies[fbody_id]->mMovableParent;
 
-		Matrix3d fixed_rotation = model.mFixedBodies[fbody_id].mParentTransform.E.transpose();
-		Vector3d fixed_position = model.mFixedBodies[fbody_id].mParentTransform.r;
+		Matrix3d fixed_rotation = model.mFixedBodies[fbody_id]->mParentTransform.E.transpose();
+		Vector3d fixed_position = model.mFixedBodies[fbody_id]->mParentTransform.r;
 
 		Matrix3d parent_body_rotation = model.X_base[parent_id].E.transpose();
 		Vector3d parent_body_position = model.X_base[parent_id].r;
@@ -189,10 +189,10 @@ Vector3d CalcBaseToBodyCoordinates (
 
 	if (body_id >= model.fixed_body_discriminator) {
 		unsigned int fbody_id = body_id - model.fixed_body_discriminator;
-		unsigned int parent_id = model.mFixedBodies[fbody_id].mMovableParent;
+		unsigned int parent_id = model.mFixedBodies[fbody_id]->mMovableParent;
 
-		Matrix3d fixed_rotation = model.mFixedBodies[fbody_id].mParentTransform.E;
-		Vector3d fixed_position = model.mFixedBodies[fbody_id].mParentTransform.r;
+		Matrix3d fixed_rotation = model.mFixedBodies[fbody_id]->mParentTransform.E;
+		Vector3d fixed_position = model.mFixedBodies[fbody_id]->mParentTransform.r;
 
 		Matrix3d parent_body_rotation = model.X_base[parent_id].E;
 		Vector3d parent_body_position = model.X_base[parent_id].r;
@@ -219,9 +219,9 @@ Matrix3d CalcBodyWorldOrientation (
 
 	if (body_id >= model.fixed_body_discriminator) {
 		unsigned int fbody_id = body_id - model.fixed_body_discriminator;
-		model.mFixedBodies[fbody_id].mBaseTransform = model.mFixedBodies[fbody_id].mParentTransform * model.X_base[model.mFixedBodies[fbody_id].mMovableParent];
+		model.mFixedBodies[fbody_id]->mBaseTransform = model.mFixedBodies[fbody_id]->mParentTransform * model.X_base[model.mFixedBodies[fbody_id]->mMovableParent];
 
-		return model.mFixedBodies[fbody_id].mBaseTransform.E;
+		return model.mFixedBodies[fbody_id]->mBaseTransform.E;
 	}
 
 	return model.X_base[body_id].E;
@@ -255,7 +255,7 @@ void CalcPointJacobian (
 
 	if (model.IsFixedBodyId(body_id)) {
 		unsigned int fbody_id = body_id - model.fixed_body_discriminator;
-		reference_body_id = model.mFixedBodies[fbody_id].mMovableParent;
+		reference_body_id = model.mFixedBodies[fbody_id]->mMovableParent;
 	}
 
 	unsigned int j = reference_body_id;
@@ -309,8 +309,8 @@ void CalcBodySpatialJacobian (
 
 	if (model.IsFixedBodyId(body_id)) {
 		unsigned int fbody_id = body_id - model.fixed_body_discriminator;
-		reference_body_id = model.mFixedBodies[fbody_id].mMovableParent;
-		base_to_body = model.mFixedBodies[fbody_id].mParentTransform * model.X_base[reference_body_id];
+		reference_body_id = model.mFixedBodies[fbody_id]->mMovableParent;
+		base_to_body = model.mFixedBodies[fbody_id]->mParentTransform * model.X_base[reference_body_id];
 	} else {
 		base_to_body = model.X_base[reference_body_id];
 	}
@@ -363,7 +363,7 @@ Vector3d CalcPointVelocity (
 
 	if (model.IsFixedBodyId(body_id)) {
 		unsigned int fbody_id = body_id - model.fixed_body_discriminator;
-		reference_body_id = model.mFixedBodies[fbody_id].mMovableParent;
+		reference_body_id = model.mFixedBodies[fbody_id]->mMovableParent;
 		Vector3d base_coords = CalcBodyToBaseCoordinates (model, Q, body_id, point_position, false);
 		reference_point = CalcBaseToBodyCoordinates (model, Q, reference_body_id, base_coords, false);
 
@@ -406,7 +406,7 @@ Vector3d CalcPointAcceleration (
 
 	if (model.IsFixedBodyId(body_id)) {
 		unsigned int fbody_id = body_id - model.fixed_body_discriminator;
-		reference_body_id = model.mFixedBodies[fbody_id].mMovableParent;
+		reference_body_id = model.mFixedBodies[fbody_id]->mMovableParent;
 		Vector3d base_coords = CalcBodyToBaseCoordinates (model, Q, body_id, point_position, false);
 		reference_point = CalcBaseToBodyCoordinates (model, Q, reference_body_id, base_coords, false);
 	}

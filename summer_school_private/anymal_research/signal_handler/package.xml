@@ -5,14 +5,13 @@
   <name>signal_handler</name>
   <version>0.5.0</version>
   <description>Contains a static signal handling helper class.</description>
-  
+
   <license>BSD</license>
-  
-  <author email="pleemann@ethz.ch">Philipp Leemann</author>
-  <maintainer email="pleemann@ethz.ch">Philipp Leemann</maintainer>
-  
-  <url type="website">https://bitbucket.org/leggedrobotics/any_node</url>
+
+  <author email="pleemann@anybotics.com">Philipp Leemann</author>
+  <maintainer email="pleemann@anybotics.com">Philipp Leemann</maintainer>
+  <url>https://github.com/anybotics/any_node</url>
 
   <buildtool_depend>catkin</buildtool_depend>
-  
+
 </package>

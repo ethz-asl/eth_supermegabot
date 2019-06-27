@@ -3,9 +3,10 @@
   <name>kindr_ros</name>
   <version>0.3.0</version>
   <description>The kindr_ros package</description>
-  <maintainer email="peterfa@ethz.ch">Peter Fankhauser</maintainer>
+  <maintainer email="pfankhauser@anybotics.com">Peter Fankhauser</maintainer>
   <license>BSD</license>
-  <author email="gehrinch@ethz.ch">Christian Gehring</author>
+  <author email="cgehring@anybotics.com">Christian Gehring</author>
+  <url>https://github.com/anybotics/kindr_ros</url>
   <buildtool_depend>catkin</buildtool_depend>
   <depend>kindr</depend>
   <depend>geometry_msgs</depend>

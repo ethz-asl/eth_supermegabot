@@ -48,7 +48,7 @@ struct ANY_RBDL_DLLAPI SpatialRigidBodyInertia {
 		Izx (Izx), Izy(Izy), Izz(Izz)
 	{ }
 
-	SpatialVector operator* (const SpatialVector &mv) {
+	SpatialVector operator* (const SpatialVector &mv) const {
 		Vector3d mv_lower (mv[3], mv[4], mv[5]);
 
 		Vector3d res_upper = Vector3d (

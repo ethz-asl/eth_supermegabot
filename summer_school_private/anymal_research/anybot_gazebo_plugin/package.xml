@@ -6,14 +6,12 @@
   <version>0.6.0</version>
   <description>The anybot_gazebo_plugin package</description>
   <license>Proprietary</license>
-  
+
   <author email="bellicoso@mavt.ethz.ch">Dario Bellicoso</author>
   <maintainer email="bellicoso@mavt.ethz.ch">Dario Bellicoso</maintainer>
-  
-  <url type="website">https://bitbucket.org/leggedrobotics/any_gazebo</url>
 
   <buildtool_depend>catkin</buildtool_depend>
-  
+
   <depend>any_gazebo_msgs</depend>
   <depend>any_hector_gazebo_plugins</depend>
   <depend>any_measurements_ros</depend>
@@ -34,5 +32,5 @@
   <depend>cosmo_ros</depend>
   <depend>signal_logger</depend>
   <depend>signal_logger_ros</depend>
-  
+
 </package>

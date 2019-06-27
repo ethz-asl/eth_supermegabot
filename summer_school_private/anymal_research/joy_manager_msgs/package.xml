@@ -5,12 +5,12 @@
   <description>
     The joy_manager package
   </description>
-  <maintainer email="liisler@ethz.ch">Linus Isler</maintainer>
+  <maintainer email="lisler@anybotics.com">Linus Isler</maintainer>
   <license>Proprietary</license>
-  <author email="liisler@ethz.ch">Linus Isler</author>
-  
+  <author email="lisler@anybotics.com">Linus Isler</author>
+
   <buildtool_depend>catkin</buildtool_depend>
-  
+
   <depend>message_generation</depend>
   <depend>message_runtime</depend>
   <depend>sensor_msgs</depend>

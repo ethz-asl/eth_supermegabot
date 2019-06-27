@@ -3,7 +3,7 @@
 # ETH Zurich
 #
 # Author(s): Christian Gehring
-# email    : gehrinch@ethz.ch
+# email    : cgehring@anybotics.com
 # Date     : 1-Dec-2014
 #
 #-------------------------------------------------------------------------------
@@ -18,9 +18,9 @@ find_package(Boost REQUIRED)
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES roco
-  CATKIN_DEPENDS 
+  CATKIN_DEPENDS
     message_logger
-  DEPENDS 
+  DEPENDS
     Boost
 )
 

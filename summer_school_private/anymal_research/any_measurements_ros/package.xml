@@ -5,16 +5,14 @@
   <name>any_measurements_ros</name>
   <version>0.6.0</version>
   <description>Conversion functions between *any_measurements* and ROS msgs.</description>
-  
+
   <license>BSD</license>
-  
-  <author email="pleemann@ethz.ch">Philipp Leemann</author>
-  <maintainer email="pleemann@ethz.ch">Philipp Leemann</maintainer>
-  
-  <url type="website">https://bitbucket.org/leggedrobotics/any_common</url>
+
+  <author email="pleemann@anybotics.com">Philipp Leemann</author>
+  <maintainer email="pleemann@anybotics.com">Philipp Leemann</maintainer>
 
   <buildtool_depend>catkin</buildtool_depend>
-  
+
   <depend>any_measurements</depend>
   <depend>kindr_ros</depend>
   <depend>sensor_msgs</depend>

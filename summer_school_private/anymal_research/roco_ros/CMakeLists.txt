@@ -3,7 +3,7 @@
 # ETH Zurich
 #
 # Author(s): Gabriel Hottiger
-# email    : gabriel.hottiger@mavt.ethz.ch
+# email    : ghottiger@anybotics.com
 # Date     : Nov-2016
 #
 #-------------------------------------------------------------------------------
@@ -11,9 +11,9 @@ cmake_minimum_required (VERSION 2.8)
 project(roco_ros)
 
 # Find catkin
-find_package(catkin REQUIRED COMPONENTS 
-  message_logger 
-  roco 
+find_package(catkin REQUIRED COMPONENTS
+  message_logger
+  roco
   roscpp
 )
 
@@ -23,11 +23,11 @@ find_package(Boost REQUIRED)
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES
-  CATKIN_DEPENDS 
-    message_logger 
-    roco 
+  CATKIN_DEPENDS
+    message_logger
+    roco
     roscpp
-  DEPENDS 
+  DEPENDS
     Boost
 )
 

@@ -8,13 +8,11 @@
 
   <license>Proprietary</license>
 
-  <author email="liisler@ethz.ch">linus</author>
-  <maintainer email="liisler@ethz.ch">linus</maintainer>
-  
-  <url type="website">https://bitbucket.org/leggedrobotics/any_gazebo</url>
+  <author email="lisler@anybotics.com">linus</author>
+  <maintainer email="lisler@anybotics.com">linus</maintainer>
 
   <buildtool_depend>catkin</buildtool_depend>
-  
+
   <depend>gazebo_msgs</depend>
   <depend>qtbase5-dev</depend>
   <depend>roscpp</depend>
@@ -25,5 +23,5 @@
   <export>
 	<rviz plugin="${prefix}/plugin_description.xml"/>
   </export>
-  
+
 </package>

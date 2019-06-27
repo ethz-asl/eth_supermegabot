@@ -43,7 +43,7 @@ static void fillContactContainer(romo::ContactShPtrContainer<ConcreteDescription
     if (parentBodyId != std::numeric_limits<unsigned int>::max()) {
       if (rbdlModel.IsFixedBodyId(parentBodyId)) {
         transformFromReferenceToParent =
-            model->getRbdlModel().mFixedBodies[parentBodyId - model->getRbdlModel().fixed_body_discriminator].mParentTransform;
+            model->getRbdlModel().mFixedBodies[parentBodyId - model->getRbdlModel().fixed_body_discriminator]->mParentTransform;
       } else {
         transformFromReferenceToParent.E.setIdentity();
         transformFromReferenceToParent.r.setZero();
@@ -57,7 +57,7 @@ static void fillContactContainer(romo::ContactShPtrContainer<ConcreteDescription
     if (contactId != std::numeric_limits<unsigned int>::max()) {
       if (model->getRbdlModel().IsFixedBodyId(contactId)) {
         transformFromReferenceToContact = model->getRbdlModel().mFixedBodies[contactId
-            - model->getRbdlModel().fixed_body_discriminator].mParentTransform;
+            - model->getRbdlModel().fixed_body_discriminator]->mParentTransform;
       } else {
         transformFromReferenceToContact.E.setIdentity();
         transformFromReferenceToContact.r.setZero();

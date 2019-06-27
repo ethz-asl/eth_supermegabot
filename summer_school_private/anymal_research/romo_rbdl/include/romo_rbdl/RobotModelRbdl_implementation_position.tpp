@@ -294,9 +294,93 @@ template<typename ConcreteDescription_, typename RobotState_>
 bool RobotModelRbdl<ConcreteDescription_, RobotState_>::setPositionBodyToBodyCom(
     const Eigen::Vector3d& position,
     BodyEnum body,
-    CoordinateFrameEnum frame) const
+    CoordinateFrameEnum frame,
+    bool updateBodyInertia) const
 {
-   return this->bodyContainer_[body]->setPositionBodyToBodyCom(position, frame);
+  const std::shared_ptr<romo::RigidBody<ConcreteDescription_>>& bodyPtr = this->bodyContainer_[body];
+  if (bodyPtr->getIsFixedBody()){
+    MELO_ERROR_STREAM("[RobotModelRbdl::setPositionBodyToBodyCom] You cannot use setPositionBodyToBodyCom on a fixed body (called on body "<< bodyPtr->getName()<<"); use setPositionBodyToIndividualBodyCom instead" );
+    return false;
+  } else {
+    unsigned int bodyId = bodyPtr->getBodyId();
+    rbdlModel_->mBodies[bodyId]->AbsorbFixedChildren(false);
+
+    switch (frame) {
+      case (CoordinateFrameEnum::WORLD): {
+        rbdlModel_->mBodies[bodyId]->SetIndividualCenterOfMass(bodyPtr->getOrientationWorldToBody()*position, updateBodyInertia);
+        return true;
+      }
+      case (CoordinateFrameEnum::BASE): {
+        rbdlModel_->mBodies[bodyId]->SetIndividualCenterOfMass(rbdlModel_->X_base[rbdlModel_->rootId].E*(bodyPtr->getOrientationWorldToBody().transpose()*position), updateBodyInertia);
+        return true;
+      }
+      case (CoordinateFrameEnum::BODY): {
+        rbdlModel_->mBodies[bodyId]->SetIndividualCenterOfMass(position, updateBodyInertia);
+        return true;
+      }
+
+      default:
+        throw std::runtime_error("[RobotModelRbdl::setPositionBodyToBodyCom] Invalid frame.");
+    }
+  }
+}
+
+
+template<typename ConcreteDescription_, typename RobotState_>
+bool RobotModelRbdl<ConcreteDescription_, RobotState_>::setPositionBodyToIndividualBodyCom(
+    const Eigen::Vector3d& position,
+    BodyEnum body,
+    CoordinateFrameEnum frame,
+    bool updateBodyInertia) const
+{
+  const std::shared_ptr<romo::RigidBody<ConcreteDescription_>>& bodyPtr = this->bodyContainer_[body];
+  if (bodyPtr->getIsFixedBody()){
+    unsigned int bodyId = bodyPtr->getBodyId() - rbdlModel_->fixed_body_discriminator;
+    if (rbdlModel_->mFixedBodies[bodyId]->GetIsNulled()){
+      MELO_WARN_THROTTLE_STREAM(1.0, "[RobotModel::setPositionBodyToIndividualBodyCom] The body "<<bodyPtr->getName()<<" is a fixed body that was nulled (you called a setBodyXXXX function in the past), but you are setting it's individual CoM.");
+    }
+
+    switch (frame) {
+      case (CoordinateFrameEnum::WORLD): {
+        rbdlModel_->mBodies[bodyId]->SetIndividualCenterOfMass(bodyPtr->getOrientationWorldToBody()*position, updateBodyInertia);
+        return true;
+      }
+      case (CoordinateFrameEnum::BASE): {
+        rbdlModel_->mBodies[bodyId]->SetIndividualCenterOfMass(rbdlModel_->X_base[rbdlModel_->rootId].E*(bodyPtr->getOrientationWorldToBody().transpose()*position), updateBodyInertia);
+        return true;
+      }
+      case (CoordinateFrameEnum::BODY): {
+        rbdlModel_->mBodies[bodyId]->SetIndividualCenterOfMass(position, updateBodyInertia);
+        return true;
+      }
+
+      default:
+        throw std::runtime_error("[RobotModelRbdl::setPositionBodyToIndividualBodyCom] Invalid frame.");
+    }
+  } else {
+    unsigned int bodyId = bodyPtr->getBodyId();
+    if (rbdlModel_->mBodies[bodyId]->GetChildrenWereAbsorbed()){
+      MELO_WARN_THROTTLE_STREAM(1.0, "[RobotModel::setPositionBodyToIndividualBodyCom] The body "<<bodyPtr->getName()<<" absorbed its children (you called a setBodyXXXX function in the past), but you are setting it's individual CoM, instead of setPositionBodyToBodyCom.");
+    }
+
+    switch (frame) {
+      case (CoordinateFrameEnum::WORLD): {
+        rbdlModel_->mBodies[bodyId]->SetIndividualCenterOfMass(bodyPtr->getOrientationWorldToBody()*position, updateBodyInertia);
+        return true;
+      }
+      case (CoordinateFrameEnum::BASE): {
+        rbdlModel_->mBodies[bodyId]->SetIndividualCenterOfMass(rbdlModel_->X_base[rbdlModel_->rootId].E*(bodyPtr->getOrientationWorldToBody().transpose()*position), updateBodyInertia);
+        return true;
+      }
+      case (CoordinateFrameEnum::BODY): {
+        rbdlModel_->mBodies[bodyId]->SetIndividualCenterOfMass(position, updateBodyInertia);
+        return true;
+      }
+
+      default:
+        throw std::runtime_error("[RobotModelRbdl::setPositionBodyToIndividualBodyCom] Invalid frame.");
+    }
+  }
 }
 
 

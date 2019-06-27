@@ -201,7 +201,14 @@ class RobotModelRbdl : public romo::RobotModel<ConcreteDescription_, RobotState_
   bool setPositionBodyToBodyCom(
       const Eigen::Vector3d& position,
       BodyEnum body,
-      CoordinateFrameEnum frame) const override;
+      CoordinateFrameEnum frame,
+      bool updateBodyInertia = true) const override;
+
+  bool setPositionBodyToIndividualBodyCom(
+      const Eigen::Vector3d& position,
+      BodyEnum body,
+      CoordinateFrameEnum frame,
+      bool updateBodyInertia = true) const override;
 
   Eigen::Vector3d getPositionBaseToLimbComInBaseFrame(BranchEnum branch) const override;
 
@@ -526,7 +533,8 @@ class RobotModelRbdl : public romo::RobotModel<ConcreteDescription_, RobotState_
 
   double getBodyMass(BodyEnum body) const override;
   double getBodyMass(BranchEnum branch, BodyNodeEnum node) const override;
-  bool setBodyMass(BodyEnum body, double mass) const override;
+  bool setBodyMass(BodyEnum body, double mass, bool updateBodyInertia = true) const override;
+  bool setIndividualBodyMass(BodyEnum body, double mass, bool updateBodyInertia = true) const override;
 
   double getRootMass() const override;
 
@@ -534,10 +542,22 @@ class RobotModelRbdl : public romo::RobotModel<ConcreteDescription_, RobotState_
 
   double getTotalMass() const override;
 
+  bool setBodyInertiaProperties(BodyEnum body,
+                                const double mass,
+                                const Eigen::Vector3d& centerOfMassInBodyFrame,
+                                const Eigen::Matrix3d& inertiaAtCom,
+                                bool updateBodyInertia = true) const override;
+  bool setIndividualBodyInertiaProperties(BodyEnum body,
+                                          const double mass,
+                                          const Eigen::Vector3d& centerOfMassInBodyFrame,
+                                          const Eigen::Matrix3d& inertiaAtCom,
+                                          bool updateBodyInertia = true) const override;
+
   bool updateBodyInertia(BodyEnum body) const override;
 
   const Eigen::Matrix3d& getBodyInertiaMatrix(BodyEnum body) const override;
-  bool setBodyInertiaMatrix(BodyEnum body, const Eigen::Matrix3d& inertiaMatrix) const override;
+  bool setBodyInertiaMatrix(BodyEnum body, const Eigen::Matrix3d& inertiaMatrix, bool updateBodyInertia = true) const override;
+  bool setIndividualBodyInertiaMatrix(BodyEnum body, const Eigen::Matrix3d& inertiaMatrix, bool updateBodyInertia = true) const override;
 
   bool getGravityTerms(Eigen::VectorXd& gravity) const override;
   Eigen::VectorXd getGravityTerms() const override;

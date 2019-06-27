@@ -34,7 +34,7 @@ string get_dof_name (const SpatialVector &joint_dof) {
 }
 
 string get_body_name (const RigidBodyDynamics::Model &model, unsigned int body_id) {
-	if (model.mBodies[body_id].mIsVirtual) {
+	if (model.mBodies[body_id]->mIsVirtual) {
 		// if there is not a unique child we do not know what to do...
 		if (model.mu[body_id].size() != 1)
 			return "";
@@ -75,7 +75,7 @@ std::string print_hierarchy (const RigidBodyDynamics::Model &model, unsigned int
 	if (body_index > 0)
 		result << " [ ";
 
-	while (model.mBodies[body_index].mIsVirtual) {
+	while (model.mBodies[body_index]->mIsVirtual) {
 		if (model.mu[body_index].size() == 0) {
 			result << " end";
 			break;
@@ -103,7 +103,7 @@ std::string print_hierarchy (const RigidBodyDynamics::Model &model, unsigned int
 
 	// print fixed children
 	for (unsigned int fbody_index = 0; fbody_index < model.mFixedBodies.size(); fbody_index++) {
-		if (model.mFixedBodies[fbody_index].mMovableParent == body_index) {
+		if (model.mFixedBodies[fbody_index]->mMovableParent == body_index) {
 			for (int j = 0; j < indent + 1; j++)
 				result << "  ";
 
@@ -148,7 +148,7 @@ ANY_RBDL_DLLAPI void CalcCenterOfMass (Model &model, const Math::VectorNd &q, co
 		UpdateKinematicsCustom (model, &q, &qdot, NULL);
 
 	for (size_t i = 1; i < model.mBodies.size(); i++) {
-		model.Ic[i] = model.I[i];
+		model.Ic[i] = model.mBodies[i]->GetSpatialRigidBodyInertia();
 		model.hc[i] = model.Ic[i].toMatrix() * model.v[i];
 	}
 
@@ -198,7 +198,7 @@ ANY_RBDL_DLLAPI double CalcKineticEnergy (Model &model, const Math::VectorNd &q,
 	double result = 0.;
 
 	for (size_t i = 1; i < model.mBodies.size(); i++) {
-		result += 0.5 * model.v[i].transpose() * (model.I[i] * model.v[i]);
+		result += 0.5 * model.v[i].transpose() * (model.mBodies[i]->GetSpatialRigidBodyInertia() * model.v[i]);
 	}
 	return result;
 }

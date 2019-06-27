@@ -50,7 +50,6 @@ TEST_F(ModelFixture, TestInit) {
 	EXPECT_EQ (1u, model->d.size());
 	EXPECT_EQ (1u, model->u.size());
 	EXPECT_EQ (1u, model->Ic.size());
-	EXPECT_EQ (1u, model->I.size());
 
 	EXPECT_EQ (1u, model->X_lambda.size());
 	EXPECT_EQ (1u, model->X_base.size());
@@ -82,7 +81,6 @@ TEST_F(ModelFixture, TestAddBodyDimensions) {
 	EXPECT_EQ (2u, model->d.size());
 	EXPECT_EQ (2u, model->u.size());
 	EXPECT_EQ (2u, model->Ic.size());
-	EXPECT_EQ (2u, model->I.size());
 
 	SpatialVector spatial_zero;
 	spatial_zero.setZero();
@@ -451,15 +449,15 @@ TEST ( ModelTests, ModelAppendFixedToFixedBody ) {
 
 	EXPECT_EQ (movable_body + 1, appended_body_id);
 	EXPECT_EQ (movable_body, model.lambda[appended_body_id]);
-	EXPECT_EQ (movable_mass + fixed_mass * 2., model.mBodies[movable_body].mMass);
+	EXPECT_EQ (movable_mass + fixed_mass * 2., model.mBodies[movable_body]->GetMass());
 
-	EXPECT_EQ (movable_body, model.mFixedBodies[fixed_body_id - model.fixed_body_discriminator].mMovableParent);
-	EXPECT_EQ (movable_body, model.mFixedBodies[fixed_body_2_id - model.fixed_body_discriminator].mMovableParent);
+	EXPECT_EQ (movable_body, model.mFixedBodies[fixed_body_id - model.fixed_body_discriminator]->mMovableParent);
+	EXPECT_EQ (movable_body, model.mFixedBodies[fixed_body_2_id - model.fixed_body_discriminator]->mMovableParent);
 
 	double new_mass = 3.5;
 	Vector3d new_com = (1. / new_mass) * (movable_mass * movable_com + fixed_mass * (fixed_com + fixed_displacement) + fixed_mass * (fixed_com + fixed_displacement * 2.));
 
-	KINDR_ASSERT_DOUBLE_MX_EQ_ABS_REL (new_com, model.mBodies[movable_body].mCenterOfMass, TEST_PREC, TEST_PREC, "");
+	KINDR_ASSERT_DOUBLE_MX_EQ_ABS_REL (new_com, model.mBodies[movable_body]->GetCenterOfMass(), TEST_PREC, TEST_PREC, "");
 }
 
 // Adds a fixed body to another fixed body.
@@ -488,15 +486,15 @@ TEST ( ModelTests, ModelAppendFixedToFixedBodyHumanReadable ) {
 
 	EXPECT_EQ (movable_body + 1, appended_body_id);
 	EXPECT_EQ (movable_body, model.lambda[appended_body_id]);
-	EXPECT_EQ (movable_mass + fixed_mass * 2., model.mBodies[movable_body].mMass);
+	EXPECT_EQ (movable_mass + fixed_mass * 2., model.mBodies[movable_body]->GetMass());
 
-	EXPECT_EQ (movable_body, model.mFixedBodies[fixed_body_id - model.fixed_body_discriminator].mMovableParent);
-	EXPECT_EQ (movable_body, model.mFixedBodies[fixed_body_2_id - model.fixed_body_discriminator].mMovableParent);
+	EXPECT_EQ (movable_body, model.mFixedBodies[fixed_body_id - model.fixed_body_discriminator]->mMovableParent);
+	EXPECT_EQ (movable_body, model.mFixedBodies[fixed_body_2_id - model.fixed_body_discriminator]->mMovableParent);
 
 	double new_mass = movable_mass + fixed_mass * 2.;
 	Vector3d new_com = (1. / new_mass) * (movable_mass * movable_com + fixed_mass * (fixed_com + fixed_displacement) + fixed_mass * (fixed_com + fixed_displacement * 2.));
 
-	KINDR_ASSERT_DOUBLE_MX_EQ_ABS_REL (new_com, model.mBodies[movable_body].mCenterOfMass, TEST_PREC, TEST_PREC, "");
+	KINDR_ASSERT_DOUBLE_MX_EQ_ABS_REL (new_com, model.mBodies[movable_body]->GetCenterOfMass(), TEST_PREC, TEST_PREC, "");
 }
 
 

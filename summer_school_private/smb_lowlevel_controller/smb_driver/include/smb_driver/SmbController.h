@@ -150,8 +150,8 @@ private:
 
     bool setModeImpl(int mod, int motor);
 
-    const double config_rps_to_cmd_ = 23.873; //The motor controller takes a command as +/-1000, relating to the Max RPM set in the motor controller configuration
-    //This value was calculated with Max RPM set to 400 RPM
+    const double config_rps_to_cmd_ = 47.75; //The motor controller takes a command as +/-1000, relating to the Max RPM set in the motor controller configuration
+    //This value was calculated with Max RPM set to 200 RPM
     //c = 1000 / (MAX_RPM / 60 sec/min * 2pi rad/rot)
 
     std::string port_;

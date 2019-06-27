@@ -388,15 +388,33 @@ class RobotModel {
     BodyNodeEnum toNode,
     CoordinateFrameEnum frame) const = 0;
 
-  /*! Set the position vector of the center of mass of a body w.r.t. this body expressed in a given frame.
-   * @param body    enum representing a body in the kinematic chain. This is the origin of the position vector.
-   * @param frame   the frame in which the position vector should be expressed.
+  /*! Set the position vector of the center of mass of a movable body w.r.t. this body expressed in a given frame.
+   *  This body cannot be a fixed body. Upon calling, any fixed children of the movable body will have their mass properties set to zero.
+   * @param position           the new position of the individual body CoM
+   * @param body               enum representing a body in the kinematic chain. This is the origin of the position vector.
+   * @param frame              the frame in which the position vector should be expressed.
+   * @param updateBodyInertia  whether to compute the new movable body inertia properties
    * @returns true if successful, false otherwise
    */
   virtual bool setPositionBodyToBodyCom(
       const Eigen::Vector3d& position,
       BodyEnum body,
-      CoordinateFrameEnum frame) const = 0;
+      CoordinateFrameEnum frame,
+      bool updateBodyInertia = true) const = 0;
+
+  /*! Set the position vector of the center of mass of an individual body w.r.t. this body expressed in a given frame.
+   *  This body can be either a movable or fixed body. Any fixed children of this body are not affected.
+   * @param position           the new position of the individual body CoM
+   * @param body               enum representing a body in the kinematic chain. This is the origin of the position vector.
+   * @param frame              the frame in which the position vector should be expressed.
+   * @param updateBodyInertia  whether to compute the new movable body inertia properties
+   * @returns true if successful, false otherwise
+   */
+  virtual bool setPositionBodyToIndividualBodyCom(
+      const Eigen::Vector3d& position,
+      BodyEnum body,
+      CoordinateFrameEnum frame,
+      bool updateBodyInertia = true) const = 0;
 
   /*! Get the total center of mass of a branch
    * @param branch    the target branch
@@ -1188,12 +1206,23 @@ class RobotModel {
    */
   virtual double getBodyMass(BranchEnum branch, BodyNodeEnum node) const = 0;
 
-  /*! Set the mass of a body.
-   * @param body      the target body enum
-   * @param mass      the mass of the body
+  /*! Set the mass of a movable body.
+   * This body must be movable; fixed children of the body have their mass properties set to zero.
+   * @param body               the target body enum
+   * @param mass               the mass of the body
+   * @param updateBodyInertia  whether to compute the new movable body inertia properties
    * @returns true if successful
    */
-  virtual bool setBodyMass(BodyEnum body, double mass) const = 0;
+  virtual bool setBodyMass(BodyEnum body, double mass, bool updateBodyInertia = true) const = 0;
+
+  /*! Set the mass of a body.
+   * This body can be movable or fixed; fixed children of this body are not affected
+   * @param body               the target body enum
+   * @param mass               the mass of the body
+   * @param updateBodyInertia  whether to compute the new movable body inertia properties
+   * @returns true if successful
+   */
+  virtual bool setIndividualBodyMass(BodyEnum body, double mass, bool updateBodyInertia = true) const = 0;
 
   /*! Get mass of the root body. This includes the mass of all the fixed bodies attached to it.
    * @returns the mass of the main body
@@ -1224,12 +1253,52 @@ class RobotModel {
   virtual const Eigen::Matrix3d& getBodyInertiaMatrix(BodyEnum body) const = 0;
 
   /*! Set the inertia tensor of a body, including the inertias of all the fixed bodies attached to it.
-   * @param body      the target body enum
-   * @param inertiaMatrix the inertia tensor of the body
+   *  The body must be a movable body. Fixed bodies attached to it will have their mass properties set to zero.
+   * @param body               the target body enum
+   * @param inertiaMatrix      the inertia tensor of the body
+   * @param updateBodyInertia  whether to compute the new movable body inertia properties
    * @returns         true if successful
    */
-  virtual bool setBodyInertiaMatrix(BodyEnum body, const Eigen::Matrix3d& inertiaMatrix) const = 0;
+  virtual bool setBodyInertiaMatrix(BodyEnum body, const Eigen::Matrix3d& inertiaMatrix, bool updateBodyInertia = true) const = 0;
 
+  /*! Set the inertia tensor of a body, without the fixed bodies attached to it.
+   *  The body can be either movable or fixed. Fixed children are not affected.
+   * @param body               the target body enum
+   * @param inertiaMatrix      the inertia tensor of the body
+   * @param updateBodyInertia  whether to compute the new movable body inertia properties
+   * @returns         true if successful
+   */
+  virtual bool setIndividualBodyInertiaMatrix(BodyEnum body, const Eigen::Matrix3d& inertiaMatrix, bool updateBodyInertia = true) const = 0;
+
+  /*! Set the inertia properties of a body, including the inertias of all the fixed bodies attached to it, and updates the mass properties.
+   *  The body must be a movable body. Fixed bodies attached to it will have their mass properties set to zero.
+   * @param body                     the target body enum
+   * @param mass                     the mass of the body
+   * @param centerOfMassInBodyFrame  the center of mass in the body frame
+   * @param inertiaMatrix            the inertia tensor of the body
+   * @param updateBodyInertia        whether to compute the new movable body inertia properties
+   * @returns         true if successful
+   */
+  virtual bool setBodyInertiaProperties(BodyEnum body,
+                                        const double mass,
+                                        const Eigen::Vector3d& centerOfMassInBodyFrame,
+                                        const Eigen::Matrix3d& inertiaAtCom,
+                                        bool updateBodyInertia = true) const = 0;
+
+  /*! Set the inertia properties of a body, without the fixed bodies attached to it.
+   *  The body can be either movable or fixed. Fixed children are not affected.
+   * @param body                     the target body enum
+   * @param mass                     the mass of the body
+   * @param centerOfMassInBodyFrame  the center of mass in the body frame
+   * @param inertiaMatrix            the inertia tensor of the body
+   * @param updateBodyInertia        whether to compute the new movable body inertia properties
+   * @returns         true if successful
+   */
+  virtual bool setIndividualBodyInertiaProperties(BodyEnum body,
+                                                  const double mass,
+                                                  const Eigen::Vector3d& centerOfMassInBodyFrame,
+                                                  const Eigen::Matrix3d& inertiaAtCom,
+                                                  bool updateBodyInertia = true) const = 0;
 
   /*! Get the gravity terms of the equations of motion. Only the nonzero entries are computed.
    * @param gravity    the output of the function. This must be initialized to a zero Dof x 1 vector

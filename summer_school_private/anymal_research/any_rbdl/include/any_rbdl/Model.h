@@ -17,6 +17,7 @@
 #include <cstring>
 #include <unordered_set>
 #include <set>
+#include <memory>
 
 #include "any_rbdl/Logging.h"
 #include "any_rbdl/Joint.h"
@@ -213,7 +214,6 @@ struct ANY_RBDL_DLLAPI Model {
 	/// \brief Internal forces on the body (used only InverseDynamics())
 	std::vector<Math::SpatialVector> f;
 	/// \brief The spatial inertia of body i (used only in CompositeRigidBodyAlgorithm())
-	std::vector<Math::SpatialRigidBodyInertia> I;
 	std::vector<Math::SpatialRigidBodyInertia> Ic;
 	std::vector<Math::SpatialVector> hc;
 
@@ -230,7 +230,7 @@ struct ANY_RBDL_DLLAPI Model {
 	std::vector<Math::SpatialTransform> X_base;
 
 	/// \brief All bodies that are attached to a body via a fixed joint.
-	std::vector<FixedBody> mFixedBodies;
+	std::vector<std::unique_ptr<FixedBody>> mFixedBodies;
 	/** \brief Value that is used to discriminate between fixed and movable
 	 * bodies.
 	 *
@@ -252,7 +252,7 @@ struct ANY_RBDL_DLLAPI Model {
 	 * ... <br>
 	 * mBodies[N_B] - N_Bth moveable body <br>
 	 */
-	std::vector<Body> mBodies;
+	std::vector< std::unique_ptr<Body> > mBodies;
 
 	/// \brief Human readable names for the bodies
 	std::map<std::string, unsigned int> mBodyNameMap;
@@ -415,12 +415,12 @@ struct ANY_RBDL_DLLAPI Model {
 	 */
 	unsigned int GetParentBodyId (unsigned int id) {
 		if (id >= fixed_body_discriminator) {
-			return mFixedBodies[id - fixed_body_discriminator].mMovableParent;
+			return mFixedBodies[id - fixed_body_discriminator]->mMovableParent;
 		}
 
 		unsigned int parent_id = lambda[id];
 
-		while (mBodies[parent_id].mIsVirtual) {
+		while (mBodies[parent_id]->mIsVirtual) {
 			parent_id = lambda[parent_id];
 		}
 
@@ -441,13 +441,13 @@ struct ANY_RBDL_DLLAPI Model {
 	 */
 	Math::SpatialTransform GetJointFrame (unsigned int id) {
 		if (id >= fixed_body_discriminator) {
-			return mFixedBodies[id - fixed_body_discriminator].mParentTransform;
+			return mFixedBodies[id - fixed_body_discriminator]->mParentTransform;
 		}
 
 		unsigned int child_id = id;
 		unsigned int parent_id = lambda[id];
-		if (mBodies[parent_id].mIsVirtual) {
-			while (mBodies[parent_id].mIsVirtual) {
+		if (mBodies[parent_id]->mIsVirtual) {
+			while (mBodies[parent_id]->mIsVirtual) {
 				child_id = parent_id;
 				parent_id = lambda[child_id];
 			}
@@ -466,8 +466,8 @@ struct ANY_RBDL_DLLAPI Model {
 
 		unsigned int child_id = id;
 		unsigned int parent_id = lambda[id];
-		if (mBodies[parent_id].mIsVirtual) {
-			while (mBodies[parent_id].mIsVirtual) {
+		if (mBodies[parent_id]->mIsVirtual) {
+			while (mBodies[parent_id]->mIsVirtual) {
 				child_id = parent_id;
 				parent_id = lambda[child_id];
 			}
@@ -492,24 +492,6 @@ struct ANY_RBDL_DLLAPI Model {
 		Q[q_index + 2] = quat[2];
 		Q[multdof3_w_index[i]] = quat[3];
 	}
-
-	/** \brief Returns true if the inertia properties are successfully updated
-	 *
-	 * \note Call this function after you changed the inertia properties of
-	 *  a body to take effect in the model
-	 *
-	 * \returns Returns true if the inertia properties are successfully updated
-	 */
-	bool updateInertia(unsigned int i);
-
-	/** \brief Returns true if the all inertia properties are successfully updated
-	 *
-	 * \note Call this function after you changed the inertia properties of
-	 *  a body to take effect in the model
-	 *
-	 * \returns Returns true if the inertia properties are successfully updated
-	 */
-	bool updateAllInertias();
 
 };
 

@@ -5,14 +5,14 @@
   <description>
     The joy_manager package
   </description>
-  <maintainer email="gehrinch@ethz.ch">Christian Gehring</maintainer>
+  <maintainer email="cgehring@anybotics.com">Christian Gehring</maintainer>
   <license>Proprietary</license>
-  <author email="liisler@ethz.ch">Linus Isler</author>
-  
+  <author email="lisler@anybotics.com">Linus Isler</author>
+
   <buildtool_depend>catkin</buildtool_depend>
-  
+
   <build_depend>boost</build_depend>
-  
+
   <depend>any_measurements</depend>
   <depend>any_measurements_ros</depend>
   <depend>any_node</depend>

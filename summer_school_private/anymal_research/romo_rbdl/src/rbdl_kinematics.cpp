@@ -44,7 +44,7 @@ void CalcSpatialJacobianWorldToPointInWorldFrame (
 
   if (model.IsFixedBodyId(body_id)) {
     unsigned int fbody_id = body_id - model.fixed_body_discriminator;
-    reference_body_id = model.mFixedBodies[fbody_id].mMovableParent;
+    reference_body_id = model.mFixedBodies[fbody_id]->mMovableParent;
   }
 
   unsigned int j = reference_body_id;
@@ -95,7 +95,7 @@ void CalcTranslationalJacobianWorldToPointInWorldFrame (
 
   if (model.IsFixedBodyId(body_id)) {
     unsigned int fbody_id = body_id - model.fixed_body_discriminator;
-    reference_body_id = model.mFixedBodies[fbody_id].mMovableParent;
+    reference_body_id = model.mFixedBodies[fbody_id]->mMovableParent;
   }
 
   unsigned int j = reference_body_id;
@@ -148,7 +148,7 @@ void CalcJacobianFloatingBaseToPointOnBodyInWorldFrame(
 
   if (model.IsFixedBodyId(body_id)) {
     unsigned int fbody_id = body_id - model.fixed_body_discriminator;
-    reference_body_id = model.mFixedBodies[fbody_id].mMovableParent;
+    reference_body_id = model.mFixedBodies[fbody_id]->mMovableParent;
   }
 
   unsigned int j = reference_body_id;
@@ -230,7 +230,7 @@ void CalcRotationJacobianInWorldFrame (
 
   if (model.IsFixedBodyId(body_id)) {
     unsigned int fbody_id = body_id - model.fixed_body_discriminator;
-    reference_body_id = model.mFixedBodies[fbody_id].mMovableParent;
+    reference_body_id = model.mFixedBodies[fbody_id]->mMovableParent;
   }
 
   unsigned int j = reference_body_id;
@@ -295,7 +295,7 @@ bool CalcTranslationalHessianWorldToPointInWorldFrameForState(Model& model,
   unsigned int reference_body_id = body_id;
   if (model.IsFixedBodyId(body_id)) {
    unsigned int fbody_id = body_id - model.fixed_body_discriminator;
-   reference_body_id = model.mFixedBodies[fbody_id].mMovableParent;
+   reference_body_id = model.mFixedBodies[fbody_id]->mMovableParent;
   }
   unsigned int i = reference_body_id;
 
@@ -446,7 +446,7 @@ bool CalcRotationalHessianWorldToPointInWorldFrameForState(Model& model,
   unsigned int reference_body_id = body_id;
   if (model.IsFixedBodyId(body_id)) {
    unsigned int fbody_id = body_id - model.fixed_body_discriminator;
-   reference_body_id = model.mFixedBodies[fbody_id].mMovableParent;
+   reference_body_id = model.mFixedBodies[fbody_id]->mMovableParent;
   }
   unsigned int i = reference_body_id;
 
@@ -578,7 +578,7 @@ bool CalcHessianSpatialWorldToPointInWorldFrameForState(Model& model, const Vect
   unsigned int reference_body_id = body_id;
   if (model.IsFixedBodyId(body_id)) {
     unsigned int fbody_id = body_id - model.fixed_body_discriminator;
-    reference_body_id = model.mFixedBodies[fbody_id].mMovableParent;
+    reference_body_id = model.mFixedBodies[fbody_id]->mMovableParent;
   }
   unsigned int i = reference_body_id;
 
@@ -733,8 +733,8 @@ Math::Vector3d CalcPositionWorldToCoMInWorldFrame(Model& model,
   Math::Vector3d position = Math::Vector3d::Zero();
   double totalMass = 0.0;
   for (unsigned int i=0; i<model.mBodies.size(); i++) {
-    position += RigidBodyDynamics::CalcBodyToBaseCoordinates(model, Q, i, model.mBodies[i].mCenterOfMass, update_kinematics)*model.mBodies[i].mMass;
-    totalMass += model.mBodies[i].mMass;
+    position += RigidBodyDynamics::CalcBodyToBaseCoordinates(model, Q, i, model.mBodies[i]->GetCenterOfMass(), update_kinematics)*model.mBodies[i]->GetMass();
+    totalMass += model.mBodies[i]->GetMass();
   }
   position /= totalMass;
   return position;
@@ -753,13 +753,13 @@ void CalcTranslationalJacobianWorldToCoMInWorldFrame(Model& model,
 
   double totalMass = 0.0;
   for (unsigned int i=0; i<model.mBodies.size(); i++) {
-    totalMass += model.mBodies[i].mMass;
+    totalMass += model.mBodies[i]->GetMass();
   }
 
   for (unsigned int i=0; i<model.mBodies.size(); i++) {
     bodyJacobian.setZero();
-    RigidBodyDynamics::CalcPointJacobian(model, Q, i, model.mBodies[i].mCenterOfMass, bodyJacobian, update_kinematics);
-    G += bodyJacobian*(model.mBodies[i].mMass/totalMass);
+    RigidBodyDynamics::CalcPointJacobian(model, Q, i, model.mBodies[i]->GetCenterOfMass(), bodyJacobian, update_kinematics);
+    G += bodyJacobian*(model.mBodies[i]->GetMass()/totalMass);
   }
 }
 
@@ -780,18 +780,18 @@ bool CalcTranslationalHessianWorldToCoMInWorldFrameForState(
 
   double totalMass = 0.0;
   for (unsigned int i=0; i<model.mBodies.size(); i++) {
-    totalMass += model.mBodies[i].mMass;
+    totalMass += model.mBodies[i]->GetMass();
   }
 
   for (unsigned int i=0; i<model.mBodies.size(); i++) {
     bodyHessian.setZero();
     if (!RigidBodyDynamics::CalcTranslationalHessianWorldToPointInWorldFrameForState(
-        model, Q, q_j, i, model.mBodies[i].mCenterOfMass, G, bodyHessian,
+        model, Q, q_j, i, model.mBodies[i]->GetCenterOfMass(), G, bodyHessian,
         update_kinematics)) {
       // hessian is zero
       continue;
     }
-    H += bodyHessian*(model.mBodies[i].mMass/totalMass);
+    H += bodyHessian*(model.mBodies[i]->GetMass()/totalMass);
   }
   return true;
 }
@@ -811,16 +811,16 @@ bool CalcTranslationalHessianWorldToCoMInWorldFrameForState(
 
   double totalMass = 0.0;
   for (unsigned int i=0; i<model.mBodies.size(); i++) {
-    totalMass += model.mBodies[i].mMass;
+    totalMass += model.mBodies[i]->GetMass();
   }
 
   for (unsigned int i=0; i<model.mBodies.size(); i++) {
     bodyHessian.setZero();
-    if (!RigidBodyDynamics::CalcTranslationalHessianWorldToPointInWorldFrameForState(model, Q, q_j, i, model.mBodies[i].mCenterOfMass, bodyHessian, update_kinematics)) {
+    if (!RigidBodyDynamics::CalcTranslationalHessianWorldToPointInWorldFrameForState(model, Q, q_j, i, model.mBodies[i]->GetCenterOfMass(), bodyHessian, update_kinematics)) {
       // hessian is zero
       continue;
     }
-    H += bodyHessian*(model.mBodies[i].mMass/totalMass);
+    H += bodyHessian*(model.mBodies[i]->GetMass()/totalMass);
   }
   return true;
 }
@@ -850,7 +850,7 @@ Vector3d CalcBodyAngularVelocityInWorldFrame(
 
   if (model.IsFixedBodyId(body_id)) {
     unsigned int fbody_id = body_id - model.fixed_body_discriminator;
-    reference_body_id = model.mFixedBodies[fbody_id].mMovableParent;
+    reference_body_id = model.mFixedBodies[fbody_id]->mMovableParent;
     Vector3d base_coords = CalcBodyToBaseCoordinates (model, Q, body_id, Vector3d::Zero(), false);
     reference_point = CalcBaseToBodyCoordinates (model, Q, reference_body_id, base_coords, false);
   }

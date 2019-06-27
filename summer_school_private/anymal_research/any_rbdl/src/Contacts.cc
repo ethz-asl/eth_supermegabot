@@ -540,8 +540,8 @@ void ForwardDynamicsApplyConstraintForces (
 	unsigned int i = 0;
 
 	for (i = 1; i < model.mBodies.size(); i++) {
-		model.IA[i] = model.I[i].toMatrix();;
-		model.pA[i] = crossf(model.v[i],model.I[i] * model.v[i]);
+		model.IA[i] = model.mBodies[i]->GetSpatialRigidBodyInertia().toMatrix();;
+		model.pA[i] = crossf(model.v[i],model.mBodies[i]->GetSpatialRigidBodyInertia() * model.v[i]);
 
 		if (CS.f_ext_constraints[i] != SpatialVectorZero) {
 			LOG << "External force (" << i << ") = " << model.X_base[i].toMatrixAdjoint() * CS.f_ext_constraints[i] << std::endl;
@@ -774,7 +774,7 @@ void ForwardDynamicsContactsKokkevis (
 		unsigned int movable_body_id = body_id;
 		if (model.IsFixedBodyId(body_id)) {
 			unsigned int fbody_id = body_id - model.fixed_body_discriminator;
-			movable_body_id = model.mFixedBodies[fbody_id].mMovableParent;
+			movable_body_id = model.mFixedBodies[fbody_id]->mMovableParent;
 		}
 
 		// assemble the test force
@@ -850,7 +850,7 @@ void ForwardDynamicsContactsKokkevis (
 
 		if (model.IsFixedBodyId(body_id)) {
 			unsigned int fbody_id = body_id - model.fixed_body_discriminator;
-			movable_body_id = model.mFixedBodies[fbody_id].mMovableParent;
+			movable_body_id = model.mFixedBodies[fbody_id]->mMovableParent;
 		}
 
 		CS.f_ext_constraints[movable_body_id] -= CS.f_t[ci] * CS.force[ci];

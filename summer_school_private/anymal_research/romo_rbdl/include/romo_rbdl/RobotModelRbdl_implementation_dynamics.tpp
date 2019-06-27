@@ -38,8 +38,38 @@ double RobotModelRbdl<ConcreteDescription_, RobotState_>::getBodyMass(BranchEnum
 
 
 template<typename ConcreteDescription_, typename RobotState_>
-bool RobotModelRbdl<ConcreteDescription_, RobotState_>::setBodyMass(BodyEnum body, const double mass) const {
-  return this->bodyContainer_[body]->setMass(mass);
+bool RobotModelRbdl<ConcreteDescription_, RobotState_>::setBodyMass(BodyEnum body, const double mass, bool updateBodyInertia) const {
+  const std::shared_ptr<romo::RigidBody<ConcreteDescription_>>& bodyPtr = this->bodyContainer_[body];
+  if (bodyPtr->getIsFixedBody()){
+    MELO_ERROR_STREAM("[RobotModel::setBodyMass] You cannot use setBodyMass on a fixed body (called on body "<< bodyPtr->getName()<<"); use setIndividualBodyMass instead" );
+    return false;
+  } else {
+    unsigned int bodyId = bodyPtr->getBodyId();
+    rbdlModel_->mBodies[bodyId]->AbsorbFixedChildren(false);
+    rbdlModel_->mBodies[bodyId]->SetIndividualMass(mass, updateBodyInertia);
+    return true;
+  }
+}
+
+
+template<typename ConcreteDescription_, typename RobotState_>
+bool RobotModelRbdl<ConcreteDescription_, RobotState_>::setIndividualBodyMass(BodyEnum body, double mass, bool updateBodyInertia) const{
+  const std::shared_ptr<romo::RigidBody<ConcreteDescription_>>& bodyPtr = this->bodyContainer_[body];
+  if (bodyPtr->getIsFixedBody()){
+    unsigned int bodyId = bodyPtr->getBodyId() - rbdlModel_->fixed_body_discriminator;
+    if (rbdlModel_->mFixedBodies[bodyId]->GetIsNulled()){
+      MELO_WARN_THROTTLE_STREAM(1.0, "[RobotModel::setIndividualBodyMass] The body "<<bodyPtr->getName()<<" is a fixed body that was nulled (you called a setBodyXXXX function in the past), but you are setting it's individual mass.");
+    }
+    rbdlModel_->mFixedBodies[bodyId]->SetIndividualMass(mass, updateBodyInertia);
+    return true;
+  } else {
+    unsigned int bodyId = bodyPtr->getBodyId();
+    if (rbdlModel_->mBodies[bodyId]->GetChildrenWereAbsorbed()){
+      MELO_WARN_THROTTLE_STREAM(1.0, "[RobotModel::setIndividualBodyMass] The body "<<bodyPtr->getName()<<" absorbed its children (you called a setBodyXXXX function in the past), but you are setting it's individual mass, instead of setBodyMass.");
+    }
+    rbdlModel_->mBodies[bodyId]->SetIndividualMass(mass, updateBodyInertia);
+    return true;
+  }
 }
 
 
@@ -74,8 +104,53 @@ double RobotModelRbdl<ConcreteDescription_, RobotState_>::getTotalMass() const {
 
 
 template<typename ConcreteDescription_, typename RobotState_>
+bool RobotModelRbdl<ConcreteDescription_, RobotState_>::setBodyInertiaProperties(BodyEnum body, const double mass, const Eigen::Vector3d& centerOfMassInBodyFrame, const Eigen::Matrix3d& inertiaAtCom, bool updateBodyInertia) const{
+  const std::shared_ptr<romo::RigidBody<ConcreteDescription_>>& bodyPtr = this->bodyContainer_[body];
+  if (bodyPtr->getIsFixedBody()){
+    MELO_ERROR_STREAM("[RobotModel::setBodyInertiaProperties] You cannot use setBodyInertiaProperties on a fixed body (called on body "<< bodyPtr->getName()<<"); use setIndividualBodyInertiaProperties instead" );
+    return false;
+  } else {
+    unsigned int bodyId = bodyPtr->getBodyId();
+    rbdlModel_->mBodies[bodyId]->AbsorbFixedChildren(false);
+    rbdlModel_->mBodies[bodyId]->SetIndividualInertialProperties(mass, centerOfMassInBodyFrame,inertiaAtCom, updateBodyInertia);
+    return true;
+  }
+}
+
+
+template<typename ConcreteDescription_, typename RobotState_>
+bool RobotModelRbdl<ConcreteDescription_, RobotState_>::setIndividualBodyInertiaProperties(BodyEnum body, const double mass, const Eigen::Vector3d& centerOfMassInBodyFrame, const Eigen::Matrix3d& inertiaAtCom, bool updateBodyInertia ) const{
+  const std::shared_ptr<romo::RigidBody<ConcreteDescription_>>& bodyPtr = this->bodyContainer_[body];
+  if (bodyPtr->getIsFixedBody()){
+    unsigned int bodyId = bodyPtr->getBodyId() - rbdlModel_->fixed_body_discriminator;
+    if (rbdlModel_->mFixedBodies[bodyId]->GetIsNulled()){
+      MELO_WARN_THROTTLE_STREAM(1.0, "[RobotModel::setIndividualBodyInertiaProperties] The body "<<bodyPtr->getName()<<" is a fixed body that was nulled (you called a setBodyXXXX function in the past), but you are setting it's individual inertial properties.");
+    }
+    rbdlModel_->mFixedBodies[bodyId]->SetIndividualInertialProperties(mass, centerOfMassInBodyFrame,inertiaAtCom, updateBodyInertia);
+    return true;
+  } else {
+    unsigned int bodyId = bodyPtr->getBodyId();
+    if (rbdlModel_->mBodies[bodyId]->GetChildrenWereAbsorbed()){
+      MELO_WARN_THROTTLE_STREAM(1.0, "[RobotModel::setIndividualBodyInertiaProperties] The body "<<bodyPtr->getName()<<" absorbed its children (you called a setBodyXXXX function in the past), but you are setting it's individual inertia properties, instead of setBodyInertiaProperties.");
+    }
+    rbdlModel_->mBodies[bodyId]->SetIndividualInertialProperties(mass, centerOfMassInBodyFrame,inertiaAtCom, updateBodyInertia);
+    return true;
+  }
+}
+
+
+template<typename ConcreteDescription_, typename RobotState_>
 bool RobotModelRbdl<ConcreteDescription_, RobotState_>::updateBodyInertia(BodyEnum body) const {
-  return this->bodyContainer_[body]->updateInertiaProperties();
+  const std::shared_ptr<romo::RigidBody<ConcreteDescription_>>& bodyPtr = this->bodyContainer_[body];
+  if (bodyPtr->getIsFixedBody()){
+    unsigned int bodyId = bodyPtr->getBodyId() - rbdlModel_->fixed_body_discriminator;
+    rbdlModel_->mFixedBodies[bodyId]->UpdateInertialProperties();;
+    return true;
+  } else {
+    unsigned int bodyId = bodyPtr->getBodyId();
+    rbdlModel_->mBodies[bodyId]->UpdateInertialProperties();
+    return true;
+  }
 }
 
 
@@ -88,8 +163,38 @@ const Eigen::Matrix3d& RobotModelRbdl<ConcreteDescription_, RobotState_>::getBod
 
 
 template<typename ConcreteDescription_, typename RobotState_>
-bool RobotModelRbdl<ConcreteDescription_, RobotState_>::setBodyInertiaMatrix(BodyEnum body, const Eigen::Matrix3d& inertiaMatrix) const {
-  return this->bodyContainer_[body]->setInertiaMatrix(inertiaMatrix);
+bool RobotModelRbdl<ConcreteDescription_, RobotState_>::setBodyInertiaMatrix(BodyEnum body, const Eigen::Matrix3d& inertiaMatrix, bool updateBodyInertia) const {
+  const std::shared_ptr<romo::RigidBody<ConcreteDescription_>>& bodyPtr = this->bodyContainer_[body];
+  if (bodyPtr->getIsFixedBody()){
+    MELO_ERROR_STREAM("[RobotModel::setBodyInertiaMatrix] You cannot use setBodyInertiaMatrix on a fixed body (called on body "<< bodyPtr->getName()<<"); use setIndividualBodyInertiaMatrix instead" );
+    return false;
+  } else {
+    unsigned int bodyId = bodyPtr->getBodyId();
+    rbdlModel_->mBodies[bodyId]->AbsorbFixedChildren(false);
+    rbdlModel_->mBodies[bodyId]->SetIndividualInertia(inertiaMatrix, updateBodyInertia);
+    return true;
+  }
+}
+
+
+template<typename ConcreteDescription_, typename RobotState_>
+bool RobotModelRbdl<ConcreteDescription_, RobotState_>::setIndividualBodyInertiaMatrix(BodyEnum body, const Eigen::Matrix3d& inertiaMatrix, bool updateBodyInertia) const {
+  const std::shared_ptr<romo::RigidBody<ConcreteDescription_>>& bodyPtr = this->bodyContainer_[body];
+  if (bodyPtr->getIsFixedBody()){
+    unsigned int bodyId = bodyPtr->getBodyId() - rbdlModel_->fixed_body_discriminator;
+    if (rbdlModel_->mFixedBodies[bodyId]->GetIsNulled()){
+      MELO_WARN_THROTTLE_STREAM(1.0, "[RobotModel::setIndividualBodyInertiaMatrix] The body "<<bodyPtr->getName()<<" is a fixed body that was nulled (you called a setBodyXXXX function in the past), but you are setting it's individual inertia.");
+    }
+    rbdlModel_->mFixedBodies[bodyId]->SetIndividualInertia(inertiaMatrix, updateBodyInertia);
+    return true;
+  } else {
+    unsigned int bodyId = bodyPtr->getBodyId();
+    if (rbdlModel_->mBodies[bodyId]->GetChildrenWereAbsorbed()){
+      MELO_WARN_THROTTLE_STREAM(1.0, "[RobotModel::setIndividualBodyInertiaMatrix] The body "<<bodyPtr->getName()<<" absorbed its children (you called a setBodyXXXX function in the past), but you are setting it's individual inertia, instead of setBodyInertiaMatrix.");
+    }
+    rbdlModel_->mBodies[bodyId]->SetIndividualInertia(inertiaMatrix, updateBodyInertia);
+    return true;
+  }
 }
 
 
@@ -238,9 +343,8 @@ bool RobotModelRbdl<ConcreteDescription_, RobotState_>::getJointGravityTermsFrom
       continue;
     }
 
-    body->setMass(dynamicParams(numParametersPerLink*linkId + 0));
-    body->setPositionBodyToBodyCom(dynamicParams.segment<3>(numParametersPerLink*linkId + 1), CoordinateFrameEnum::BODY);
-    body->updateInertiaProperties();
+    setBodyMass(body->getBodyEnum(), dynamicParams(numParametersPerLink*linkId + 0), false);
+    setPositionBodyToBodyCom(dynamicParams.segment<3>(numParametersPerLink*linkId + 1),body->getBodyEnum(), CoordinateFrameEnum::BODY, true);
     linkId++;
   }
 
@@ -264,9 +368,8 @@ bool RobotModelRbdl<ConcreteDescription_, RobotState_>::getJointGravityTermsFrom
       continue;
     }
 
-    body->setMass(dynamicParametersCopy(numParametersPerLink*linkId + 0));
-    body->setPositionBodyToBodyCom(dynamicParametersCopy.segment<3>(numParametersPerLink*linkId + 1), CoordinateFrameEnum::BODY);
-    body->updateInertiaProperties();
+    setBodyMass(body->getBodyEnum(), dynamicParametersCopy(numParametersPerLink*linkId + 0), false);
+    setPositionBodyToBodyCom( dynamicParametersCopy.segment<3>(numParametersPerLink*linkId + 1),body->getBodyEnum(), CoordinateFrameEnum::BODY, true);
     linkId++;
   }
 

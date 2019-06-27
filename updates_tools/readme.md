@@ -23,7 +23,7 @@ cd updates_tools/
 python packages_updates.py [--packages_list PACKAGES_LIST] [--source_ws SOURCE_WS] [--target_dir TARGET_DIR]  
 
 example:  
-python3 packages_updates.py --source_ws ~/catkin_ws/ --target_dir ../summer_school_private  
+python3 packages_updates.py --packages_list ./packages_list --source_ws ~/smb_ws/ --target_dir ../summer_school_private
 ```
 
 
