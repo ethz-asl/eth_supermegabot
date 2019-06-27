@@ -89,10 +89,6 @@
    uri: https://github.com/ethz-asl/ethzasl_brisk.git
    version: 92dbcd71104d09380faeedf7b00594e0bab48f9e
 - git:
-   local-name: kindr
-   uri: https://github.com/ANYbotics/kindr.git
-   version: cec35abc6c0080d609f95d543589fb743631c43e
-- git:
    local-name: maplab_rovio
    uri: https://github.com/ethz-asl/maplab_rovio.git
    version: c5a4dad4e517f21d8df0c4672a5b2d1b1d1eb949
