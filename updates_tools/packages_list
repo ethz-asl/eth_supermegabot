@@ -46,26 +46,6 @@ meta_packages:
         - smb_sim
         - smb_tf_publisher
 
-    # ocs2_dev meta-pkg
-    # <summer_school_integration>
-    ocs2_dev:
-        - ocs2
-        - ocs2_comm_interfaces
-        - ocs2_core
-        - ocs2_doc
-        - ocs2_frank_wolfe
-        - ocs2_mpc
-        - ocs2_oc
-        - ocs2_ocs2
-        - ocs2_slq
-        - ocs2_ballbot_example
-        - ocs2_cart_pole_example
-        - ocs2_double_integrator_example
-        - ocs2_double_integrator_noros_example
-        - ocs2_quadrotor_example
-        - ocs2_robotic_examples
-        - ocs2_robotic_tools
-
     # anymal_research meta-pkg
     # <master>
     anymal_research:

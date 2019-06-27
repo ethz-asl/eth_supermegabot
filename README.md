@@ -113,12 +113,3 @@ Use the magic command:
 ```
 sudo dhclient eno1
 ```
-
-# TODO
-* Replace 'ocs2_dev' (private) with 'ocs2' (public)
-```
-- git:
-   local-name: ocs2
-   uri: https://haochihlin@bitbucket.org/leggedrobotics/ocs2.git
-   version: summer_school_integration
-```

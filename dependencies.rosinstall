@@ -77,3 +77,7 @@
    local-name: ceres_catkin
    uri: https://github.com/ethz-asl/ceres_catkin
    version: master
+- git:
+   local-name: ocs2
+   uri: https://haochihlin@bitbucket.org/leggedrobotics/ocs2.git
+   version: summer_school_integration
