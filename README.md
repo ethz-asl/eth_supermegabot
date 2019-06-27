@@ -28,9 +28,9 @@ sudo apt install terminator
 Install [git](https://www.atlassian.com/git/tutorials/what-is-git) and other dependencies:
 ```
 sudo apt update
-sudo apt-get install git python-catkin-tools doxygen 
+sudo apt-get install git python-catkin-tools doxygen
 sudo apt-get install ros-melodic-octomap ros-melodic-octomap-msgs ros-melodic-octomap-ros ros-melodic-rosserial ros-melodic-joy ros-melodic-ompl ros-melodic-costmap-2d ros-melodic-velodyne-gazebo-plugins
-sudo apt-get install libpcap0.8-dev libeigen3-dev libopencv-dev libboost-dev ros-melodic-cmake-modules libssh2-1-dev 
+sudo apt-get install libpcap0.8-dev libeigen3-dev libopencv-dev libboost-dev ros-melodic-cmake-modules libssh2-1-dev
 sudo apt-get install libglpk-dev
 sudo apt-get install python-wstool net-tools
 ```
@@ -48,7 +48,7 @@ echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 ## Create and setup your catkin workspace.
 ```
 mkdir -p ~/catkin_ws/src
-cd ~/catkin_ws/src
+cd ~/catkin_ws
 catkin init
 catkin config --extend /opt/ros/melodic
 catkin config --merge-devel
