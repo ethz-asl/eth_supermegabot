@@ -9,7 +9,7 @@ ssh smb@10.0.0.5
 ### Create a user 
 ```
 sudo adduser your_username
-usermod -aG sudo your_username
+sudo usermod -aG sudo your_username
 ``` 
 ### Add the user to the developers group
 ```
