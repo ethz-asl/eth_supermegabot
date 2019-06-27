@@ -36,7 +36,8 @@ sudo apt-get install python-wstool net-tools
 ```
 ## Install ROS Melodic
 
-Install ROS Melodic (recommended: “Desktop-Full Install”) following the [instructions](http://wiki.ros.org/melodic/Installation/Ubuntu) from 1.1 to 1.7 (included). We work with Catkin Command Line Tools (catkin build instead of catkin_make) to build packages in your workspace. They can be installed with [apt-get](http://catkin-tools.readthedocs.io/en/latest/installing.html#installing-on-ubuntu-with-apt-get).
+Install ROS Melodic (recommended: “Desktop-Full Install”) following the [instructions](http://wiki.ros.org/melodic/Installation/Ubuntu). We work with Catkin Command Line Tools (catkin build instead of catkin_make) to build
+packages in your workspace. They can be installed with [apt-get](http://catkin-tools.readthedocs.io/en/latest/installing.html#installing-on-ubuntu-with-apt-get).
 
 Setup your catkin workspace in which your packages will be built as follows.
 Source the environment
@@ -47,14 +48,12 @@ echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 ## Create and setup your catkin workspace.
 ```
 mkdir -p ~/catkin_ws/src
-cd ~/catkin_ws
+cd ~/catkin_ws/src
 catkin init
 catkin config --extend /opt/ros/melodic
 catkin config --merge-devel
 catkin config -DCMAKE_BUILD_TYPE=Release
 ```
-
-## Presently, we do not use the ws tool setup, an update will follow for the installation sequence.
 We use wstool to manage packages in the workspace, at least for your initial setup, do:
 ```
 cd ~/catkin_ws/src/
