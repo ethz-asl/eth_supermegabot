@@ -117,7 +117,7 @@ echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 mkdir -p ~/maplab_ws/src
 cd ~/maplab_ws
 catkin init
-catkin config --extend /opt/ros/melodic
+catkin config --extend ~/catkin_ws/devel/
 catkin config --merge-devel
 catkin config -DCMAKE_BUILD_TYPE=Release
 ```
