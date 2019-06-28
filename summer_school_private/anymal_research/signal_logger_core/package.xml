@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>signal_logger_core</name>
+  <version>0.5.0</version>
+  <description>The signal_logger_core package</description>
+
+  <maintainer email="cgehring@anybotics.com">Christian Gehring</maintainer>
+  <maintainer email="bellicoso@mavt.ethz.ch">Dario Bellicoso</maintainer>
+  <maintainer email="ghottiger@anybotics.com">Gabriel Hottiger</maintainer>
+
+  <author email="ghottiger@anybotics.com">Gabriel Hottiger</author>
+  <author email="cgehring@anybotics.com">Christian Gehring</author>
+  <author email="bellicoso@mavt.ethz.ch">Dario Bellicoso</author>
+  <license>BSD</license>
+  <url>https://github.com/anybotics/signal_logger</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>message_logger</depend>
+  <depend>kindr</depend>
+  <depend>yaml-cpp</depend>
+  <build_export_depend>eigen</build_export_depend>
+
+</package>

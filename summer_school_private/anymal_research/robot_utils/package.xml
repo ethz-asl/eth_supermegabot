@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>robot_utils</name>
+  <version>0.6.0</version>
+  <description>The Robot Utilities package</description>
+  <maintainer email="cgehring@anybotics.com">Christian Gehring</maintainer>
+  <maintainer email="pfankhauser@anybotics.com">Peter Fankhauser</maintainer>
+  <license>Proprietary</license>
+  <author email="cgehring@anybotics.com">Christian Gehring</author>
+  <author email="pfankhauser@anybotics.com">Peter Fankhauser</author>
+  <author email="bellicoso@mavt.ethz.ch">Dario Bellicoso</author>
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>cmake_clang_tools</build_depend>
+  <depend>cmake_modules</depend>  <!-- provides findTinyXML.cmake script -->
+  <depend>tinyxml</depend>
+  <depend>message_logger</depend>
+  <depend>parameter_handler</depend>
+  <depend>kindr</depend>
+  <depend>std_utils</depend>
+  <build_export_depend>eigen</build_export_depend>
+  <test_depend>gtest</test_depend>
+</package>

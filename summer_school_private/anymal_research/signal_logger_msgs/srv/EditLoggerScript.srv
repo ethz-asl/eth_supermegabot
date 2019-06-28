@@ -1,0 +1,7 @@
+## This service tries to svae/load a logger configuration file
+## at location 'filepath'. If the config file
+## can be loaded/saved successfully 'success' is set to true.
+
+string filepath
+---
+bool success

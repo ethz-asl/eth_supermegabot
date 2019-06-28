@@ -1,0 +1,19 @@
+include - definitions.hpp check TODOs for limb/branch maps - topology.hpp TODOs + map transforms - All of the commented stuff in all description-related files
+meshes
+rviz
+src
+resources (use script?)
+
+okay to remove limbEnums and getLimbNDof methods and maps?
+
+get rid of template arguments above map declarations in topology(?)
+
+In Containers.hpp the StateStatus was changed to anymal_description::StateStatus for Alma. Relevant for smb?
+
+
+
+
+----- Done -----
+bin
+launch
+urdf

@@ -1,0 +1,8 @@
+## This service tries to set the properties of the logger 
+## element 'log_element'. If the element is part of the 
+## logger. It is changed and 'success' is set to true. Else
+## 'success' is set to false and no action is taken.
+
+LogElement log_element
+---
+bool success

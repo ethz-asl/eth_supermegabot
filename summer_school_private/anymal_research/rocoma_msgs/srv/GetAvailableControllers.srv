@@ -1,0 +1,3 @@
+# Provides a vector of all available controller names
+---
+string[] available_controllers

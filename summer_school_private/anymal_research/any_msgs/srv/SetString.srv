@@ -1,0 +1,6 @@
+# Request
+string data # String to pass.
+---
+# Response
+bool success
+

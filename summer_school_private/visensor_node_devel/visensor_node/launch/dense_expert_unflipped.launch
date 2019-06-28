@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<launch>
+<node name="visensor_node" pkg="visensor_node" type="visensor_node" clear_params="true" output="screen">
+</node>
+<node ns="/" name="stereo_image_proc" pkg="stereo_image_proc" type="stereo_image_proc" clear_params="true" output="screen">
+<remap from="/left/image_raw" to="/cam0/image_raw" />
+<remap from="/left/camera_info" to="/cam0/camera_info" />
+<remap from="/right/image_raw" to="/cam1/image_raw" />
+<remap from="/right/camera_info" to="/cam1/camera_info" />
+<param name="queue_size" value="200000" />
+<param name="disparity_range" value="64" />
+</node>
+<node name="disp_view" pkg="image_view" type="disparity_view" clear_params="true" output="screen">
+<remap from="image" to="disparity" />
+</node>
+</launch>

@@ -1,0 +1,13 @@
+controlmanager:
+  service:
+    switch_controller: "/kinova_highlevel_controller/controller_manager/switch_controller"
+    switch_lowlevel_controller: "/kinova_lowlevel_controller/go_to_state"
+    get_available_controllers: "/kinova_highlevel_controller/controller_manager/get_available_controllers"
+    emergency_stop: "/kinova_highlevel_controller/controller_manager/emergency_stop"
+    clear_emergency_stop: "/kinova_highlevel_controller/controller_manager/clear_emergency_stop"
+    state_estimator_reset: "/state_estimator/reset"
+    state_estimator_reset_here: "/state_estimator/reset_here"
+    calibrate_feet: "/state_estimator/calibrate_forces"
+  topic:
+    active_controller: "/kinova_highlevel_controller/notify_active_controller"
+    emergency_state: "/kinova_highlevel_controller/notify_cleared_emergency_stop"

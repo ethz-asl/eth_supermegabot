@@ -1,0 +1,5 @@
+string name
+std_msgs/Float64MultiArray value_current
+std_msgs/Float64MultiArray value_min
+std_msgs/Float64MultiArray value_max
+std_msgs/Float64MultiArray value_default

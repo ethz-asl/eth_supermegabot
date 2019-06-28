@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<package format="2">
+
+  <name>std_utils</name>
+  <version>0.6.0</version>
+  <description>The Std Utilities package</description>
+
+  <license>BSD</license>
+
+  <author email="cgehring@anybotics.com">Christian Gehring</author>
+  <author email="pfankhauser@anybotics.com">Peter Fankhauser</author>
+  <author email="bellicoso@mavt.ethz.ch">Dario Bellicoso</author>
+  <author email="ghottiger@anybotics.com">Gabriel Hottiger</author>
+
+  <maintainer email="ghottiger@anybotics.com">Gabriel Hottiger</maintainer>
+  <maintainer email="bellicoso@mavt.ethz.ch">Dario Bellicoso</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>boost</depend>
+
+  <test_depend>gtest</test_depend>
+
+</package>

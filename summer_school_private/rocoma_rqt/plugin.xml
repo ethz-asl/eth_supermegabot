@@ -1,0 +1,17 @@
+<library path="lib/librocoma_rqt">
+    <class name="RocomaRqtPlugin" type="ControlManagerPlugin" base_class_type="rqt_gui_cpp::Plugin">
+        <description>
+            A GUI for Rocoma
+        </description>
+        <qtgui>
+            <group>
+                <label>Any</label>
+                <icon type="theme">folder</icon>
+                <statustip>Custom Plugins</statustip>
+            </group>
+            <label>Controller Manager</label>
+            <icon type="theme">applications-graphics</icon>
+            <statustip>An interface for rocoma service calls.</statustip>
+        </qtgui>
+    </class>
+</library>

@@ -1,0 +1,109 @@
+/*!
+@page getting_started Getting Started
+This page details how to create the components of your sensor fusion problem 
+for use in ConFusion. Links to the relevant portions of an example visual-inertial tag tracking problem 
+are provided in brackets for reference.
+
+To create a new state class deriving from confusion::State, define the following:
+	-# Define enumerations for the desired process and update measurement types. 
+		These define the confusion::UpdateMeasurement::measType_ and confusion::ProcessMeasurement::measType_ 
+		attributed of all of the update measurements and process chains used in 
+		the sensor fusion problem and defines the indexes of the confusion::State::updateMeasurements_
+		and confusion::State::processChains_ where the measurements are stored. [#PROCESS_TYPE, #UPDATE_TYPE]
+	-# Create the objects containing the state's optimized parameters.
+		These objects must provide access to a raw array
+		of the parameter data to be optimized (e.g. Eigen vector, stl vector) [e.g. ImuState::T_w_i_]. During
+		operation, pointers to this parameter data gets passed to Ceres for optimization. These
+		parameters are therefore owned by the states and must remain stationary in memory after creation.
+	-# Create your state's constructor. This is used to create the first state instance, which then gets passes
+		to the ConFusor at construction time and is used for spawning all future states. [ImuState::ImuState]
+		- Here you should pass references to any external objects needed for initializing
+		state parameters during operation (e.g. a reference to a vector of visual reference locations).
+		- Construct the corresponding confusion::State base instance, specifying the number of process and update
+		measurements in the problem.
+		- Populate the confusion::State::processChains_ vector with pointers to the derived confusion::ProcessChain classes.
+		- Populate the confusion::State::parameters_ vector, linking to the raw data pointers of the
+		parameter objects from Step 2. Specify the attributes of the state parameters here.
+	-# Create the state's copy constructor. This is used to create new states as 
+		new measurements are received over time. [ImuState::ImuState]
+		- Populate the confusion::State::processChains_ vector with empty chains of the desired derived types.
+		- Populate the confusion::State::parameters_ vector, either creating new parameters, or using confusion::Parameter::clone
+		on the previous state's parameters if you want to initialize copy over the parameter value and attributes. Specify the attributes of the state parameters here.
+	-# Implement the confusion::State::initFirstState function, which will be called by the confusion::MeasurementManager to initialize the first state once the first
+	  update measurements are received. New static parameters can be added here when appropriate.
+		The timestamp of the state must be set here so that measurements are properly assigned to it. If the measurements needed for
+		state creation have not yet been received, return false and the MeasurementManager will try again later as more measurements are received. [ImuState::initFirstState]
+	-# Implement the confusion::State::createNextState function, which will be called by the confusion::MeasurementManager to create
+	  new states as measurements are received forwards in time.
+	  The new state should be constructed from the previous state using its copy constructor.
+	  New staticParameters can be added here when appropriate.
+		The timestamp of the new state must be set here so that measurements can be assigned to it.
+		If the measurements needed for state creation have not yet been received, return false and the MeasurementManager will try again later as more measurements are received.[ImuState::createNextState]
+	-# Optionally: Define derived confusion::State::addUpdateMeasDerived functions to initialize
+		static parameters when update measurements are added to a state (e.g. to
+		add new visual features extracted from an image newly associated with the state).  [ImuState::addUpdateMeasDerived]
+
+To create a new update sensor model deriving from confusion::UpdateMeasurement, define the following:
+	-# Create the constructor, which should take as input any relevant measurement
+		and calibration data and references/pointers to any dependent static parameters (e.g. the
+		visual feature whose observation is the source of the measurement). [confusion::TagMeas::TagMeas]
+	-# Create the associated cost function, following the native syntax of the
+		Ceres Solver (see the Ceres Solver documentation for guidance). It is left up to the user to decide what type of cost 
+		function to use, though if the confusion::UpdateMeasurement::dynamicParameters_ flag is false, it 
+		is assumed that Dynamic-type ceres cost funtions are only used if there
+		are more than 10 associated parameter blocks (otherwise you could use a non-dynamic cost function). [confusion::TagCost]
+	-# Implement the confusion::UpdateMeasurement::createCostFunction function which is called by ConFusion internally
+	  once the measurement has been assigned to a state and is ready to be used in optimization. You need to specify
+	  which state and static parameters are linked to the cost function.
+	  You can optionally link a robust loss function.
+	  If the cost function should not be created and the measurement should not be used for fusion, the function should return false.
+	  If you want to drop the measurement altogether and not try to create the cost function again, you can call confusion::UpdateMeasurement::disable().
+	  When the confusion::UpdateMeasurement is constructed, if dynamicParameters is set to true, createCostFunction will be called every
+	  time an optimization is run. Otherwise, it is only called once.
+	  The confusion::UpdateMeasurement takes ownership of the Ceres cost function so
+		it can be reused over repeated optimizations. [confusion::TagMeas::addCostToProblem]
+	-# Specify the residualDimension. [confusion::TagMeas::residualDimension]
+		
+To create a new process chain model deriving from confusion::ProcessChain, define the following:
+	-# Create a derived confusion::ProcessMeasurement class for this ProcessChain. This class should hold all of the measurement and
+		calibration data required and references to any associated static parameters. [confusion::ImuMeas]
+	-# Create the derived confusion::ProcessChain. The confusion::MeasurementManager will populate this with measurements of the corresponding
+	type once a full set of measurements have been received linking two state instances.
+	-# Create the associated cost function, following the syntax of the
+		Ceres Solver (see the Ceres Solver documentation for guidance). It is left up to the user to decide what type of cost 
+		function to use, though if the confusion::ProcessChain::dynamicParameters_ flag is false, it 
+		is assumed that Dynamic-type ceres cost funtions are only used if there
+		are more than 10 associated parameter blocks (otherwise you could use a non-dynamic cost function). [confusion::ImuChainCostFuntion]
+	-# Implement the confusion::ProcessChain::createCostFunction function which is called by ConFusion internally
+      once the measurements have been assigned. You need to specify
+      which state and static parameters are linked to the cost function.
+      You can optionally link a robust loss function.
+      If the cost function should not be created and the measurement should not be used for fusion, the function should return false.
+      If you want to drop the ProcessChain altogether and not try to create the cost function again, you can call confusion::ProcessChain::disable().
+      When the confusion::UpdateMeasurement is constructed, if dynamicParameters is set to true, createCostFunction will be called every
+      time an optimization is run. Otherwise, it is only called once.
+      The confusion::ProcessChain takes ownership of the Ceres cost function so
+      it can be reused over repeated optimizations. [confusion::ImuChain::addCostToProblem]
+	-# Specify the residualDimension. [confusion::ImuChain::residualDimension]
+	
+To create a program which runs a sensor fusion problem online:
+	-# Create a confusion::ConFusor object, passing a shared pointer to an instance of the desired
+		derived state class.
+	-# You can set a prior confidence in the initial state with i.e. conFusor_.stateVector_.front()->setInitialStateWeighting.
+		It is not mandatory to specify a prior confidence in any or all of the first state's parameters,
+		but it may be required to ensure that the resulting problem Jacobian is full rank for the first optimizations.
+	-# Static parameters can be added to the problem before running via confusion::ConFusor::addStaticParameter.
+		Static parameters only go active in the sensor fusion problem once a measurement they are linked to contributes
+		a cost function to the MHE optimization problem. You can optionally define some prior confidence in a static parameter
+		via confusion::ParameterBase::setInitialConstraintWeighting.
+	-# The confusion::ConFusor can be used in a multi-threaded manner, with measurements
+		being added from one or more threads (via i.e. confusion::ConFusor::addUpdateMeasurement), and running the estimator (confusion::ConFusor::assignMeasurements() and ConFusor::optimize())
+		from another thread.
+	-# confusion::ConFusor exposes the functions to marginalize states and parameters during operation
+		(confusion::ConFusor::marginalizeFrontStates, confusion::ConFusor::removeIntermediateState). It is up to
+		the user to create the logic to decide when states and static parameters should be removed from the MHE
+		problem. This is typically done between the
+		calls to confusion::ConFusor::assignMeasurements and confusion::ConFusor::optimize, so that you
+		can see what additional states have been added by the confusion::ConFusor::assignMeasurements before deciding if/how many states to remove.
+	
+*/

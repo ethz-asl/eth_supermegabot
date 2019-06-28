@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<package format="2">
+
+  <name>any_measurements</name>
+  <version>0.6.0</version>
+  <description>Container classes featuring kindr integration.</description>
+
+  <license>BSD</license>
+
+  <author email="pleemann@anybotics.com">Philipp Leemann</author>
+  <maintainer email="pleemann@anybotics.com">Philipp Leemann</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>kindr</depend>
+
+  <build_export_depend>eigen</build_export_depend>
+
+</package>

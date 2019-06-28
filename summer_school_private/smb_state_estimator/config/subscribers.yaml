@@ -1,0 +1,13 @@
+subscribers:
+  actuator_readings:
+    topic: /smb_lowlevel_controller/actuator_readings
+    queue_size: 10
+    latch: false
+  pose_in_map_meas:
+    topic: /localizer/pose 
+    queue_size: 100
+    latch: false
+  pose_in_map_init:
+    topic: /state_estimator/init_pose_in_map
+    queue_size: 1
+    latch: false

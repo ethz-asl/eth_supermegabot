@@ -1,0 +1,100 @@
+publishers:
+      
+  actuator_readings:
+    topic: /sensors/actuator_readings
+    queue_size: 10
+    latch: false
+
+  actuator_readings_estimator:
+    topic: /state_estimator/actuator_readings
+    queue_size: 10
+    latch: false  
+      
+  actuator_readings_extended_throttled:
+    topic: /sensors/actuator_readings_extended_throttle
+    queue_size: 10
+    latch: false
+    decimation: 40
+
+  joint_states:
+    topic: /state_estimator/joint_states
+    queue_size: 10
+    latch: false
+
+  contact_force_base:
+    topic: /sensors/contact_force_base
+    queue_size: 10
+    latch: false
+
+  contact_force_base_estimator:
+    topic: /state_estimator/contact_force_base
+    queue_size: 10
+    latch: false 
+
+  contact_force_base_throttled:
+    topic: /sensors/contact_force_base_throttle
+    queue_size: 10
+    latch: false
+    decimation: 40     
+    
+  smb_state:
+    topic: /state_estimator/smb_state
+    queue_size: 10
+    latch: false
+    min_frequency_rate: 0.1
+    max_frequency_rate: 0.1
+    
+  smb_state_throttle:
+    topic: /state_estimator/smb_state_throttle
+    queue_size: 10
+    latch: false
+    decimation: 40
+    
+  pose_in_odom:
+    topic: /state_estimator/pose_in_odom
+    queue_size: 1
+    latch: false
+
+  pose_in_odom_throttled:
+    topic: /state_estimator/pose_in_odom_throttle
+    queue_size: 1
+    latch: false
+    decimation: 40    
+    
+  pose_in_map:
+    topic: /state_estimator/pose_in_map
+    queue_size: 1
+    latch: false
+
+  pose_in_map_throttled:
+    topic: /state_estimator/pose_in_map_throttle
+    queue_size: 1
+    latch: false
+    decimation: 40
+    
+  pose_in_map_ga:
+    topic: /state_estimator/pose_in_map_ga
+    queue_size: 1
+    latch: false
+
+  pose_in_map_ga_throttled:
+    topic: /state_estimator/pose_in_map_ga_throttle
+    queue_size: 1
+    latch: false
+    decimation: 40  
+    
+  twist:
+    topic: /state_estimator/twist
+    queue_size: 1
+    latch: false
+
+  twist_throttled:
+    topic: /state_estimator/twist_throttle
+    queue_size: 1
+    latch: false
+    decimation: 40  
+    
+  global_localization_state:
+    topic: /state_estimator/global_localization_state
+    queue_size: 1
+    latch: true

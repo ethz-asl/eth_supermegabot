@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<package format="2">
+
+  <name>notification_msgs</name>
+  <version>0.6.0</version>
+  <description>The notification_msgs package</description>
+
+  <license>BSD</license>
+
+  <author email="cgehring@anybotics.com">Christian Gehring</author>
+  <maintainer email="cgehring@anybotics.com">Christian Gehring</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>message_generation</depend>
+  <depend>message_runtime</depend>
+  <depend>std_msgs</depend>
+
+</package>
