@@ -18,6 +18,17 @@ Update your installation to the newest version:
 sudo apt update
 sudo apt upgrade
 ```
+## Install ROS Melodic
+
+Install ROS Melodic (recommended: “Desktop-Full Install”) following the [instructions](http://wiki.ros.org/melodic/Installation/Ubuntu). We work with Catkin Command Line Tools (catkin build instead of catkin_make) to build
+packages in your workspace. They can be installed with [apt-get](http://catkin-tools.readthedocs.io/en/latest/installing.html#installing-on-ubuntu-with-apt-get).
+
+Setup your catkin workspace in which your packages will be built as follows.
+Source the environment
+```
+source /opt/ros/melodic/setup.bash
+echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+```
 ## Preliminary dependencies:
 We recommend you to use terminator, that allows you to have multiple terminals in one window.
 It can be installed with.
@@ -33,17 +44,13 @@ sudo apt-get install ros-melodic-octomap ros-melodic-octomap-msgs ros-melodic-oc
 sudo apt-get install libpcap0.8-dev libeigen3-dev libopencv-dev libboost-dev ros-melodic-cmake-modules libssh2-1-dev
 sudo apt-get install libglpk-dev
 sudo apt-get install python-wstool net-tools
-```
-## Install ROS Melodic
-
-Install ROS Melodic (recommended: “Desktop-Full Install”) following the [instructions](http://wiki.ros.org/melodic/Installation/Ubuntu). We work with Catkin Command Line Tools (catkin build instead of catkin_make) to build
-packages in your workspace. They can be installed with [apt-get](http://catkin-tools.readthedocs.io/en/latest/installing.html#installing-on-ubuntu-with-apt-get).
-
-Setup your catkin workspace in which your packages will be built as follows.
-Source the environment
-```
-source /opt/ros/melodic/setup.bash
-echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+sudo apt-get install liblapack-dev libblas-dev autotools-dev dh-autoreconf \
+    libboost-all-dev python-setuptools cppcheck default-jre libgtest-dev \
+    libglew-dev clang-format-3.9 python-git pylint python-termcolor \
+    "ros-melodic-camera-info-manager*" protobuf-compiler protobuf-c-compiler \
+    libssh2-1-dev libatlas3-base libnlopt-dev \
+    "ros-melodic-tf2-*" python-pip python-autopep8 libreadline-dev ifstat \
+    ntpdate sysstat libv4l-0 ros-melodic-gps-common
 ```
 ## (OPTIONAL) Install ccache for faster rebuilds.
 ccache is a tool that caches intermediate build files to speed up rebuilds of the same code. On Ubuntu it can be set up with the following command. The max. cache size is set to 10GB and can be adapt on the lines below:
@@ -104,6 +111,31 @@ Add your workspace to the .bashrc such that it is sourced every time you start a
 shell (terminal).
 ```
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+```
+## Create and setup your maplab workspace
+```
+mkdir -p ~/maplab_ws/src
+cd ~/maplab_ws
+catkin init
+catkin config --extend /opt/ros/melodic
+catkin config --merge-devel
+catkin config -DCMAKE_BUILD_TYPE=Release
+```
+Pull in the source code.
+```
+cd src
+git clone git@github.com:ethz-asl/maplab_summer --recursive
+git clone -b summer git@github.com:ethz-asl/maplab_dependencies --recursive
+```
+Build the project (this is where you can go for a second nap)
+```
+cd ~/maplab_ws
+catkin build maplab
+```
+Finally add your workspace to the .bashrc such that it is sourced every time you start a new
+shell (terminal).
+```
+echo "source ~/maplab_ws/devel/setup.bash" >> ~/.bashrc
 ```
 
 # Connect to robot
