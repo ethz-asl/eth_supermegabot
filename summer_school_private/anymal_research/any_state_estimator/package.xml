@@ -6,14 +6,12 @@
   <version>0.6.0</version>
   <description>The any_state_estimator package</description>
   <license>Proprietary</license>
-  
+
   <author email="markus.staeuble@mavt.ethz.ch"> Markus Staeuble</author>
   <maintainer email="markus.staeuble@mavt.ethz.ch"> Markus Staeuble</maintainer>
-  
-  <url type="website">https://bitbucket.org/leggedrobotics/any_common</url>
 
   <buildtool_depend>catkin</buildtool_depend>
-  
+
   <depend>any_state_estimator_msgs</depend>
   <depend>boost</depend>
   <depend>message_logger</depend>
@@ -24,5 +22,5 @@
   <depend>cosmo_ros</depend>
   <depend>signal_logger</depend>
   <depend>signal_logger_ros</depend>
-  
+
 </package>

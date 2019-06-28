@@ -6,17 +6,15 @@
   <version>0.6.0</version>
   <description>ROS message and service definitions for the any_state_estimator package.</description>
   <license>Proprietary</license>
-  
+
   <author email="markus.staeuble@mavt.ethz.ch"> Markus Staeuble</author>
   <maintainer email="markus.staeuble@mavt.ethz.ch"> Markus Staeuble</maintainer>
-  
-  <url type="website">https://bitbucket.org/leggedrobotics/any_common</url>
 
   <buildtool_depend>catkin</buildtool_depend>
-  
+
   <depend>geometry_msgs</depend>
   <depend>message_generation</depend>
   <depend>message_runtime</depend>
   <depend>std_msgs</depend>
-  
+
 </package>

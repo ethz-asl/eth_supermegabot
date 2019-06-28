@@ -4,7 +4,7 @@
   <name>cosmo_node</name>
   <version>0.5.0</version>
   <description>The cosmo_node package</description>
-  <maintainer email="pleemann@ethz.ch">Philipp Leemann</maintainer>
+  <maintainer email="pleemann@anybotics.com">Philipp Leemann</maintainer>
   <license>Proprietary</license>
 
   <buildtool_depend>catkin</buildtool_depend>

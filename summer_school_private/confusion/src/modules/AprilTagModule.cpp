@@ -151,7 +151,7 @@ AprilTagModule::AprilTagModule(ros::NodeHandle &node,
   cameraTopic_ = pt.get<std::string>("camera_topic");
   tagArrayTopic_ = pt.get<std::string>("tag_array_topic");
 
-  std::cout << "[AprilTagModule] Initialization complete. Waiting for the cmaera calibration." << std::endl;
+  std::cout << "[AprilTagModule] Initialization complete. Waiting for the camera calibration." << std::endl;
 }
 
 AprilTagModule::~AprilTagModule() {
@@ -192,7 +192,7 @@ void AprilTagModule::camCalCallback(
       this,
       ros::TransportHints().tcpNoDelay());
 
-  std::cout << "Camera info received. Now listening for camera measurements."
+  std::cout << "Camera info received. Now listening for images..."
             << std::endl;
 }
 

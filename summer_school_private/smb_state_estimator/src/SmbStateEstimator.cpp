@@ -88,18 +88,8 @@ void SmbStateEstimator::preprocessMeasurements() {
 void SmbStateEstimator::advanceEstimator() {
   if (stateEstimateReceived_) {
     //Forward propagate latest estimate up to the current time
-    //todo Propagate to the time of the most recent IMU meas since the VIsensor will have considerable delays?
     imuState_now_ = imuPropagator_.propagate(currentTime_.toSeconds());
   }
-
-//  const auto stampNow = any_measurements_ros::fromRos(ros::Time::now());
-//  if (waitingForInitializationDuration_) {
-//    waitingForInitializationDuration_ = ((stampNow.toSeconds() - fullContactTime_) < initializationDuration_);
-//  }
-//  std::lock_guard<std::mutex> lock(mutexFilter_);
-//  filter_.processKinematics(measJointStates_, contacts_, fakeKinematicsUpdateActive_);
-//  filter_.processImuReadings(this->imu_);
-//  filter_.updateFilter();
 }
 
 void SmbStateEstimator::setOutput() {
@@ -131,21 +121,6 @@ void SmbStateEstimator::setOutput() {
       estimatedState_.smbState_.getWheelVelocities()(actuatorId) = smbActuatorReadings[smbActuatorEnum].getWheelVelocity();
       estimatedState_.smbState_.getWheelTorques()(actuatorId) = smbActuatorReadings[smbActuatorEnum].getWheelTorque();
     }
-//    else if (smb_description::SmbTopology::mapArmActuatorEnumToActuatorEnum::containsValue(actuatorEnum)) {
-//      const auto kinovaActuatorEnum = smb_description::SmbTopology::mapArmActuatorEnumToActuatorEnum::find(actuatorEnum);
-//
-//      estimatedState_.smbState_.getJointPositions()(actuatorId-numOfWheels) = kinovaActuatorReadings[kinovaActuatorEnum].getJointPosition();
-//      q(actuatorId-numOfWheels) = kinovaActuatorReadings[kinovaActuatorEnum].getJointPosition();
-//      estimatedState_.smbState_.getJointVelocities()(actuatorId-numOfWheels) = kinovaActuatorReadings[kinovaActuatorEnum].getJointVelocity();
-//      estimatedState_.smbState_.getJointTorques()(actuatorId-numOfWheels) = kinovaActuatorReadings[kinovaActuatorEnum].getJointTorque();
-//    }
-//    else if (smb_description::SmbTopology::mapArmFingerActuatorEnumToActuatorEnum::containsValue(actuatorEnum)) {
-//      //todo Ignore the fingers for now...
-////      const auto kinovaFingerEnum = smb_description::SmbTopology::mapArmFingerActuatorEnumToActuatorEnum::find(actuatorEnum);
-////      const int fingerId = SmbDescription::mapKeyEnumToKeyId<smb_description::SmbTopology::KinovaFingerActuatorEnum>(kinovaFingerEnum);
-////
-////      estimatedState_.smbState_.getFingerPositions()(fingerId) = fingerPositionScaleToGazebo_*kinovaFingerReadings[kinovaFingerEnum].getJointPosition();
-//    }
     else {
       MELO_WARN("[SmbStateEstimator] Unknown/invalid actuatorEnum ");
     }

@@ -59,9 +59,8 @@ SmbConFusor::SmbConFusor(ros::NodeHandle &node):node_(node),
   }
 
   // Set up the logger
-  std::string logFileName = confusionPath_ + "/data/tagtracker_log.txt";
-  logger_ = std::unique_ptr<confusion::Logger>(new confusion::Logger(logFileName,
-                                                                     *conFusor_.stateVector_.front()));
+  std::string logFileName = packagePath + "/data/smb_confusor_log.txt";
+  logger_ = std::unique_ptr<confusion::Logger>(new confusion::Logger(logFileName, *conFusor_.stateVector_.front()));
   logData_ = pt.get<bool>("logData");
 
   conFusor_.setSolverOptions(pt.get<int>("numThreads"), pt.get<int>("maxNumIterations"));

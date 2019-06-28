@@ -20,12 +20,12 @@
 namespace confusion {
 
 Logger::Logger(const std::string &fName) : file_(fName) {
-  file_.precision(9);
+  file_.precision(16);
   startLog();
 }
 
 Logger::Logger(const std::string &fName, const State &firstState) : file_(fName) {
-  file_.precision(9);
+  file_.precision(16);
   writeHeader(firstState);
   startLog();
 }

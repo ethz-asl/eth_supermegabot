@@ -9,6 +9,14 @@
 % figure currently
 % * separate_figures: Separating the plots of the three options above into multiple figures (boolean)
 function [confusion_data] = plotConFusionData(bag_name, plot_state, plot_static_parameters, plot_residuals, plot_user_data, separate_figures)
+if nargin < 2
+    plot_state = true;
+    plot_static_parameters = true;
+    plot_residuals = true;
+    plot_user_data = true;
+    separate_figures = true;
+end
+
 % Import data
 confusion_data = importConFusionData(bag_name);
 disp('Finished importing data.');
