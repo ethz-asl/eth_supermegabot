@@ -155,5 +155,19 @@ sudo dhclient eno1
 * `fatal error: ethzasl_icp_mapper/LoadMap.h: No such file or directory`
 Just `catkin build` again.
 
+* Python problems with system-wide packages  
+In case you get problems with python workspaces in your system, use catkin in a virtual environment. Before initializing the workspace, do:
+```
+virtualenv --python=python2 ~/py_catkin
+source ~/py_catkin/bin/activate
+pip install --upgrade pip
+pip install catkin_tools wstool empy rospkg
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws
+catkin init
+...
+```
+Every time when you want to use catkin, you need to activate the workspace again with `source ~/py_catkin/bin/activate`.
+
 # Organisation
 These tutorials are organised by the ETH Construction Robotics group.
