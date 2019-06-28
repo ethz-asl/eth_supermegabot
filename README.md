@@ -147,6 +147,16 @@ alias connect-smb='export ROS_MASTER_URI=http://10.0.0.5:11311 ; export ROS_IP=`
 ```
 
 # Troubleshooting  
+* Visensor discovery failed
+```
+sudo rm /var/lib/dhcp/dhclient.leases
+sudo dhclient -r
+```
+Afterwards turn off all robot power.
+Turn on only the robot and wait 10-15s.
+Turn on the router and nuc.
+(Issue remains that the internet might not work on the robot)
+
 * Header file not found:  
 Solution: resource your catkin workspace, then build again.  
 ```
