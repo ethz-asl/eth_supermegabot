@@ -112,7 +112,7 @@ shell (terminal).
 ```
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 ```
-## Create and setup you maplab workspace
+## Create and setup your maplab workspace
 ```
 mkdir -p ~/maplab_ws/src
 cd ~/maplab_ws
