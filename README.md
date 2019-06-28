@@ -1,4 +1,4 @@
-## ETH Center for robotics summer school 2019
+## ETH robotics summer school 2019
 
 This is a basic set-up guide for the workspace packages and tutorial to use the super mega bots.
 
@@ -154,3 +154,6 @@ sudo dhclient eno1
 
 * `fatal error: ethzasl_icp_mapper/LoadMap.h: No such file or directory`
 Just `catkin build` again.
+
+# Organisation
+These tutorials are organised by the ETH Construction Robotics group.
