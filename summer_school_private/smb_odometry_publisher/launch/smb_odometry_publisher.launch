@@ -1,5 +1,5 @@
 <launch>
-  <node pkg="odometry_publisher" type="odometry_publisher" name="odometry_publisher">
+  <node pkg="smb_odometry_publisher" type="smb_odometry_publisher" name="smb_odometry_publisher">
     <param name="nav_odometry_topic" value="/odometry" />
     <param name="wheel_speed_topic" value="/wheelSpeeds" />
     <param name="wheel_radius" value="0.2" />

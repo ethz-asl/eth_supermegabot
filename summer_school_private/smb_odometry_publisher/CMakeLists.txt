@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(odometry_publisher)
+project(smb_odometry_publisher)
 
 find_package(catkin_simple REQUIRED)
 
@@ -11,7 +11,7 @@ catkin_simple(ALL_DEPS_REQUIRED)
 add_definitions(-std=c++11)
 
 # Add executables.
-cs_add_executable(odometry_publisher src/odometry_publisher.cc)
+cs_add_executable(smb_odometry_publisher src/smb_odometry_publisher.cc)
 
 ############
 ## EXPORT ##
