@@ -74,8 +74,8 @@ public:
       // Sadly, odom_trans.transform.translation is a geometry_msgs/Vector3
       // while odom.pose.pose.position is a geometry_msgs/Point.
       odom_trans.transform.translation.x = odom.pose.pose.position.x;
-      odom_trans.transform.translation.z = odom.pose.pose.position.y;
-      odom_trans.transform.translation.z = odom.pose.pose.position.y;
+      odom_trans.transform.translation.y = odom.pose.pose.position.y;
+      odom_trans.transform.translation.z = odom.pose.pose.position.z;
       odom_trans.transform.rotation = odom.pose.pose.orientation;
 
       // send the transform
