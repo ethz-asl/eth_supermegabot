@@ -124,8 +124,8 @@ catkin config -DCMAKE_BUILD_TYPE=Release
 Pull in the source code.
 ```
 cd src
-git clone git@github.com:ethz-asl/maplab_summer --recursive
-git clone -b summer git@github.com:ethz-asl/maplab_dependencies --recursive
+git clone https://github.com/ethz-asl/maplab_summer --recursive
+git clone -b summer https://github.com/ethz-asl/maplab_dependencies --recursive
 ```
 Build the project (this is where you can go for a second nap)
 ```
