@@ -282,6 +282,7 @@ void SmbConFusor::baseOdometryCallback(const std_msgs::Float64MultiArray::ConstP
       BaseMotionModelParameters bmmParams = bmmPropagator_.propagate(t_meas);
       confusion::Pose<double> T_w_i = bmmParams.T_w_b * T_imu_base_.inverse();
       tfBroadcaster_.sendTransform(tf::StampedTransform(getTfMsg(T_w_i), ros::Time::now(), "world", "imu"));
+      pubRtPose_.publish(getMsg(T_w_i, "/world"));
     }
   }
 
