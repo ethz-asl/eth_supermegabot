@@ -188,6 +188,41 @@ void SmbPathFollowingController::writeDesiredTrajectory(const nav_msgs::Path& pa
     costDesiredTrajectories.desiredInputTrajectory().push_back(MpcInterface::input_vector_t::Zero());
     MELO_WARN_THROTTLE_STREAM(3, "[SmbPathFollowingController::writeDesiredTrajectory] received trajectory is empty!");
 
+    // single go-to-task
+  } else if (path.poses.size() == 1) {
+    if (path.header.frame_id != "base") {
+      MELO_ERROR_STREAM("The desired pose is not in base frame but has the frame id: << " << path.header.frame_id << ". Pose rejected!");
+      costDesiredTrajectories.desiredStateTrajectory().resize(1);
+      costDesiredTrajectories.desiredInputTrajectory().resize(1);
+      costDesiredTrajectories.desiredTimeTrajectory().resize(1);
+      costDesiredTrajectories.desiredTimeTrajectory()[0] = currentObservation.time();
+      costDesiredTrajectories.desiredInputTrajectory()[0] = MpcInterface::input_vector_t::Zero();
+      costDesiredTrajectories.desiredStateTrajectory()[0] = currentObservation.state();
+      return;
+    }
+
+    costDesiredTrajectories.desiredStateTrajectory().resize(2);
+    costDesiredTrajectories.desiredInputTrajectory().resize(2);
+    costDesiredTrajectories.desiredTimeTrajectory().resize(2);
+
+    any_measurements::Pose pose;
+    any_measurements_ros::fromRos(path.poses[0], pose);
+    MpcInterface::state_vector_t targetState;
+    SmbPathFollowingConversions::writeMpcState(targetState, pose.pose_);
+    targetState(2) = 0.0;  // heading changes
+    double aveSpeed = 0.5;
+    double timeToGo = targetState.head<2>().norm() / aveSpeed;
+
+    costDesiredTrajectories.desiredTimeTrajectory()[0] = currentObservation.time();
+    costDesiredTrajectories.desiredInputTrajectory()[0] = MpcInterface::input_vector_t::Zero();
+    costDesiredTrajectories.desiredStateTrajectory()[0] = currentObservation.state();
+
+    costDesiredTrajectories.desiredTimeTrajectory()[1] = currentObservation.time() + timeToGo;
+    costDesiredTrajectories.desiredInputTrajectory()[1] = MpcInterface::input_vector_t::Zero();
+    costDesiredTrajectories.desiredStateTrajectory()[1] = currentObservation.state() + targetState;
+
+    costDesiredTrajectories.display();
+
   } else {
     costDesiredTrajectories.desiredStateTrajectory().reserve(path.poses.size());
     costDesiredTrajectories.desiredInputTrajectory().reserve(path.poses.size());
@@ -209,15 +244,15 @@ void SmbPathFollowingController::writeDesiredTrajectory(const nav_msgs::Path& pa
 void SmbPathFollowingController::pathCallback(const nav_msgs::PathConstPtr& path) {
   nav_msgs::Path pathTemp = *path;
   if (pathTemp.poses.size() > 0) {
-    double duration = (pathTemp.poses.back().header.stamp - pathTemp.poses.front().header.stamp).toSec();
-    if (duration < mmInterface_.timeHorizon_) {
-      MELO_WARN_STREAM("[SmbPathFollowingController::pathCallback] received path duration smaller than time horizon. Skip path. "
-                       << duration << "<" << mmInterface_.timeHorizon_);
-      return;
-    }
+    //    double duration = (pathTemp.poses.back().header.stamp - pathTemp.poses.front().header.stamp).toSec();
+    //    if (duration < mmInterface_.timeHorizon_) {
+    //      MELO_WARN_STREAM("[SmbPathFollowingController::pathCallback] received path duration smaller than time horizon. Skip path. "
+    //                       << duration << "<" << mmInterface_.timeHorizon_);
+    //
+    //      return;
+    //    }
   }
-
-  adjustTimeStamps(pathTemp);
+  if (pathTemp.poses.size() > 1) adjustTimeStamps(pathTemp);
   static uint pathSequence = 1;
   pathTemp.header.seq = pathSequence++;
   {
@@ -294,8 +329,8 @@ bool SmbPathFollowingController::publishRos(const roco::WorkerEvent& event) {
                                                                        << "optimalState:" << optimalState.transpose() << std::endl
                                                                        << "controlInput:" << controlInput.transpose() << std::endl
                                                                        << "current time: " << observation_.time()
-                                                                       << " current trajectory timespan: [" << timeTrajectory.front() << ", "
-                                                                       << timeTrajectory.back() << "]");
+                                                                       << " current trajectory timespan: [" << timeTrajectory.front()
+                                                                       << ", " << timeTrajectory.back() << "]");
 
   return true;
 }

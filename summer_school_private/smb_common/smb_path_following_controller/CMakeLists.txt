@@ -54,6 +54,16 @@ target_link_libraries(${PROJECT_NAME}_plugin
   ${PROJECT_NAME}
   ${catkin_LIBRARIES}
   )
+  
+add_executable(test_goto_task
+  test_paths/TestGoToTask.cpp
+)
+add_dependencies(test_goto_task
+  ${catkin_EXPORTED_TARGETS}
+)
+target_link_libraries(test_goto_task
+  ${catkin_LIBRARIES}
+)
 
 install(FILES rocoma_plugin.xml
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
