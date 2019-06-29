@@ -164,7 +164,7 @@ Additional CMake Args: -DCMAKE_BUILD_TYPE=Release
 
 * Memory allocation (leak) issue:  
 For compiling ocs2_ballbot_example or related examples needs 4G RAM per core.  
-Solution: either limit the core while compiling by adding '-j1' or enable swap space.  
+Solution: either limit the core while compiling by adding '-j1' or [enable swap space](https://bogdancornianu.com/change-swap-size-in-ubuntu/). (Use 16 blocks with 1GB each).
 ```
 catkin build -j1
 ```
