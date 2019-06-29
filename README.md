@@ -139,11 +139,11 @@ echo "source ~/maplab_ws/devel/setup.bash" >> ~/.bashrc
 ```
 
 # Connect to robot
-Use ssh smb@10.0.0.5 to log into the robot.
+Use ssh smb@11.0.0.5 to log into the robot.
 
 Copy this alias to your .bashrc to connect to the robot's ros master (for running the opc)
 ```
-alias connect-smb='export ROS_MASTER_URI=http://10.0.0.5:11311 ; export ROS_IP=`ip route get 10.0.0.5 | awk '"'"'{print $5; exit}'"'"'` ; echo "ROS_MASTER_URI and ROS_IP set to " ; printenv ROS_MASTER_URI ; printenv ROS_IP'
+alias connect-smb='export ROS_MASTER_URI=http://11.0.0.5:11311 ; export ROS_IP=`ip route get 11.0.0.5 | awk '"'"'{print $5; exit}'"'"'` ; echo "ROS_MASTER_URI and ROS_IP set to " ; printenv ROS_MASTER_URI ; printenv ROS_IP'
 ```
 
 # Troubleshooting  
