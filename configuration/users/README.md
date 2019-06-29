@@ -3,9 +3,9 @@
 ### Turn on the NUC
 ### Connect to the computer
 ```
-ssh smb@10.0.0.5
+ssh smb@11.0.0.5
 ``` 
-(ping it `ping 10.0.0.5` if it does not work to check connectivity)
+(ping it `ping 11.0.0.5` if it does not work to check connectivity)
 ### Create a user 
 ```
 sudo adduser your_username
