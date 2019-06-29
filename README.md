@@ -147,16 +147,6 @@ alias connect-smb='export ROS_MASTER_URI=http://11.0.0.5:11311 ; export ROS_IP=`
 ```
 
 # Troubleshooting  
-* Visensor discovery failed
-```
-sudo rm /var/lib/dhcp/dhclient.leases
-sudo dhclient -r
-```
-Afterwards turn off all robot power.
-Turn on only the robot and wait 10-15s.
-Turn on the router and nuc.
-(Issue remains that the internet might not work on the robot)
-
 * Header file not found:  
 Solution: resource your catkin workspace, then build again.  
 ```
@@ -188,10 +178,10 @@ If you do not get a connection, the 4G modom may have reconnected to a different
 a) shut off and on the Nighhawk router (The one with the 3 antennas)
 b) if that didn't fix it, reboot the robot with `sudo reboot 0`.
 
-* VI Sensor does not respond:
-Use the magic command:
+* VI Sensor crashes during startup:
+Use the magic command (tab complete, the network interface name is different for every robot):
 ```
-sudo dhclient eno1
+sudo dhclient enx[*]
 ```
 
 * `fatal error: ethzasl_icp_mapper/LoadMap.h: No such file or directory`
