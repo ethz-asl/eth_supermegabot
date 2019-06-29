@@ -279,6 +279,7 @@ std::cout << "here0" << std::endl;
               T_w_wa.trans.setZero();
               T_w_wa.rot = q_w_i_init * poseMeasPtr->T_imu_sensor().rot * T_wa_ba.rot.conjugate();
               T_w_wa.print("T_w_wa initialized to");
+              break;
             }
             case BMM : {
               std::cout << "here3" << std::endl;
