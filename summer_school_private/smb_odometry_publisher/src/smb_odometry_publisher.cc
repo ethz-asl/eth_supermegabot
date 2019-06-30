@@ -28,10 +28,10 @@ public:
   wheelSpeedsCallback(const std_msgs::Float64MultiArray &wheel_speeds_msg) {
     nav_msgs::Odometry odom;
     geometry_msgs::TransformStamped odom_trans;
-    odom.child_frame_id = "base_link";
-    odom.header.frame_id = "odom";
-    odom_trans.header.frame_id = "odom";
-    odom_trans.child_frame_id = "base_link";
+    odom.child_frame_id = "/smb/base_link";
+    odom.header.frame_id = "/odom";
+    odom_trans.header.frame_id = "/odom";
+    odom_trans.child_frame_id = "smb/base_link";
     if (last_odometry_.header.stamp.toSec() == 0) {
       // Initialization.
       last_odometry_.header.stamp = ros::Time(wheel_speeds_msg.data[0]);
@@ -49,7 +49,7 @@ public:
           (wheel_speeds_msg.data[2] + wheel_speeds_msg.data[1]) *
           wheel_radius_ / 2.0;
       odom.twist.twist.angular.z =
-          (wheel_speeds_msg.data[2] - wheel_speeds_msg.data[1]) *
+          (wheel_speeds_msg.data[1] - wheel_speeds_msg.data[2]) *
           wheel_radius_ / baseline_;
       double theta = last_theta_ + odom.twist.twist.angular.z * delta_t_s;
       odom.pose.pose.position.x =
@@ -65,6 +65,7 @@ public:
       odom.pose.pose.position.z = 0.0;
 
       // since all odometry is 6DOF we'll need a quaternion created from yaw
+      ROS_WARN_STREAM("Theta: " << theta);
       geometry_msgs::Quaternion odom_quat =
           tf::createQuaternionMsgFromYaw(theta);
       odom.pose.pose.orientation = odom_quat;
