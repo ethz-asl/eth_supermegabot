@@ -81,3 +81,17 @@
 - git:
    local-name: grid_map
    uri: https://github.com/ANYbotics/grid_map.git
+- git:
+   local-name: realsense-ros
+   uri: https://github.com/IntelRealSense/realsense-ros.git
+- git:
+   local-name: librealsense
+   uri: https://github.com/IntelRealSense/librealsense.git
+   version: development
+- git:
+   local-name: ddynamic_reconfigure
+   uri: https://github.com/pal-robotics/ddynamic_reconfigure.git
+   version: 0.2.0
+- git:
+   local-name: eth_robotics_summer_school_2019
+   uri: https://github.com/ethz-asl/eth_robotics_summer_school_2019.git
