@@ -11,7 +11,7 @@ To trigger the global planner, call a service as done [here](https://github.com/
 
 2. Modify the global planner to accept a list of waypoints (e.g. via a _csv_ or text file). In this case, there is no need for an additional node. The global planner already knows if the goal is reached or if it is unreachable. In both cases, the next waypoint in the list should be used as new global goal.
   
-__Q: Why do we use the LiDAR pointcloud for traversability estimation on the real robot?__
+__Q: Why do we use the LiDAR pointcloud for traversability estimation on the real robot?__  
 __A:__ Because the Realsense driver was not ready at the time we created the launch files. Moreover, we don't use the VI-Sensor to create a pointcloud because the node that does that can take a lot of resources. Note: in the simulation, you are still using the VI-Sensor!  
 
 If you want, you can use the LiDAR for traversability estimation. In this case, you don't have to change anything. If you want to use the Realsense pointcloud to create a local traversability map, the you need to adjust [this launch file](https://github.com/VIS4ROB-lab/smb_path_planner/blob/master/smb_local_planner/launch/smb_elevation_mapping_real.launch) and [this configuration file](https://github.com/VIS4ROB-lab/smb_path_planner/blob/master/smb_planner_common/cfg/elevation_mapping_smb.yaml).  
