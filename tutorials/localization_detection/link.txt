@@ -1,2 +1,5 @@
 You can find the slides here:
 https://bit.ly/2FKs8D1
+
+and the example bag file here:
+https://bit.ly/2LrLSPy
