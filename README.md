@@ -183,6 +183,18 @@ Use the magic command (tab complete, the network interface name is different for
 ```
 sudo dhclient enx[*]
 ```
+The complete method for restarting VI-Sensor (thanks to @dwisth):
+
+1. Close all ros process running.
+2. Kill any existing DHCP clients.
+`ps aux | grep dhclient`
+`sudo kill -9 <process number>` as many times as required.
+3. Reboot the VI sensor.
+`ssh root@10.0.0.1`
+`reboot`
+wait approx 20 seconds. Check it has rebooted with `ping 10.0.0.1`.
+3. Restart the DHCP client: `sudo dhclient enx<tab complete here>`. This takes time.
+4. Start the launch files now.
 
 * `fatal error: ethzasl_icp_mapper/LoadMap.h: No such file or directory`
 Just `catkin build` again.
