@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <!-- Debug with gbd or valgrind -->
+  <arg name="lowlevel_controller_launch_prefix"    default="" />
+  <!-- Launch prefix for the highlevel controller -->
+  <arg name="highlevel_controller_launch_prefix"   default=""/>
+
+  <arg name="publish_ros"                          default="true"/>
+  <arg name="time_step"                            default="0.0025"/>
+  <!-- launch joystick on robot -->
+  <arg name="launch_joystick"                      default="true" />
+
+  <!-- Name of the robot description parameter -->
+  <arg name="description_name"                     default="smb_description_for_gazebo"/>
+  <!-- Path of robot description -->
+  <arg name="description_file"                     default="$(find smb_description)/urdf/smb_standalone.urdf.xacro"/>
+
+  <!-- Set global simulation parameter -->
+  <param name="/simulation" value="false"/>
+
+  <!-- Robosense LiDAR driver parameters -->
+  <arg name="model" default="RS16" />
+  <arg name="device_ip" default="11.0.0.3" />
+  <arg name="msop_port" default="6699" />
+  <arg name="difop_port" default="7788" />
+  <arg name="lidar_param_path" default="$(find rslidar_pointcloud)/data/rs_lidar_16/"/>
+
+  <!-- Robosense LiDAR -->
+  <node  name="rslidar_node" pkg="rslidar_driver" type="rslidar_node" output="screen" >
+	<param name="model" value="$(arg model)"/>
+	<param name="device_ip" value="$(arg device_ip)" />
+	<param name="msop_port" value="$(arg msop_port)" />
+	<param name="difop_port" value="$(arg difop_port)"/>
+  </node>
+  
+  <node  name="cloud_node" pkg="rslidar_pointcloud" type="cloud_node" output="screen" >
+	<param name="model" value="$(arg model)"/>
+	<param name="curves_path" value="$(arg lidar_param_path)/curves.csv" />
+	<param name="angle_path" value="$(arg lidar_param_path)/angle.csv" />
+	<param name="channel_path" value="$(arg lidar_param_path)/ChannelNum.csv" />
+	<param name="max_distance" value="20"/>
+	<param name="min_distance" value="0.2"/>
+	<param name="resolution_type" value="0.5cm"/>
+	<param name="intensity_mode" value="1"/>
+  </node>
+
+  <!-- Highlevel controller -->
+  <include file="$(find smb_highlevel_controller)/launch/smb_highlevel_controller.launch">
+    <arg name="simulation"                value="false"/>
+    <arg name="time_step"                 value="$(arg time_step)"/>
+    <arg name="launch_prefix"             value="$(arg highlevel_controller_launch_prefix)"/>
+  </include>
+
+  <!-- Low-level controller -->
+  <node pkg="smb_lowlevel_controller" type="smb_lowlevel_controller_node" name="smb_lowlevel_controller" output="screen" launch-prefix="$(arg lowlevel_controller_launch_prefix)">
+    <rosparam command="load" file="$(find smb_lowlevel_controller)/config/ros.yaml"/>
+    <param name="time_step"                   value="$(arg time_step)"/>
+    <param name="standalone"                  value="false"/>
+    <param name="publish_measurements"        value="$(arg publish_ros)"/>
+    <param name="publishing_time_step"        value="$(arg time_step)"/>
+    <param name="sync_name"                   value="smb_sync"/>
+    <param name="command_smb"                 value="false"/>
+  </node>
+
+  <!-- State estimator -->
+  <include file="$(find smb_state_estimator)/launch/smb_state_estimator.launch">
+    <arg name="standalone" value="false"/>
+  </include>
+
+  <!-- Load robot description for the robot state publisher. Simulation arg needs to be true to load the urdf with continuous wheel joints -->
+  <include file="$(find smb_description)/launch/load.launch">
+    <arg name="simulation"       value="true"/>
+    <arg name="description_name" value="$(arg description_name)"/>
+    <arg name="description_file" value="$(arg description_file)"/>
+    <arg name="wheel_joint_type" value="continuous"/>
+  </include>
+
+  <!-- Launch robot state publisher -->
+  <include file="$(find smb_tf_publisher)/launch/smb_tf_publisher.launch">
+    <arg name="description_name" default="$(arg description_name)"/>
+    <!-- TF prefix -->
+    <arg name="tf_prefix" default=""/>
+    <!-- Joint state topic name -->
+    <arg name="joint_states_topic" default="/state_estimator/joint_states"/>
+    <!-- Namespace to run the nodes in -->
+    <arg name="ns" default="smb_tf_publisher"/>
+    <arg name="publish_frequency" default="100" />
+    <!-- Topic of the smb state -->
+    <arg name="smb_state_subscriber_name" default="/state_estimator/smb_state"/>
+    <!-- Publish map transforms -->
+    <arg name="publish_map_transforms" default="false"/>
+  </include>
+
+  <group if="$(arg launch_joystick)" >
+    <!-- start joystick interface -->
+    <include file="$(find smb_common)/launch/joystick.launch" />
+  </group>
+
+</launch>
