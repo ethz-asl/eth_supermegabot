@@ -12,9 +12,9 @@ instructions to build and setup a fully autonomous all-terrain mobile robot.
 * [Robot / personal computer software setup](doc/software_setup.md)
 * (Optional) [Maplab setup](doc/maplab_setup.md)
 * [Connecting to robot](doc/robot_connection.md)
-* Tutorials(doc/maplab_setup.md)
+* Tutorials
     * []
-* [Troubleshooting]
+* Troubleshooting
     * [Software](doc/troubleshooting_software.md)
     * [Hardware](doc/troubleshooting_hardware.md)
 
