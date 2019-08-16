@@ -1,4 +1,8 @@
-## ETH robotics summer school 2019
+## ETH SuperMegaBot
+
+Build your own autonomous all-terrain robot.
+
+![alt tag](doc/images/smb_construction.jpg)
 
 This is a basic set-up guide for the workspace packages and tutorial to use the super mega bots.
 
