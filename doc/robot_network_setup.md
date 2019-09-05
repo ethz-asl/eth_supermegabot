@@ -53,7 +53,7 @@ Linux):
 
 ```
 roscd rslidar_pointcloud
-vi launch rs_lidar_16.launch
+vi launch/rs_lidar_16.launch
 ```
 ![alt tag](images/network-11.png)
 
@@ -64,13 +64,17 @@ browser. Next, install the custom firmware from [dd-wrt.com](https://github.com/
 
 Now, configure the network via browser:
 * Set IP of router
+
 ![alt tag](images/network-07.png)
 * Add static route to robosense
+
 ![alt tag](images/network-08.png)
 * Switch off 2.4GHz (interference with remote e-stop) and set 5GHz as DHCP
 Server
+
 ![alt tag](images/network-09.png)
 * Set passwords for Wifi:
+
 ![alt tag](images/network-10.png)
 * Router user & password should be admin / admin
 
