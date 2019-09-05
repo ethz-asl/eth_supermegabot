@@ -86,6 +86,8 @@ connected. There are however 2 further options for internet:
 
 * Connecting an ethernet cable providing internet to the router
 * Connecting a 4G modem to the router
+    * Set IP to 10.0.0.12
+    * Switch off DHCP
 
 
 
