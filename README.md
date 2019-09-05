@@ -30,7 +30,7 @@ client side, please follow these instructions:
 
 After robot assembly, its computer and network need to be setup:
 * [Robot software setup](doc/software_setup.md) (analogously to personal
-computer.
+computer)
 * [Robot network setup](doc/robot_network_setup.md)
 
 ## Organisation
