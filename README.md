@@ -9,7 +9,8 @@ instructions to build and setup a fully autonomous all-terrain mobile robot.
 
 ## Quick-start
 
-* [Bill of Materials](doc/bill_of_materials.md)
+If your robot is all set-up and you only want to set-up and use the software on
+client side, please follow these instructions:
 * [Robot / personal computer software setup](doc/software_setup.md)
 * (Optional) [Maplab setup](doc/maplab_setup.md)
 * [Connecting to robot](doc/robot_connection.md)
@@ -24,6 +25,13 @@ instructions to build and setup a fully autonomous all-terrain mobile robot.
     * [Software](doc/troubleshooting_software.md)
     * [Hardware](doc/troubleshooting_hardware.md)
 * [Safety](doc/safety.md)
+
+## Robot-setup
+
+After robot assembly, its computer and network need to be setup:
+* [Robot software setup](doc/software_setup.md) (analogously to personal
+computer.
+* [Robot network setup](doc/robot_network_setup.md)
 
 ## Organisation
 This robot was designed in the ETH Construction Robotics group.
