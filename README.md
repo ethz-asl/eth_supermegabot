@@ -26,6 +26,26 @@ client side, please follow these instructions:
     * [Hardware](doc/troubleshooting_hardware.md)
 * [Safety](doc/safety.md)
 
+## Robot Manufacturing
+
+Building the hardware components is straightforward. All drawings are ready
+prepared to be produced with various production techniques. The overall [CAD models](https://drive.google.com/a/ethz-asl.ch/file/d/1jhX4gtn3jKzNdc6CiImZ6_Q0kAOqgfmE/view?usp=sharing) were created with NX 12 and can be downloaded online.
+
+Furthermore, we have readily prepared drawings to be send as jobs for:
+* [Laser cutting MDF](https://drive.google.com/a/ethz-asl.ch/file/d/1gHZlsFpoMsfyPtTybpoXwkbFba4WIa5H/view?usp=sharing)
+* [Laser cutting Acryl](https://drive.google.com/a/ethz-asl.ch/file/d/1aXaRlv5ef8TgtKJ0yKYKl0ca8UT075qw/view?usp=sharing)
+* [3D printing](https://drive.google.com/a/ethz-asl.ch/file/d/15Xq_9GQSyEfsd3SRM_o0gwsrJYYaENEt/view?usp=sharing)
+* [Cutting aluminium](https://drive.google.com/a/ethz-asl.ch/file/d/1oTqkmU1R2H24GM3zQfTbx0Vdpzz3VQ2U/view?usp=sharing)
+* [Aluminium Profiles]()
+
+## Electronics Manufacturing
+
+
+
+## Robot Assembly
+
+
+
 ## Robot-setup
 
 After robot assembly, its computer and network need to be setup:
