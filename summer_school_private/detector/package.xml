@@ -16,4 +16,6 @@
   <depend>image_transport</depend>
   <depend>opencv3_catkin</depend>
   <depend>aslam_cv_cameras</depend>
+  <depend>yaml_cpp_catkin</depend>
+  <depend>yaml_tools</depend>
 </package>
