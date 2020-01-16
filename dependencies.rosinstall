@@ -57,7 +57,7 @@
 - git:
    local-name: ros_rslidar
    uri: https://github.com/RoboSense-LiDAR/ros_rslidar.git
-   version: master
+   version: f1043b8 
 - git:
    local-name: ceres_catkin
    uri: https://github.com/ethz-asl/ceres_catkin
