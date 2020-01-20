@@ -95,3 +95,6 @@
 - git:
    local-name: opencv3_catkin
    uri: https://github.com/ethz-asl/opencv3_catkin.git
+- git:
+   local-name: summer_school_private
+   uri: https://github.com/ethz-asl/summer_school_private.git
