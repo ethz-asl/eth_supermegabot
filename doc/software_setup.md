@@ -98,7 +98,7 @@ wstool init
 wstool merge eth_supermegabot/dependencies.rosinstall
 wstool up
 ```
-**Note: We are currently reworking some robot-specific drivers. Therefore parts of the code are temporarily moved to a private dependent repository [summer_school_private](https://github.com/ethz-asl/summer_school_private). Should you require access in the meantime, please contact the maintainers.**
+**Note: We are currently reworking some robot-specific drivers. Therefore parts of the code are temporarily moved to a private dependent repository [summer_school_private](https://github.com/ethz-asl/summer_school_private). Should you require access in the meantime, please contact the maintainers. If you want to only build/run the perception stack, you can follow the instructions [here](perception_setup.md).**
 
 Build the workspace (This can take some time, grab a coffee or take a power nap).
 ```
