@@ -95,3 +95,9 @@
 - git:
    local-name: opencv3_catkin
    uri: https://github.com/ethz-asl/opencv3_catkin.git
+- git:
+   local-name: ethzasl_brisk
+   uri: https://github.com/ethz-asl/ethzasl_brisk.git
+- git:
+   local-name: opengv
+   uri: https://github.com/laurentkneip/opengv.git

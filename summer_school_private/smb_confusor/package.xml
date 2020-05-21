@@ -19,5 +19,5 @@
   <depend>sensor_msgs</depend>
   <depend>tf</depend>
   <depend>confusion</depend>
-
+  <depend>opencv3_catkin</depend>
 </package>
